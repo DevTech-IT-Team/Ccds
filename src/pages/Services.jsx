@@ -19,12 +19,12 @@ import {
    Icon map
 ───────────────────────────────────────── */
 const iconMap = {
-  droplet:   Droplet,
-  zap:       Zap,
-  radio:     Radio,
-  leaf:      Leaf,
-  sparkles:  Sparkles,
-  users:     Users,
+  droplet: Droplet,
+  zap: Zap,
+  radio: Radio,
+  leaf: Leaf,
+  sparkles: Sparkles,
+  users: Users,
 };
 
 /* ─────────────────────────────────────────
@@ -180,11 +180,11 @@ const CommunityResources = ({ services }) => (
 );
 
 const detailPanelMap = {
-  'colon-hydrotherapy':  (s) => <ColonHydrotherapy services={s} />,
-  'ion-foot-detox':      (s) => <IonFootDetox services={s} />,
-  'biocharger':          (s) => <BioCharger services={s} />,
-  'liver-cleanse':       (s) => <LiverCleanse services={s} />,
-  'mineralizing-soak':   (s) => <MineralizingSoak services={s} />,
+  'colon-hydrotherapy': (s) => <ColonHydrotherapy services={s} />,
+  'ion-foot-detox': (s) => <IonFootDetox services={s} />,
+  'biocharger': (s) => <BioCharger services={s} />,
+  'liver-cleanse': (s) => <LiverCleanse services={s} />,
+  'mineralizing-soak': (s) => <MineralizingSoak services={s} />,
   'community-resources': (s) => <CommunityResources services={s} />,
 };
 
@@ -208,11 +208,10 @@ const ServiceSelectorCard = ({ tab, isActive, onClick, index }) => {
   return (
     <button
       onClick={onClick}
-      className={`group relative w-full text-left rounded-2xl p-5 border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue/30 ${
-        isActive
+      className={`group relative w-full text-left rounded-2xl p-5 border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue/30 ${isActive
           ? 'bg-gradient-to-br ' + grad + ' border-transparent shadow-lg shadow-blue/20 scale-[1.02]'
           : 'bg-white border-blue-pale hover:border-blue-light hover:shadow-card-hover hover:-translate-y-0.5'
-      }`}
+        }`}
       aria-pressed={isActive}
     >
       {/* top shimmer when active */}
@@ -222,40 +221,35 @@ const ServiceSelectorCard = ({ tab, isActive, onClick, index }) => {
 
       {/* badge */}
       {tab.badge && (
-        <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-          isActive ? 'bg-white/20 text-white' : 'bg-blue-pale text-blue'
-        }`}>
+        <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-blue-pale text-blue'
+          }`}>
           {tab.badge}
         </span>
       )}
 
       {/* icon */}
-      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-3 transition-all duration-300 ${
-        isActive
+      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-3 transition-all duration-300 ${isActive
           ? 'bg-white/20 group-hover:bg-white/30'
           : 'bg-blue-faint group-hover:bg-blue-pale group-hover:scale-110'
-      }`}>
+        }`}>
         <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-blue'}`} />
       </div>
 
       {/* label */}
-      <p className={`font-bold text-sm leading-snug mb-1.5 transition-colors ${
-        isActive ? 'text-white' : 'text-navy-mid group-hover:text-blue'
-      }`}>
+      <p className={`font-bold text-sm leading-snug mb-1.5 transition-colors ${isActive ? 'text-white' : 'text-navy-mid group-hover:text-blue'
+        }`}>
         {tab.label}
       </p>
 
       {/* blurb */}
-      <p className={`text-xs leading-relaxed line-clamp-2 ${
-        isActive ? 'text-white/75' : 'text-ink-soft'
-      }`}>
+      <p className={`text-xs leading-relaxed line-clamp-2 ${isActive ? 'text-white/75' : 'text-ink-soft'
+        }`}>
         {tab.blurb}
       </p>
 
       {/* active indicator arrow */}
-      <div className={`mt-3 flex items-center gap-1 text-xs font-semibold transition-all ${
-        isActive ? 'text-white/90' : 'text-blue opacity-0 group-hover:opacity-100'
-      }`}>
+      <div className={`mt-3 flex items-center gap-1 text-xs font-semibold transition-all ${isActive ? 'text-white/90' : 'text-blue opacity-0 group-hover:opacity-100'
+        }`}>
         {isActive ? 'Viewing details' : 'View details'}
         <ChevronRight className={`w-3 h-3 transition-transform ${isActive ? 'rotate-90' : 'group-hover:translate-x-0.5'}`} />
       </div>
@@ -364,9 +358,8 @@ const Services = () => {
                     key={i}
                     onClick={() => handleSelect(i)}
                     aria-label={`Go to ${tabs[i].label}`}
-                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                      i === activeIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/60'
-                    }`}
+                    className={`w-2 h-2 rounded-full transition-all duration-200 ${i === activeIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/60'
+                      }`}
                   />
                 ))}
               </div>

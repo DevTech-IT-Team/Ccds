@@ -101,12 +101,43 @@ export const siteContent = {
   // Services page tabs
   services: {
     tabs: [
-      { id: 'colon-hydrotherapy', label: 'Colon Hydrotherapy' },
-      { id: 'ion-foot-detox', label: 'Ion Foot Detox' },
-      { id: 'biocharger', label: 'BioCharger' },
-      { id: 'liver-cleanse', label: 'Liver Cleanse' },
-      { id: 'mineralizing-soak', label: 'Mineralizing Foot Soak' },
-      { id: 'community-resources', label: 'Community Resources' },
+      {
+        id: 'colon-hydrotherapy',
+        label: 'Colon Hydrotherapy',
+        icon: 'droplet',
+        blurb: 'Gentle, filtered-water cleansing with FDA-registered equipment. 45–60 min sessions.',
+        badge: 'Most Popular',
+      },
+      {
+        id: 'ion-foot-detox',
+        label: 'Ion Foot Detox',
+        icon: 'zap',
+        blurb: 'Ionic cleanse supporting your body\'s natural detox pathways. Ages 18+.',
+      },
+      {
+        id: 'biocharger',
+        label: 'BioCharger',
+        icon: 'radio',
+        blurb: 'Light & frequency therapy targeting natural energy systems with customizable programs.',
+      },
+      {
+        id: 'liver-cleanse',
+        label: 'Liver Cleanse',
+        icon: 'leaf',
+        blurb: '9-day Medical Medium 3•6•9 protocol — consultation, colonics & foot detoxes.',
+      },
+      {
+        id: 'mineralizing-soak',
+        label: 'Mineralizing Foot Soak',
+        icon: 'sparkles',
+        blurb: 'Replenishing 30-min mineral soak. Standalone or stacked with detox sessions.',
+      },
+      {
+        id: 'community-resources',
+        label: 'Community Resources',
+        icon: 'users',
+        blurb: 'Local recovery & wellness referrals. We support the body after recovery.',
+      },
     ],
 
     // Colon Hydrotherapy tab content

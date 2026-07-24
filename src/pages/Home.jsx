@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Sparkles, Radio, Leaf } from 'lucide-react';
 import ServiceCard from '../components/ui/ServiceCard';
 import TestimonialCarousel from '../components/ui/TestimonialCarousel';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -188,13 +188,13 @@ const Home = () => {
         SERVICES
     ════════════════════════════════ */}
     <section className="py-24 bg-white relative overflow-hidden">
-      {/* subtle background tint */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(219,234,254,0.5) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse 60% 40% at 80% 50%, rgba(219,234,254,0.5) 0%, transparent 70%)' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* heading row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <span className="text-xs font-bold text-blue uppercase tracking-widest mb-3 block">What We Offer</span>
             <h2 className="text-4xl md:text-5xl font-display font-bold text-navy-mid leading-tight">
@@ -210,87 +210,95 @@ const Home = () => {
           </Link>
         </div>
 
-        {/* grid — 1 featured left + 4 compact right */}
-        <div className="grid lg:grid-cols-3 gap-5">
-
-          {/* ── FEATURED card ── */}
-          <Link
-            to="/services/colon-hydrotherapy"
-            className="group lg:row-span-2 relative rounded-3xl overflow-hidden flex flex-col justify-end min-h-[360px]"
-            style={{ background: 'linear-gradient(150deg, #0a1f5c 0%, #1d4ed8 100%)' }}
-          >
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            <div className="absolute top-6 right-6 w-40 h-40 rounded-full bg-blue-btn/20 blur-3xl pointer-events-none" />
-            {/* icon */}
-            <div className="absolute top-8 left-8">
-              <div className="w-14 h-14 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center group-hover:bg-white/25 group-hover:scale-110 transition-all duration-300">
-                <Droplet className="w-7 h-7 text-white" />
-              </div>
-            </div>
-            <div className="relative p-8 pt-28">
-              <span className="text-[10px] font-bold text-blue-glow/80 uppercase tracking-widest mb-2 block">Most Popular</span>
-              <h3 className="text-2xl font-display font-bold text-white mb-3 leading-snug group-hover:text-blue-glow transition-colors">
-                Colon Hydrotherapy
-              </h3>
-              <p className="text-white/70 text-sm leading-relaxed mb-6">
-                Gentle, filtered, body-temperature water cleansing. FDA-registered equipment, no chemicals. 45–60 min sessions.
-              </p>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-white group-hover:gap-3 transition-all">
-                Learn more <ArrowRight className="w-4 h-4" />
-              </span>
-            </div>
-          </Link>
-
-          {/* ── 4 compact cards ── */}
+        {/* ── 3-col × 2-row grid ── */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-blue-pale rounded-2xl overflow-hidden shadow-card">
           {[
             {
+              icon: Droplet,
+              num: '01',
+              title: 'Colon Hydrotherapy',
+              blurb: 'Gentle, filtered water cleansing with FDA-registered equipment. 45–60 min sessions, no chemicals.',
+              link: '/services/colon-hydrotherapy',
+              badge: 'Most Popular',
+            },
+            {
               icon: Zap,
+              num: '02',
               title: 'Ion Foot Detox',
-              blurb: 'Ionic cleanse supporting your body\'s natural detox pathways. Ages 18+.',
+              blurb: 'Low-level ionic cleanse supporting your body\'s natural detox pathways. For ages 18+.',
               link: '/services/ion-foot-detox',
             },
             {
-              icon: Users,
+              icon: Radio,
+              num: '03',
               title: 'BioCharger',
               blurb: 'Light & frequency therapy targeting natural energy systems with customizable programs.',
               link: '/services/biocharger',
             },
             {
-              icon: Droplet,
+              icon: Leaf,
+              num: '04',
               title: 'Liver Cleanse',
-              blurb: '9-day Medical Medium 3•6•9 protocol — 1 consult, 3 colonics, 3 foot detoxes.',
+              blurb: '9-day Medical Medium 3•6•9 protocol — 1 consultation, 3 colonics & 3 foot detoxes.',
               link: '/services/liver-cleanse',
             },
             {
               icon: Sparkles,
-              title: 'Mineralizing Soak',
-              blurb: 'Replenishing 30-min mineral foot soak. Standalone or stacked with detox sessions.',
+              num: '05',
+              title: 'Mineralizing Foot Soak',
+              blurb: 'Replenishing 30-min mineral soak. Take it standalone or stack with detox sessions.',
               link: '/services/mineralizing-soak',
             },
-          ].map(({ icon: Icon, title, blurb, link }) => (
+            {
+              icon: Users,
+              num: '06',
+              title: 'Community Resources',
+              blurb: 'Local recovery & wellness referrals. We support the body on the journey after recovery.',
+              link: '/services/community-resources',
+            },
+          ].map(({ icon: Icon, num, title, blurb, link, badge }) => (
             <Link
               key={title}
               to={link}
-              className="group relative bg-white rounded-2xl p-6 border border-blue-pale hover:border-blue-light hover:shadow-card-hover transition-all duration-300 overflow-hidden flex gap-5 items-start"
+              className="group relative bg-white p-7 flex flex-col hover:bg-blue-faint transition-colors duration-300"
             >
-              {/* hover top accent */}
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue to-blue-btn opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl" />
-              {/* icon */}
-              <div className="w-11 h-11 rounded-xl bg-blue-faint flex items-center justify-center flex-shrink-0 group-hover:bg-blue-pale group-hover:scale-110 transition-all duration-300">
-                <Icon className="w-5 h-5 text-blue" />
-              </div>
-              {/* text */}
-              <div className="min-w-0">
-                <h3 className="font-bold text-navy-mid text-sm mb-1.5 group-hover:text-blue transition-colors">{title}</h3>
-                <p className="text-ink-soft text-xs leading-relaxed">{blurb}</p>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue mt-3 group-hover:gap-2 transition-all">
-                  Learn more <ArrowRight className="w-3 h-3" />
+              {/* ── row 1: fixed-height icon row (same for every card) ── */}
+              <div className="flex items-start justify-between h-11 mb-5">
+                <span className="text-3xl font-display font-bold text-blue-pale leading-none select-none">
+                  {num}
                 </span>
+                <div className="w-11 h-11 rounded-xl bg-blue-faint border border-blue-pale flex items-center justify-center group-hover:bg-blue-pale group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                  <Icon className="w-5 h-5 text-blue" />
+                </div>
+              </div>
+
+              {/* ── row 2: badge (same height slot for all cards) ── */}
+              <div className="h-5 mb-1.5">
+                {badge && (
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue">
+                    ★ {badge}
+                  </span>
+                )}
+              </div>
+
+              {/* ── row 3: title ── */}
+              <h3 className="font-bold text-navy-mid text-base leading-snug mb-3 group-hover:text-blue transition-colors duration-200">
+                {title}
+              </h3>
+
+              {/* ── row 4: description (flex-1 so cta always sits at bottom) ── */}
+              <p className="text-ink-soft text-sm leading-relaxed flex-1">
+                {blurb}
+              </p>
+
+              {/* ── row 5: cta ── */}
+              <div className="flex items-center gap-1.5 text-sm font-semibold text-blue mt-5 pt-4 border-t border-blue-pale group-hover:gap-3 transition-all duration-200">
+                Explore <ArrowRight className="w-3.5 h-3.5" />
               </div>
             </Link>
           ))}
-
         </div>
+
       </div>
     </section>
 

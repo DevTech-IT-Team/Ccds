@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy:        #050f2c;
+  --color-navy-mid:    #0a1f5c;
+  --color-navy-card:   #0d2167;
+  --color-blue:        #1d4ed8;
+  --color-blue-mid:    #2563eb;
+  --color-blue-btn:    #3b82f6;
+  --color-blue-light:  #60a5fa;
+  --color-blue-glow:   #93c5fd;
+  --color-blue-pale:   #dbeafe;
+  --color-blue-faint:  #eff6ff;
+
+  --color-teal-deep:   #050f2c;
+  --color-teal:        #1d4ed8;
+  --color-aqua:        #60a5fa;
+  --color-aqua-pale:   #dbeafe;
+
+  --color-sand:        #f0f4ff;
+  --color-clay:        #2563eb;
+  --color-clay-light:  #60a5fa;
+  --color-ink:         #0f172a;
+  --color-ink-soft:    #475569;
+  --color-ink-muted:   #94a3b8;
+
+  --font-display: 'Geist', 'Fraunces', serif;
+  --font-geist:   'Geist', sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --radius-xl:  12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-4xl: 32px;
+
+  --shadow-glow:      0 0 40px rgba(29,78,216,0.35);
+  --shadow-card:      0 4px 24px rgba(5,15,44,0.10);
+  --shadow-card-hover:0 12px 40px rgba(5,15,44,0.18);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+h1,h2,h3,h4,h5,h6 { font-family: 'Fraunces', serif; }
+
+/* ── h1 — Geist, exactly as specified ── */
+h1 {
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+/* ── Floating orb animations ── */
+@keyframes float {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-18px) scale(1.04); }
+}
+.animate-float { animation: float 7s ease-in-out infinite; }
+
+@keyframes float2 {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-12px) rotate(6deg); }
+}
+.animate-float2 { animation: float2 9s ease-in-out infinite; }
+
+/* ── Gradient shift ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient { background-size: 200% 200%; animation: gradientShift 10s ease infinite; }
+
+/* ── Scroll dot ── */
+@keyframes scrollDot {
+  0%,100% { transform: translateY(0); opacity: 1; }
+  50%      { transform: translateY(8px); opacity: 0.4; }
+}
+.animate-scroll-dot { animation: scrollDot 1.8s ease-in-out infinite; }
+
+/* ── Fade-in-up for sections ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.7s ease both; }
+
+/* ── Utility: blue glassmorphism card ── */
+.glass-card {
+  background: rgba(13, 33, 103, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

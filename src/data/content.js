@@ -45,8 +45,8 @@ export const siteContent = {
   // Home page
   home: {
     hero: {
-      headline: 'Clean from the inside out.',
-      subhead: 'Colon hydrotherapy is colonic irrigation/cleansing using pure, filtered, body-temperature water — an approved alternative to traditional colonoscopy prep.',
+      headline: 'Revitalize Your Life. Master the Practice at Our Academy.',
+      subhead: ' Discover why colon hydrotherapy is changing the world of health. Experience premium services to restore your body from the inside out, or enroll in our academy to become a certified therapist and transform the lives of others.',
       ctaPrimary: 'Book an Appointment',
       ctaSecondary: 'Call or Text (303) 505-0026',
     },

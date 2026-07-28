@@ -18,10 +18,10 @@ const ServiceCard = ({ title, blurb, icon, link, className = '' }) => {
       className={`group relative bg-white rounded-2xl p-7 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border border-blue-pale/60 overflow-hidden ${className}`}
     >
       {/* top accent */}
-      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue to-blue-btn opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-rose opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* icon */}
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue to-blue-btn flex items-center justify-center mb-5 shadow-lg group-hover:shadow-glow group-hover:scale-110 transition-all duration-300">
+      <div className="w-12 h-12 rounded-xl bg-gradient-rose flex items-center justify-center mb-5 shadow-lg group-hover:shadow-glow group-hover:scale-110 transition-all duration-300">
         <Icon className="w-6 h-6 text-white" />
       </div>
 

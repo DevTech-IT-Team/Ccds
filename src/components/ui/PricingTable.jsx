@@ -27,7 +27,7 @@ const PricingTable = ({ data, className = '' }) => (
                   href={siteContent.business.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue to-blue-btn text-white text-xs font-semibold shadow hover:shadow-glow hover:scale-105 transition-all"
+                  className="px-4 py-2 rounded-lg bg-gradient-rose text-white text-xs font-semibold shadow hover:shadow-glow hover:scale-105 transition-all"
                 >
                   Book
                 </a>

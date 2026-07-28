@@ -196,22 +196,23 @@ const ServiceSelectorCard = ({ tab, isActive, onClick, index }) => {
 
   // Gradient pairs per card index for visual variety
   const gradients = [
-    'from-blue to-blue-btn',
-    'from-indigo-500 to-blue',
-    'from-blue-btn to-sky-400',
-    'from-teal-500 to-blue',
-    'from-violet-500 to-blue-btn',
-    'from-blue to-indigo-400',
+    'linear-gradient(135deg, #B36C63 0%, #D98E84 30%, #F2B2A8 50%, #D98E84 70%, #B36C63 100%)',
+    'linear-gradient(135deg, #A38645 0%, #CBB06B 30%, #EAD798 50%, #CBB06B 70%, #A38645 100%)',
+    'linear-gradient(180deg, #38838A 0%, #2C7379 100%)',
+    'linear-gradient(135deg, #B36C63 0%, #D98E84 30%, #F2B2A8 50%, #D98E84 70%, #B36C63 100%)',
+    'linear-gradient(135deg, #A38645 0%, #CBB06B 30%, #EAD798 50%, #CBB06B 70%, #A38645 100%)',
+    'linear-gradient(180deg, #38838A 0%, #2C7379 100%)',
   ];
   const grad = gradients[index % gradients.length];
 
   return (
     <button
       onClick={onClick}
-      className={`group relative w-full text-left rounded-2xl p-5 border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue/30 ${isActive
-          ? 'bg-gradient-to-br ' + grad + ' border-transparent shadow-lg shadow-blue/20 scale-[1.02]'
-          : 'bg-white border-blue-pale hover:border-blue-light hover:shadow-card-hover hover:-translate-y-0.5'
+      className={`group relative w-full text-left rounded-2xl p-5 border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D98E84]/30 ${isActive
+          ? 'border-transparent shadow-lg scale-[1.02]'
+          : 'bg-white border-[#E2EEEC] hover:border-[#D98E84] hover:shadow-card-hover hover:-translate-y-0.5'
         }`}
+      style={isActive ? { background: grad } : {}}
       aria-pressed={isActive}
     >
       {/* top shimmer when active */}
@@ -312,11 +313,11 @@ const Services = () => {
 
           {/* ── Section heading ── */}
           <div className="mb-10">
-            <span className="text-xs font-bold text-blue uppercase tracking-widest mb-2 block">6 Treatments</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-mid leading-tight">
+            <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest mb-2 block">6 Treatments</span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C] leading-tight">
               Choose a Service to Explore
             </h2>
-            <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-blue to-blue-btn" />
+            <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84]" />
           </div>
 
           {/* ── 6-card selector grid ── */}
@@ -338,7 +339,7 @@ const Services = () => {
             className="bg-white rounded-3xl border border-blue-pale shadow-card overflow-hidden scroll-mt-24"
           >
             {/* Panel header */}
-            <div className="bg-gradient-to-r from-navy to-navy-mid px-8 py-6 flex items-center gap-4">
+            <div className="bg-gradient-to-r from-[#2C7379] to-[#38838A] px-8 py-6 flex items-center gap-4">
               {(() => {
                 const Icon = iconMap[activeTab.icon] || Droplet;
                 return (
@@ -348,7 +349,7 @@ const Services = () => {
                 );
               })()}
               <div>
-                <p className="text-blue-glow/70 text-xs font-semibold uppercase tracking-widest mb-0.5">Service Details</p>
+                <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-0.5">Service Details</p>
                 <h2 className="text-xl font-display font-bold text-white">{activeTab.label}</h2>
               </div>
               {/* tab counter */}

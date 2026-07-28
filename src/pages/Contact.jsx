@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../components/ui/Button';
 import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
 import { siteContent } from '../data/content';
@@ -9,11 +9,18 @@ const inputClass =
 
 const Contact = () => {
   const [form, setForm] = useState({
-    name: '', phone: '', email: '', preferredMethod: 'Phone', subject: '', comment: '',
+    name: '',
+    phone: '',
+    email: '',
+    preferredMethod: 'Phone',
+    subject: '',
+    comment: '',
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,20 +30,29 @@ const Contact = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-    } catch (_) { /* show success regardless */ }
+    } catch (_) {
+      /* show success regardless */
+    }
     setSubmitted(true);
-    setForm({ name: '', phone: '', email: '', preferredMethod: 'Phone', subject: '', comment: '' });
+    setForm({
+      name: '',
+      phone: '',
+      email: '',
+      preferredMethod: 'Phone',
+      subject: '',
+      comment: '',
+    });
   };
 
   const hours = siteContent.hours;
   const hoursList = [
-    { day: 'Sunday',    time: hours.sunday },
-    { day: 'Monday',    time: hours.monday },
-    { day: 'Tuesday',   time: hours.tuesday },
+    { day: 'Sunday', time: hours.sunday },
+    { day: 'Monday', time: hours.monday },
+    { day: 'Tuesday', time: hours.tuesday },
     { day: 'Wednesday', time: hours.wednesday },
-    { day: 'Thursday',  time: hours.thursday },
-    { day: 'Friday',    time: hours.friday },
-    { day: 'Saturday',  time: hours.saturday },
+    { day: 'Thursday', time: hours.thursday },
+    { day: 'Friday', time: hours.friday },
+    { day: 'Saturday', time: hours.saturday },
   ];
 
   return (
@@ -51,12 +67,15 @@ const Contact = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
-
             {/* ── Form (3 cols) ── */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-2xl border border-blue-pale shadow-card p-8">
-                <h2 className="text-2xl font-display font-bold text-navy-mid mb-1">Send Us a Message</h2>
-                <p className="text-ink-soft text-sm mb-6">{siteContent.contact.preferredContact}</p>
+                <h2 className="text-2xl font-display font-bold text-navy-mid mb-1">
+                  Send Us a Message
+                </h2>
+                <p className="text-ink-soft text-sm mb-6">
+                  {siteContent.contact.preferredContact}
+                </p>
 
                 {submitted ? (
                   <div className="flex flex-col items-center gap-4 py-12 text-center">
@@ -64,56 +83,128 @@ const Contact = () => {
                       <CheckCircle2 className="w-8 h-8 text-blue" />
                     </div>
                     <p className="font-bold text-navy-mid text-lg">Message Sent!</p>
-                    <p className="text-ink-soft text-sm">{siteContent.contact.form.success}</p>
+                    <p className="text-ink-soft text-sm">
+                      {siteContent.contact.form.success}
+                    </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="name" className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide">
+                        <label
+                          htmlFor="name"
+                          className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide"
+                        >
                           {siteContent.contact.form.name} *
                         </label>
-                        <input id="name" name="name" type="text" required value={form.name} onChange={handleChange} className={inputClass} placeholder="Your full name" />
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={form.name}
+                          onChange={handleChange}
+                          className={inputClass}
+                          placeholder="Your full name"
+                        />
                       </div>
                       <div>
-                        <label htmlFor="phone" className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide">
+                        <label
+                          htmlFor="phone"
+                          className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide"
+                        >
                           {siteContent.contact.form.phone}
                         </label>
-                        <input id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} className={inputClass} placeholder="(303) 555-0000" />
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={form.phone}
+                          onChange={handleChange}
+                          className={inputClass}
+                          placeholder="(303) 555-0000"
+                        />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide">
+                      <label
+                        htmlFor="email"
+                        className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide"
+                      >
                         {siteContent.contact.form.email} *
                       </label>
-                      <input id="email" name="email" type="email" required value={form.email} onChange={handleChange} className={inputClass} placeholder="you@example.com" />
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={form.email}
+                        onChange={handleChange}
+                        className={inputClass}
+                        placeholder="you@example.com"
+                      />
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="preferredMethod" className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide">
+                        <label
+                          htmlFor="preferredMethod"
+                          className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide"
+                        >
                           {siteContent.contact.form.preferredMethod}
                         </label>
-                        <select id="preferredMethod" name="preferredMethod" value={form.preferredMethod} onChange={handleChange} className={inputClass}>
+                        <select
+                          id="preferredMethod"
+                          name="preferredMethod"
+                          value={form.preferredMethod}
+                          onChange={handleChange}
+                          className={inputClass}
+                        >
                           {siteContent.contact.form.methodOptions.map((o) => (
-                            <option key={o} value={o}>{o}</option>
+                            <option key={o} value={o}>
+                              {o}
+                            </option>
                           ))}
                         </select>
                       </div>
                       <div>
-                        <label htmlFor="subject" className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide">
+                        <label
+                          htmlFor="subject"
+                          className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide"
+                        >
                           {siteContent.contact.form.subject} *
                         </label>
-                        <input id="subject" name="subject" type="text" required value={form.subject} onChange={handleChange} className={inputClass} placeholder="How can we help?" />
+                        <input
+                          id="subject"
+                          name="subject"
+                          type="text"
+                          required
+                          value={form.subject}
+                          onChange={handleChange}
+                          className={inputClass}
+                          placeholder="How can we help?"
+                        />
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="comment" className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide">
+                      <label
+                        htmlFor="comment"
+                        className="block text-xs font-semibold text-navy-mid mb-1.5 uppercase tracking-wide"
+                      >
                         {siteContent.contact.form.comment} *
                       </label>
-                      <textarea id="comment" name="comment" required rows={4} value={form.comment} onChange={handleChange} className={`${inputClass} resize-none`} placeholder="Tell us a bit more..." />
+                      <textarea
+                        id="comment"
+                        name="comment"
+                        required
+                        rows={4}
+                        value={form.comment}
+                        onChange={handleChange}
+                        className={`${inputClass} resize-none`}
+                        placeholder="Tell us a bit more..."
+                      />
                     </div>
 
                     <Button type="submit" variant="primary" size="lg" className="w-full">
@@ -123,7 +214,9 @@ const Contact = () => {
                 )}
 
                 <div className="mt-6 p-4 bg-blue-faint rounded-xl border border-blue-pale">
-                  <p className="text-xs text-ink-soft">{siteContent.contact.cancellation}</p>
+                  <p className="text-xs text-ink-soft">
+                    {siteContent.contact.cancellation}
+                  </p>
                 </div>
               </div>
             </div>
@@ -135,7 +228,9 @@ const Contact = () => {
                   <MapPin className="w-4 h-4 text-blue" /> Location
                 </h3>
                 <p className="text-ink-soft text-sm">{siteContent.business.address}</p>
-                <p className="text-xs text-ink-muted mt-1">{siteContent.business.parkingNote}</p>
+                <p className="text-xs text-ink-muted mt-1">
+                  {siteContent.business.parkingNote}
+                </p>
                 <div className="mt-4 h-40 bg-blue-faint rounded-xl flex items-center justify-center border border-blue-pale">
                   <span className="text-ink-muted text-xs">Map coming soon</span>
                 </div>
@@ -145,7 +240,10 @@ const Contact = () => {
                 <h3 className="font-bold text-navy-mid mb-3 flex items-center gap-2">
                   <Phone className="w-4 h-4 text-blue" /> Phone / Text
                 </h3>
-                <a href={siteContent.business.phoneLink} className="text-blue font-semibold hover:text-navy-mid transition-colors">
+                <a
+                  href={siteContent.business.phoneLink}
+                  className="text-blue font-semibold hover:text-navy-mid transition-colors"
+                >
                   {siteContent.business.phone}
                 </a>
               </div>
@@ -156,7 +254,10 @@ const Contact = () => {
                 </h3>
                 <div className="space-y-2">
                   {hoursList.map(({ day, time }, i) => (
-                    <div key={i} className="flex justify-between text-sm py-1 border-b border-blue-pale/40 last:border-0">
+                    <div
+                      key={i}
+                      className="flex justify-between text-sm py-1 border-b border-blue-pale/40 last:border-0"
+                    >
                       <span className="text-ink-soft">{day}</span>
                       <span className="font-medium text-navy-mid">{time}</span>
                     </div>

@@ -32,7 +32,7 @@ const Pricing = () => {
             <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-mid">
               Service Packages & Single Sessions
             </h2>
-            <div className="mt-3 h-1 w-12 rounded-full bg-gradient-to-r from-blue to-blue-btn mx-auto" />
+            <div className="mt-3 h-1 w-12 rounded-full bg-gradient-rose mx-auto" />
           </div>
 
           {/* Pricing Table Wrapper */}

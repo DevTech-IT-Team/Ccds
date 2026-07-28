@@ -35,13 +35,9 @@ const PageHero = ({ label, title, subtitle, image }) => {
         aria-hidden="true"
       />
 
-      {/* ── Layered overlay: photo → navy gradient → subtle blue tint ── */}
+      {/* ── Layered overlay: photo → subtle cream gradient ── */}
       <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(135deg, rgba(5,15,44,0.88) 0%, rgba(10,31,92,0.80) 50%, rgba(29,78,216,0.45) 100%)',
-        }}
+        className="absolute inset-0 bg-overlay-new"
         aria-hidden="true"
       />
 
@@ -73,16 +69,16 @@ const PageHero = ({ label, title, subtitle, image }) => {
       {/* ── Content ── */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {label && (
-          <span className="inline-flex items-center gap-2 text-xs font-semibold text-blue-glow uppercase tracking-widest mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-btn" />
+          <span className="inline-flex items-center gap-2 text-xs font-semibold text-[#050F2C]/70 uppercase tracking-widest mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B36C63]" />
             {label}
           </span>
         )}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 leading-tight max-w-3xl">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#050F2C] mb-4 leading-tight max-w-3xl">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-blue-glow/90 text-lg max-w-2xl leading-relaxed">
+          <p className="text-[#050F2C]/80 text-lg max-w-2xl leading-relaxed font-medium">
             {subtitle}
           </p>
         )}

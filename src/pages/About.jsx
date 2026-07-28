@@ -116,10 +116,10 @@ const About = () => {
             <span className="text-xs font-bold text-blue uppercase tracking-widest block mb-2">
               Our Philosophy
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-mid">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C]">
               Healing From the Inside Out
             </h2>
-            <div className="mt-3 h-1 w-12 rounded-full bg-gradient-to-r from-blue to-blue-btn mx-auto" />
+            <div className="mt-3 h-1 w-12 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84] mx-auto" />
             <p className="mt-4 text-ink-soft text-sm md:text-base leading-relaxed">
               At Colorado Colonics and Detox Center, we view gut health as the foundation of total well-being.
               Our team combines deep clinical expertise with genuine empathy to empower your journey.
@@ -167,7 +167,7 @@ const About = () => {
               >
                 {/* Visual Side Container (Hero Photo Column) */}
                 <div
-                  className={`lg:col-span-5 relative min-h-[360px] lg:min-h-[500px] bg-navy overflow-hidden flex flex-col justify-end ${!isEven ? 'lg:order-last' : ''
+                  className={`lg:col-span-5 relative min-h-[360px] lg:min-h-[500px] bg-[#E2EEEC] overflow-hidden flex flex-col justify-end ${!isEven ? 'lg:order-last' : ''
                     }`}
                 >
                   {/* Full Cover Image */}
@@ -178,17 +178,17 @@ const About = () => {
                   />
 
                   {/* Gradient Overlay for Text Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent lg:bg-gradient-to-t lg:from-navy lg:via-navy/40 lg:to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent lg:bg-gradient-to-t lg:from-white/90 lg:via-white/40 lg:to-transparent" />
 
                   {/* Info Overlay at Bottom of Photo */}
-                  <div className="relative z-10 p-6 lg:p-8 text-white space-y-2">
-                    <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-xs font-semibold rounded-full text-white mb-1">
+                  <div className="relative z-10 p-6 lg:p-8 text-[#050F2C] space-y-2">
+                    <span className="inline-block px-3 py-1 bg-white/60 backdrop-blur-md border border-[#E2EEEC] text-xs font-semibold rounded-full text-[#050F2C] mb-1">
                       Practitioner Profile
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-display font-bold text-white drop-shadow-sm">
+                    <h3 className="text-2xl md:text-3xl font-display font-bold text-[#050F2C] drop-shadow-sm">
                       {member.name}
                     </h3>
-                    <p className="text-sm text-blue-glow font-medium leading-snug">
+                    <p className="text-sm text-[#38838A] font-bold leading-snug">
                       {member.role}
                     </p>
                   </div>

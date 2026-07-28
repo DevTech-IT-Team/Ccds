@@ -113,3 +113,28 @@ h1 {
   }
   html { scroll-behavior: auto; }
 }
+
+@layer components {
+  .btn-gold, .bg-gradient-gold {
+    @apply text-[#050F2C] font-bold shadow-lg transition-all hover:scale-105;
+    background: linear-gradient(135deg, #A38645 0%, #CBB06B 30%, #EAD798 50%, #CBB06B 70%, #A38645 100%);
+  }
+
+  .btn-primary-new, .bg-gradient-rose {
+    @apply text-white font-bold shadow-lg transition-all hover:scale-105 hover:shadow-xl;
+    background: linear-gradient(135deg, #B36C63 0%, #D98E84 30%, #F2B2A8 50%, #D98E84 70%, #B36C63 100%);
+  }
+
+  .btn-secondary-new, .bg-gradient-teal {
+    @apply text-white font-semibold transition-all shadow-md hover:scale-105;
+    background: linear-gradient(180deg, #38838A 0%, #2C7379 100%);
+    border: 1px solid #38838A;
+  }
+
+  .bg-overlay-new, .bg-gradient-overlay {
+    background: linear-gradient(to bottom, #F9FAF6 0%, #E2EEEC 50%, #B2D4D0 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 85%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 85%);
+  }
+}
+

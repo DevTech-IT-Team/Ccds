@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer';
 import MobileCTA from './components/layout/MobileCTA';
 import PageWrapper from './components/layout/PageWrapper';
 import ScrollToTop from './components/layout/ScrollToTop';
+import BackToTop from './components/layout/BackToTop';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Pricing from './pages/Pricing';
@@ -15,6 +16,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Header />
         <PageWrapper>
@@ -31,6 +33,7 @@ function App() {
         </PageWrapper>
         <Footer />
         <MobileCTA />
+        <BackToTop />
       </div>
     </BrowserRouter>
   );

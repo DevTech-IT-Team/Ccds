@@ -15,7 +15,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => { setIsMobileMenuOpen(false); }, [location]);
 
   const navLinks = [
     { path: '/',          label: 'Home' },
@@ -124,6 +123,7 @@ const Header = () => {
             <Link
               key={link.path}
               to={link.path}
+              onClick={() => setIsMobileMenuOpen(false)}
               className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
                 isActive(link.path)
                   ? 'text-[#050F2C] bg-black/5 font-semibold'

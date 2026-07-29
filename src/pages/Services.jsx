@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Accordion from '../components/ui/Accordion';
-import Button from '../components/ui/Button';
-import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
+import PageHero from '../components/layout/PageHero';
+import { HERO_IMAGES } from '../data/heroImages';
 import { siteContent } from '../data/content';
 import {
   ArrowRight,
@@ -13,11 +13,11 @@ import {
   Sparkles,
   Users,
   ChevronRight,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
 } from 'lucide-react';
 
-/* ─────────────────────────────────────────
-   Icon map
-───────────────────────────────────────── */
 const iconMap = {
   droplet: Droplet,
   zap: Zap,
@@ -27,239 +27,405 @@ const iconMap = {
   users: Users,
 };
 
-/* ─────────────────────────────────────────
-   Shared primitives
-───────────────────────────────────────── */
-const InfoCard = ({ title, children }) => (
-  <div className="bg-white rounded-2xl p-6 border border-blue-pale shadow-card">
-    <h3 className="font-bold text-navy-mid mb-3 text-sm">{title}</h3>
-    {children}
-  </div>
-);
-
-const Tag = ({ children }) => (
-  <span className="px-3 py-1 bg-blue-pale text-navy-mid text-xs font-medium rounded-full border border-blue-pale">
-    {children}
-  </span>
-);
+const serviceImages = {
+  'colon-hydrotherapy': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200&q=80&auto=format&fit=crop',
+  'ion-foot-detox':     'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1200&q=80&auto=format&fit=crop',
+  'biocharger':         'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1200&q=80&auto=format&fit=crop',
+  'liver-cleanse':      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200&q=80&auto=format&fit=crop',
+  'mineralizing-soak':  'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80&auto=format&fit=crop',
+  'community-resources':'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&q=80&auto=format&fit=crop',
+};
 
 /* ─────────────────────────────────────────
-   Per-service detail panels
+   1. COLON HYDROTHERAPY VIEW
 ───────────────────────────────────────── */
-const ColonHydrotherapy = ({ services }) => (
-  <div className="space-y-6">
-    <div className="grid md:grid-cols-2 gap-5">
-      <InfoCard title="Systems Available">
-        <ul className="space-y-2 text-ink-soft text-sm">
-          <li className="flex gap-2"><span className="text-blue mt-0.5">•</span>{services.colonHydrotherapy.systems.closed}</li>
-          <li className="flex gap-2"><span className="text-blue mt-0.5">•</span>{services.colonHydrotherapy.systems.open}</li>
-        </ul>
-      </InfoCard>
-      <InfoCard title="Session Details">
-        <p className="text-ink-soft text-sm leading-relaxed">{services.colonHydrotherapy.description}</p>
-      </InfoCard>
-    </div>
-    <InfoCard title="May Help With">
-      <div className="flex flex-wrap gap-2">
-        {services.colonHydrotherapy.mayHelpWith.map((item, i) => <Tag key={i}>{item}</Tag>)}
+const ColonHydrotherapyView = ({ services, image }) => (
+  <div className="space-y-10">
+    <div>
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-xs font-bold uppercase tracking-widest text-[#B36C63]">
+          Core Hydrotherapy Modality
+        </span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#38838A]" />
+        <span className="text-xs text-slate-500 font-semibold">FDA-Registered Equipment</span>
       </div>
-    </InfoCard>
-    <InfoCard title="Benefits">
-      <ul className="grid sm:grid-cols-2 gap-2">
-        {services.colonHydrotherapy.benefits.map((b, i) => (
-          <li key={i} className="flex items-start gap-2 text-ink-soft text-sm">
-            <span className="text-blue mt-0.5 flex-shrink-0">✓</span>{b}
-          </li>
-        ))}
-      </ul>
-    </InfoCard>
-    <Accordion items={[
-      { title: services.colonHydrotherapy.misconceptions.title, content: services.colonHydrotherapy.misconceptions.items },
-      {
-        title: services.colonHydrotherapy.contraindications.title,
-        content: (
-          <div>
-            <p className="mb-3 text-ink-soft text-sm">{services.colonHydrotherapy.contraindications.note}</p>
-            <div className="flex flex-wrap gap-2">
-              {services.colonHydrotherapy.contraindications.items.map((item, i) => <Tag key={i}>{item}</Tag>)}
-            </div>
-          </div>
-        ),
-      },
-      { title: services.colonHydrotherapy.expectations.title, content: services.colonHydrotherapy.expectations.items },
-    ]} />
-  </div>
-);
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+        Colon Hydrotherapy
+      </h2>
+      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed font-medium">
+        {services.colonHydrotherapy.description}
+      </p>
+    </div>
 
-const IonFootDetox = ({ services }) => (
-  <div className="space-y-5">
-    <p className="text-ink-soft leading-relaxed">{services.ionFootDetox.description}</p>
-    <div className="grid md:grid-cols-2 gap-5">
-      <InfoCard title="Session Details">
-        <ul className="space-y-2 text-sm text-ink-soft">
-          <li className="flex gap-2"><span className="text-blue">•</span>Duration: {services.ionFootDetox.duration}</li>
-          <li className="flex gap-2"><span className="text-blue">•</span>{services.ionFootDetox.effects}</li>
-          <li className="flex gap-2"><span className="text-blue">•</span>{services.ionFootDetox.ageLimit}</li>
-        </ul>
-      </InfoCard>
-      <InfoCard title="Equipment">
-        <p className="text-ink-soft text-sm leading-relaxed">{services.ionFootDetox.dealerNote}</p>
-      </InfoCard>
+    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
+      <img src={image} alt="Colon Hydrotherapy" className="w-full h-full object-cover" />
     </div>
-    <InfoCard title={services.ionFootDetox.addOn.title}>
-      <p className="text-ink-soft text-sm">{services.ionFootDetox.addOn.description}</p>
-    </InfoCard>
-  </div>
-);
 
-const BioCharger = ({ services }) => (
-  <div className="space-y-5">
-    <p className="text-ink-soft leading-relaxed">{services.biocharger.description}</p>
-    <InfoCard title="How It Works">
-      <p className="text-ink-soft text-sm">{services.biocharger.pathways}</p>
-    </InfoCard>
-    <div className="bg-blue-faint rounded-2xl p-6 border border-blue-pale">
-      <p className="text-xs font-semibold text-blue uppercase tracking-wide mb-1">Special Offer</p>
-      <p className="text-navy-mid font-bold">{services.biocharger.discount}</p>
-    </div>
-    <div className="flex gap-3 flex-wrap">
-      <Button variant="primary" onClick={() => window.open(services.biocharger.videoDemo, '_blank')}>Watch Demo</Button>
-      <Button variant="outline" onClick={() => window.open(services.biocharger.faqLink, '_blank')}>FAQ</Button>
-    </div>
-  </div>
-);
-
-const LiverCleanse = ({ services }) => (
-  <div className="space-y-5">
-    <h3 className="text-xl font-display font-bold text-navy-mid">{services.liverCleanse.title}</h3>
-    <p className="text-ink-soft">{services.liverCleanse.protocol}</p>
-    <InfoCard title="Program Details">
-      <p className="text-ink-soft text-sm mb-3">{services.liverCleanse.program}</p>
-      <p className="text-3xl font-display font-bold text-blue">{services.liverCleanse.price}</p>
-    </InfoCard>
-    <div className="bg-blue-faint rounded-2xl p-5 border border-blue-pale">
-      <p className="text-ink-soft text-sm mb-4">{services.liverCleanse.bookingNote}</p>
-      <Button variant="primary" onClick={() => window.location.href = siteContent.business.phoneLink}>
-        Call to Book
-      </Button>
-    </div>
-  </div>
-);
-
-const MineralizingSoak = ({ services }) => (
-  <div className="space-y-5">
-    <div className="grid md:grid-cols-2 gap-5">
-      <InfoCard title="Standalone Session">
-        <p className="text-2xl font-display font-bold text-blue">{services.mineralizingSoak.standalone}</p>
-      </InfoCard>
-      <InfoCard title="With Foot Detox">
-        <p className="text-2xl font-display font-bold text-blue">{services.mineralizingSoak.combined}</p>
-      </InfoCard>
-    </div>
-    <Button variant="primary" onClick={() => window.open(siteContent.business.bookingUrl, '_blank')}>
-      Book Now <ArrowRight className="w-4 h-4 ml-1" />
-    </Button>
-  </div>
-);
-
-const CommunityResources = ({ services }) => (
-  <div className="space-y-5">
-    <div className="bg-blue-faint border-l-4 border-blue rounded-r-2xl p-5">
-      <p className="text-ink-soft text-sm italic">{services.communityResources.disclaimer}</p>
-    </div>
-    <h3 className="font-bold text-navy-mid">Referral Resources</h3>
-    <div className="grid sm:grid-cols-2 gap-3">
-      {services.communityResources.referrals.map((r, i) => (
-        <div key={i} className="bg-white rounded-xl p-4 border border-blue-pale shadow-card">
-          <p className="font-medium text-navy-mid text-sm">{r.name}</p>
-          {r.phone && <p className="text-xs text-ink-soft mt-0.5">{r.phone}</p>}
+    <div className="grid lg:grid-cols-12 gap-12 pt-2">
+      <div className="lg:col-span-6 space-y-8">
+        <div>
+          <h3 className="text-xl font-bold font-display text-[#050F2C] mb-4 pb-2 border-b border-[#E2EEEC]">
+            Systems Available
+          </h3>
+          <ul className="space-y-4 text-sm text-[#050F2C]/80 leading-relaxed">
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-[#050F2C] font-bold block text-base mb-0.5">Closed System</strong>
+                <span>{services.colonHydrotherapy.systems.closed}</span>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-[#050F2C] font-bold block text-base mb-0.5">Open System (Angel of Water)</strong>
+                <span>{services.colonHydrotherapy.systems.open}</span>
+              </div>
+            </li>
+          </ul>
         </div>
-      ))}
+
+        <div>
+          <h3 className="text-lg font-bold font-display text-[#050F2C] mb-3">
+            May Help Support
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {services.colonHydrotherapy.mayHelpWith.map((item, i) => (
+              <span key={i} className="px-3.5 py-1.5 rounded-full bg-sky-50 text-[#050F2C] text-xs font-semibold border border-sky-100">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="lg:col-span-6 space-y-8">
+        <div>
+          <h3 className="text-xl font-bold font-display text-[#050F2C] mb-4 pb-2 border-b border-[#E2EEEC]">
+            Treatment Benefits
+          </h3>
+          <ul className="grid sm:grid-cols-2 gap-3 text-sm text-[#050F2C]/80">
+            {services.colonHydrotherapy.benefits.map((b, i) => (
+              <li key={i} className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-[#B36C63] flex-shrink-0 mt-1" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-bold font-display text-[#050F2C] mb-3">
+            Frequently Asked Questions
+          </h3>
+          <Accordion items={[
+            { title: services.colonHydrotherapy.misconceptions.title, content: services.colonHydrotherapy.misconceptions.items },
+            {
+              title: services.colonHydrotherapy.contraindications.title,
+              content: (
+                <div>
+                  <p className="mb-3 text-[#050F2C]/80 text-sm font-medium">{services.colonHydrotherapy.contraindications.note}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {services.colonHydrotherapy.contraindications.items.map((item, i) => (
+                      <span key={i} className="px-3 py-1 rounded-md bg-rose-50 text-[#B36C63] text-xs font-semibold">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ),
+            },
+            { title: services.colonHydrotherapy.expectations.title, content: services.colonHydrotherapy.expectations.items },
+          ]} />
+        </div>
+      </div>
+    </div>
+
+    <div className="pt-4">
+      <a
+        href={siteContent.business.bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-3 px-8 py-4 rounded-full btn-primary-new text-base font-bold shadow-lg hover:scale-105 transition-all"
+      >
+        Book Colon Hydrotherapy Session <ArrowRight className="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+);
+
+/* ─────────────────────────────────────────
+   2. ION FOOT DETOX VIEW
+───────────────────────────────────────── */
+const IonFootDetoxView = ({ services, image }) => (
+  <div className="space-y-10">
+    <div>
+      <span className="text-xs font-bold uppercase tracking-widest text-[#38838A] mb-3 block">
+        Cellular Detoxification
+      </span>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+        Ion Foot Detox
+      </h2>
+      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed font-medium">
+        {services.ionFootDetox.description}
+      </p>
+    </div>
+
+    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
+      <img src={image} alt="Ion Foot Detox" className="w-full h-full object-cover" />
+    </div>
+
+    <div className="grid lg:grid-cols-12 gap-12 pt-2">
+      <div className="lg:col-span-6 space-y-6">
+        <h3 className="text-xl font-bold font-display text-[#050F2C] pb-2 border-b border-[#E2EEEC]">
+          Session Specifications
+        </h3>
+        <ul className="space-y-4 text-sm text-[#050F2C]/80">
+          <li className="flex items-center gap-3">
+            <Clock className="w-5 h-5 text-[#38838A]" />
+            <span className="text-base"><strong>Duration:</strong> {services.ionFootDetox.duration}</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0 mt-0.5" />
+            <span className="text-base">{services.ionFootDetox.effects}</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0 mt-0.5" />
+            <span className="text-base">{services.ionFootDetox.ageLimit}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="lg:col-span-6 space-y-6">
+        <h3 className="text-xl font-bold font-display text-[#050F2C] pb-2 border-b border-[#E2EEEC]">
+          Equipment Standards
+        </h3>
+        <p className="text-base text-[#050F2C]/80 leading-relaxed">
+          {services.ionFootDetox.dealerNote}
+        </p>
+        <div className="pt-4">
+          <h4 className="font-bold text-lg text-[#050F2C] mb-1">{services.ionFootDetox.addOn.title}</h4>
+          <p className="text-sm text-[#050F2C]/70 mb-6">{services.ionFootDetox.addOn.description}</p>
+          <a
+            href={siteContent.business.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full btn-primary-new text-base font-bold shadow-md hover:scale-105 transition-all"
+          >
+            Book Ion Foot Detox <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ─────────────────────────────────────────
+   3. BIOCHARGER VIEW
+───────────────────────────────────────── */
+const BioChargerView = ({ services, image }) => (
+  <div className="space-y-10">
+    <div>
+      <span className="text-xs font-bold uppercase tracking-widest text-[#93C5FD] mb-3 block">
+        Subtle Energy Technology
+      </span>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+        BioCharger NG
+      </h2>
+      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed font-medium">
+        {services.biocharger.description}
+      </p>
+    </div>
+
+    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
+      <img src={image} alt="BioCharger NG" className="w-full h-full object-cover" />
+    </div>
+
+    <div className="grid lg:grid-cols-12 gap-12 pt-2">
+      <div className="lg:col-span-6 space-y-6">
+        <h3 className="text-xl font-bold font-display text-[#050F2C] pb-2 border-b border-[#E2EEEC]">
+          How It Operates
+        </h3>
+        <p className="text-base text-[#050F2C]/80 leading-relaxed">
+          {services.biocharger.pathways}
+        </p>
+      </div>
+
+      <div className="lg:col-span-6 space-y-6">
+        <h3 className="text-xl font-bold font-display text-[#050F2C] pb-2 border-b border-[#E2EEEC]">
+          Special Offer & Demo
+        </h3>
+        <div className="p-4 rounded-2xl bg-sky-50 border border-sky-100">
+          <p className="text-xs font-bold text-[#38838A] uppercase tracking-wider mb-1">Package Special</p>
+          <p className="text-[#050F2C] font-bold text-lg">{services.biocharger.discount}</p>
+        </div>
+        <div className="flex flex-wrap gap-4 pt-2">
+          <a
+            href={services.biocharger.videoDemo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full btn-primary-new text-sm font-bold shadow-md hover:scale-105 transition-all"
+          >
+            Watch Demo Video <ExternalLink className="w-4 h-4" />
+          </a>
+          <a
+            href={services.biocharger.faqLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-[#38838A] text-[#050F2C] font-semibold text-sm hover:bg-sky-50 transition-all"
+          >
+            BioCharger FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ─────────────────────────────────────────
+   4. LIVER CLEANSE VIEW
+───────────────────────────────────────── */
+const LiverCleanseView = ({ services, image }) => (
+  <div className="space-y-10">
+    <div>
+      <span className="text-xs font-bold uppercase tracking-widest text-[#B36C63] mb-3 block">
+        Targeted Organ Protocol
+      </span>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+        Liver & Gallbladder Flush
+      </h2>
+      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed font-medium">
+        {services.liverCleanse.protocol}
+      </p>
+    </div>
+
+    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
+      <img src={image} alt="Liver Cleanse" className="w-full h-full object-cover" />
+    </div>
+
+    <div className="grid lg:grid-cols-12 gap-12 pt-2">
+      <div className="lg:col-span-6 space-y-6">
+        <h3 className="text-xl font-bold font-display text-[#050F2C] pb-2 border-b border-[#E2EEEC]">
+          Program Details
+        </h3>
+        <p className="text-base text-[#050F2C]/80 leading-relaxed">
+          {services.liverCleanse.program}
+        </p>
+      </div>
+
+      <div className="lg:col-span-6 space-y-6">
+        <h3 className="text-xl font-bold font-display text-[#050F2C] pb-2 border-b border-[#E2EEEC]">
+          Investment & Booking
+        </h3>
+        <p className="text-4xl font-display font-bold text-[#38838A]">{services.liverCleanse.price}</p>
+        <p className="text-sm text-[#050F2C]/70">{services.liverCleanse.bookingNote}</p>
+        <div className="pt-2">
+          <a
+            href={siteContent.business.phoneLink}
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full btn-primary-new text-base font-bold shadow-lg hover:scale-105 transition-all"
+          >
+            Call to Book Protocol <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+/* ─────────────────────────────────────────
+   5. MINERALIZING SOAK VIEW
+───────────────────────────────────────── */
+const MineralizingSoakView = ({ services, image }) => (
+  <div className="space-y-10">
+    <div>
+      <span className="text-xs font-bold uppercase tracking-widest text-[#38838A] mb-3 block">
+        Restorative Hydro-Therapy
+      </span>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+        Mineralizing Bath Soak
+      </h2>
+      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed font-medium">
+        Replenishing magnesium and mineral soak designed to ease muscular tension and recharge your nervous system.
+      </p>
+    </div>
+
+    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
+      <img src={image} alt="Mineralizing Bath Soak" className="w-full h-full object-cover" />
+    </div>
+
+    <div className="grid md:grid-cols-2 gap-8 pt-2">
+      <div className="space-y-3 pb-4 border-b md:border-b-0 md:border-r border-[#E2EEEC] md:pr-8">
+        <h3 className="text-xl font-bold font-display text-[#050F2C]">Standalone Session</h3>
+        <p className="text-4xl font-display font-bold text-[#38838A]">{services.mineralizingSoak.standalone}</p>
+      </div>
+
+      <div className="space-y-3">
+        <h3 className="text-xl font-bold font-display text-[#050F2C]">Combined with Foot Detox</h3>
+        <p className="text-4xl font-display font-bold text-[#B36C63]">{services.mineralizingSoak.combined}</p>
+      </div>
+    </div>
+
+    <div className="pt-4">
+      <a
+        href={siteContent.business.bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-3 px-8 py-4 rounded-full btn-primary-new text-base font-bold shadow-lg hover:scale-105 transition-all"
+      >
+        Book Bath Soak <ArrowRight className="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+);
+
+/* ─────────────────────────────────────────
+   6. COMMUNITY RESOURCES VIEW
+───────────────────────────────────────── */
+const CommunityResourcesView = ({ services, image }) => (
+  <div className="space-y-10">
+    <div>
+      <span className="text-xs font-bold uppercase tracking-widest text-[#93C5FD] mb-3 block">
+        Integrative Care Network
+      </span>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+        Drug & Alcohol Resources
+      </h2>
+      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed italic font-medium">
+        {services.communityResources.disclaimer}
+      </p>
+    </div>
+
+    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
+      <img src={image} alt="Community Referral Network" className="w-full h-full object-cover" />
+    </div>
+
+    <div className="pt-2">
+      <h3 className="text-2xl font-bold font-display text-[#050F2C] mb-6 pb-2 border-b border-[#E2EEEC]">
+        Verified Referral Network
+      </h3>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.communityResources.referrals.map((r, i) => (
+          <div key={i} className="space-y-1">
+            <h4 className="font-bold text-lg text-[#050F2C]">{r.name}</h4>
+            {r.phone && <p className="text-sm text-[#38838A] font-semibold">{r.phone}</p>}
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );
 
 const detailPanelMap = {
-  'colon-hydrotherapy': (s) => <ColonHydrotherapy services={s} />,
-  'ion-foot-detox': (s) => <IonFootDetox services={s} />,
-  'biocharger': (s) => <BioCharger services={s} />,
-  'liver-cleanse': (s) => <LiverCleanse services={s} />,
-  'mineralizing-soak': (s) => <MineralizingSoak services={s} />,
-  'community-resources': (s) => <CommunityResources services={s} />,
+  'colon-hydrotherapy': (s, img) => <ColonHydrotherapyView services={s} image={img} />,
+  'ion-foot-detox': (s, img) => <IonFootDetoxView services={s} image={img} />,
+  'biocharger': (s, img) => <BioChargerView services={s} image={img} />,
+  'liver-cleanse': (s, img) => <LiverCleanseView services={s} image={img} />,
+  'mineralizing-soak': (s, img) => <MineralizingSoakView services={s} image={img} />,
+  'community-resources': (s, img) => <CommunityResourcesView services={s} image={img} />,
 };
 
 /* ─────────────────────────────────────────
-   Service selector card
-───────────────────────────────────────── */
-const ServiceSelectorCard = ({ tab, isActive, onClick, index }) => {
-  const Icon = iconMap[tab.icon] || Droplet;
-
-  // Gradient pairs per card index for visual variety
-  const gradients = [
-    'linear-gradient(135deg, #B36C63 0%, #D98E84 30%, #F2B2A8 50%, #D98E84 70%, #B36C63 100%)',
-    'linear-gradient(135deg, #A38645 0%, #CBB06B 30%, #EAD798 50%, #CBB06B 70%, #A38645 100%)',
-    'linear-gradient(180deg, #38838A 0%, #2C7379 100%)',
-    'linear-gradient(135deg, #B36C63 0%, #D98E84 30%, #F2B2A8 50%, #D98E84 70%, #B36C63 100%)',
-    'linear-gradient(135deg, #A38645 0%, #CBB06B 30%, #EAD798 50%, #CBB06B 70%, #A38645 100%)',
-    'linear-gradient(180deg, #38838A 0%, #2C7379 100%)',
-  ];
-  const grad = gradients[index % gradients.length];
-
-  return (
-    <button
-      onClick={onClick}
-      className={`group relative w-full text-left rounded-2xl p-5 border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D98E84]/30 ${isActive
-          ? 'border-transparent shadow-lg scale-[1.02]'
-          : 'bg-white border-[#E2EEEC] hover:border-[#D98E84] hover:shadow-card-hover hover:-translate-y-0.5'
-        }`}
-      style={isActive ? { background: grad } : {}}
-      aria-pressed={isActive}
-    >
-      {/* top shimmer when active */}
-      {isActive && (
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-t-2xl" />
-      )}
-
-      {/* badge */}
-      {tab.badge && (
-        <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-blue-pale text-blue'
-          }`}>
-          {tab.badge}
-        </span>
-      )}
-
-      {/* icon */}
-      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-3 transition-all duration-300 ${isActive
-          ? 'bg-white/20 group-hover:bg-white/30'
-          : 'bg-blue-faint group-hover:bg-blue-pale group-hover:scale-110'
-        }`}>
-        <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-blue'}`} />
-      </div>
-
-      {/* label */}
-      <p className={`font-bold text-sm leading-snug mb-1.5 transition-colors ${isActive ? 'text-white' : 'text-navy-mid group-hover:text-blue'
-        }`}>
-        {tab.label}
-      </p>
-
-      {/* blurb */}
-      <p className={`text-xs leading-relaxed line-clamp-2 ${isActive ? 'text-white/75' : 'text-ink-soft'
-        }`}>
-        {tab.blurb}
-      </p>
-
-      {/* active indicator arrow */}
-      <div className={`mt-3 flex items-center gap-1 text-xs font-semibold transition-all ${isActive ? 'text-white/90' : 'text-blue opacity-0 group-hover:opacity-100'
-        }`}>
-        {isActive ? 'Viewing details' : 'View details'}
-        <ChevronRight className={`w-3 h-3 transition-transform ${isActive ? 'rotate-90' : 'group-hover:translate-x-0.5'}`} />
-      </div>
-    </button>
-  );
-};
-
-/* ─────────────────────────────────────────
-   Main page
+   Main Services Page Component
 ───────────────────────────────────────── */
 const Services = () => {
   const { category } = useParams();
@@ -277,7 +443,6 @@ const Services = () => {
 
   const handleSelect = (index) => {
     setActiveIndex(index);
-    // Smooth scroll to detail panel on mobile / small screens
     if (window.innerWidth < 1024) {
       setTimeout(() => {
         detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -285,13 +450,14 @@ const Services = () => {
     }
   };
 
-  // Sync if URL param changes
-  useEffect(() => {
+  const [prevCategory, setPrevCategory] = useState(category);
+  if (category !== prevCategory) {
+    setPrevCategory(category);
     if (category) {
       const idx = tabs.findIndex((t) => t.id === category);
       if (idx >= 0) setActiveIndex(idx);
     }
-  }, [category]);
+  }
 
   return (
     <div>
@@ -300,97 +466,63 @@ const Services = () => {
         title="Our Services"
         subtitle="Explore our complete range of detox and wellness treatments."
         image={HERO_IMAGES.services}
+        bgPosition="center 30%"
       />
 
-      <section className="py-16 bg-white relative overflow-hidden">
-        {/* subtle background tint */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(219,234,254,0.4) 0%, transparent 60%)' }}
-        />
-
+      <section className="py-16 bg-[#F9FAF6] relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* ── Section heading ── */}
-          <div className="mb-10">
-            <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest mb-2 block">6 Treatments</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C] leading-tight">
-              Choose a Service to Explore
-            </h2>
-            <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84]" />
-          </div>
-
-          {/* ── 6-card selector grid ── */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-            {tabs.map((tab, i) => (
-              <ServiceSelectorCard
-                key={tab.id}
-                tab={tab}
-                index={i}
-                isActive={activeIndex === i}
-                onClick={() => handleSelect(i)}
-              />
-            ))}
-          </div>
-
-          {/* ── Detail panel ── */}
-          <div
-            ref={detailRef}
-            className="bg-white rounded-3xl border border-blue-pale shadow-card overflow-hidden scroll-mt-24"
-          >
-            {/* Panel header */}
-            <div className="bg-gradient-to-r from-[#2C7379] to-[#38838A] px-8 py-6 flex items-center gap-4">
-              {(() => {
-                const Icon = iconMap[activeTab.icon] || Droplet;
+          {/* Minimalist Horizontal Text Tabs directly on page */}
+          <div className="mb-14 border-b border-[#E2EEEC]">
+            <div className="flex items-center overflow-x-auto no-scrollbar space-x-6 sm:space-x-10 pb-4">
+              {tabs.map((tab, i) => {
+                const isActive = activeIndex === i;
                 return (
-                  <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                );
-              })()}
-              <div>
-                <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-0.5">Service Details</p>
-                <h2 className="text-xl font-display font-bold text-white">{activeTab.label}</h2>
-              </div>
-              {/* tab counter */}
-              <div className="ml-auto hidden sm:flex items-center gap-1.5">
-                {tabs.map((_, i) => (
                   <button
-                    key={i}
+                    key={tab.id}
                     onClick={() => handleSelect(i)}
-                    aria-label={`Go to ${tabs[i].label}`}
-                    className={`w-2 h-2 rounded-full transition-all duration-200 ${i === activeIndex ? 'bg-white scale-125' : 'bg-white/30 hover:bg-white/60'
-                      }`}
-                  />
-                ))}
-              </div>
+                    className={`whitespace-nowrap pb-2 text-sm sm:text-base font-bold transition-all relative ${
+                      isActive
+                        ? 'text-[#050F2C]'
+                        : 'text-[#050F2C]/60 hover:text-[#050F2C]'
+                    }`}
+                  >
+                    {tab.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B36C63] rounded-full" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
+          </div>
 
-            {/* Panel body */}
-            <div className="p-6 md:p-8">
-              {detailPanelMap[activeTab.id]?.(services)}
-            </div>
+          {/* Active Editorial Treatment View directly on page */}
+          <div ref={detailRef} className="scroll-mt-24">
+            {detailPanelMap[activeTab.id]?.(services, serviceImages[activeTab.id])}
+          </div>
 
-            {/* Panel footer nav */}
-            <div className="border-t border-blue-pale px-6 md:px-8 py-4 bg-blue-faint/50 flex items-center justify-between gap-4">
-              <button
-                onClick={() => handleSelect((activeIndex - 1 + tabs.length) % tabs.length)}
-                className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-navy-mid font-medium transition-colors"
-              >
-                <ChevronRight className="w-4 h-4 rotate-180" />
-                {tabs[(activeIndex - 1 + tabs.length) % tabs.length].label}
-              </button>
-              <span className="text-xs text-ink-soft font-medium">
-                {activeIndex + 1} / {tabs.length}
-              </span>
-              <button
-                onClick={() => handleSelect((activeIndex + 1) % tabs.length)}
-                className="flex items-center gap-1.5 text-sm text-ink-soft hover:text-navy-mid font-medium transition-colors"
-              >
-                {tabs[(activeIndex + 1) % tabs.length].label}
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+          {/* Clean Bottom Navigation Bar */}
+          <div className="mt-20 pt-8 border-t border-[#E2EEEC] flex items-center justify-between gap-4">
+            <button
+              onClick={() => handleSelect((activeIndex - 1 + tabs.length) % tabs.length)}
+              className="flex items-center gap-2 text-sm text-[#050F2C] hover:text-[#38838A] font-bold transition-colors"
+            >
+              <ChevronRight className="w-4 h-4 rotate-180 text-[#38838A]" />
+              <span>{tabs[(activeIndex - 1 + tabs.length) % tabs.length].label}</span>
+            </button>
+
+            <span className="text-xs text-slate-400 font-bold hidden sm:inline">
+              Treatment {activeIndex + 1} of {tabs.length}
+            </span>
+
+            <button
+              onClick={() => handleSelect((activeIndex + 1) % tabs.length)}
+              className="flex items-center gap-2 text-sm text-[#050F2C] hover:text-[#38838A] font-bold transition-colors"
+            >
+              <span>{tabs[(activeIndex + 1) % tabs.length].label}</span>
+              <ChevronRight className="w-4 h-4 text-[#38838A]" />
+            </button>
           </div>
 
         </div>

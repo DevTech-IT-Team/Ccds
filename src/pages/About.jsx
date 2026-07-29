@@ -1,6 +1,5 @@
-import React from 'react';
-import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
-import Button from '../components/ui/Button';
+import PageHero from '../components/layout/PageHero';
+import { HERO_IMAGES } from '../data/heroImages';
 import { siteContent } from '../data/content';
 import {
   Award,
@@ -25,6 +24,8 @@ const teamMembers = [
     name: 'Lisa Smith',
     image: lisa,
     role: 'CCDC Founder & Certified Colon Hydrotherapist',
+    experience: '20+ Years Experience',
+    badge: 'Founder & Lead Hydrotherapist',
     quote: 'My energy, passion, and enthusiasm to help others are gifts I love to share.',
     bio: [
       `There are many events in my life that pointed towards becoming a Colon Hydrotherapist. My first enema was at the age of 2 because of trauma that affected my colon and natural process of elimination. However, there were multiple reasons for my lifelong constipation: trauma, very little fresh food, all my meals were frozen, from a can, from a restaurant, or fast food, stress, PTSD, and many deep emotional issues. As a teenager my digestive problems showed on my skin making it rough for my already fragile self-esteem.`,
@@ -44,6 +45,8 @@ const teamMembers = [
     name: 'Kimberly Allenson',
     image: kimberly,
     role: 'Instructor Level I-ACT Colon Hydrotherapist',
+    experience: 'Instructor Level Certification',
+    badge: 'Certified I-ACT Instructor',
     quote: 'Helping people feel healthier, more empowered, and at ease in their bodies is what lights me up.',
     bio: [
       `Hi, I’m Kimberly, a certified Instructor Level I-ACT Colon Hydrotherapist with a lifelong passion for health and the human body. My curiosity started young. At just four years old, I asked my mom, “Does food pile up and come out of your mouth when you get older?” That innocent question sparked a fascination with how the body works. I devoured anatomy books and read my grandparents’ Nutrition Facts newsletters from their AARP catalog like they were treasure maps.`,
@@ -61,6 +64,8 @@ const teamMembers = [
     name: 'Jessica Fuentes',
     image: jessica,
     role: 'Advanced Colon Hydrotherapist & Integrative Health Coach',
+    experience: 'Holistic Bodywork Specialist',
+    badge: 'Advanced Therapist & Coach',
     quote: 'True well-being isn’t just physical—it encompasses emotional, mental, and spiritual health as well.',
     bio: [
       `Hi, I’m Jessica Fuentes. I’m an Advanced Colon Hydrotherapist, Integrative Health Coach, Licensed Massage Therapist, Certified Gluten-Free Practitioner, and Advanced Reiki Practitioner. I recently completed training in Arvigo, a traditional Maya Indigenous Abdominal Massage.`,
@@ -108,40 +113,40 @@ const About = () => {
       />
 
       {/* ── Mission & Values Section ── */}
-      <section className="py-20 bg-blue-faint border-y border-blue-pale/60">
+      <section className="py-20 bg-[#F9FAF6] border-b border-[#E2EEEC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-bold text-blue uppercase tracking-widest block mb-2">
+            <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest block mb-2">
               Our Philosophy
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C]">
               Healing From the Inside Out
             </h2>
-            <div className="mt-3 h-1 w-12 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84] mx-auto" />
-            <p className="mt-4 text-ink-soft text-sm md:text-base leading-relaxed">
+            <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84] mx-auto" />
+            <p className="mt-4 text-slate-600 text-base leading-relaxed">
               At Colorado Colonics and Detox Center, we view gut health as the foundation of total well-being.
               Our team combines deep clinical expertise with genuine empathy to empower your journey.
             </p>
           </div>
 
-          {/* Cards Grid */}
+          {/* Core Values Cards */}
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {coreValues.map((val, idx) => {
               const Icon = val.icon;
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-3xl p-8 border border-blue-pale/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col items-start"
+                  className="bg-white rounded-3xl p-8 border border-[#E2EEEC] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col items-start"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-blue-faint border border-blue-pale flex items-center justify-center mb-6 text-blue flex-shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center mb-6 text-[#38838A] flex-shrink-0">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-bold text-navy-mid mb-2.5">
+                  <h3 className="text-xl font-bold text-[#050F2C] mb-2.5">
                     {val.title}
                   </h3>
-                  <p className="text-sm text-ink-soft leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {val.description}
                   </p>
                 </div>
@@ -152,9 +157,9 @@ const About = () => {
         </div>
       </section>
 
-      {/* ── Team Biographies ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      {/* ── Team Biographies (All Team Members Visible At Once) ── */}
+      <section className="py-24 bg-[#F9FAF6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28">
 
           {teamMembers.map((member, index) => {
             const isEven = index % 2 === 0;
@@ -163,66 +168,67 @@ const About = () => {
               <div
                 key={member.id}
                 id={member.id}
-                className="bg-white rounded-3xl border border-blue-pale shadow-xl overflow-hidden grid lg:grid-cols-12 gap-0 scroll-mt-24"
+                className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start scroll-mt-28"
               >
-                {/* Visual Side Container (Hero Photo Column) */}
+                {/* Visual Side Column (Photo Frame) */}
                 <div
-                  className={`lg:col-span-5 relative min-h-[360px] lg:min-h-[500px] bg-[#E2EEEC] overflow-hidden flex flex-col justify-end ${!isEven ? 'lg:order-last' : ''
-                    }`}
+                  className={`lg:col-span-5 w-full h-[460px] sm:h-[540px] rounded-3xl overflow-hidden shadow-md border border-[#E2EEEC] bg-white ${
+                    !isEven ? 'lg:order-last' : ''
+                  }`}
                 >
-                  {/* Full Cover Image */}
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    className={`w-full h-full object-cover ${
+                      member.id === 'lisa-smith'
+                        ? 'object-[center_35%] scale-[1.18] origin-bottom'
+                        : 'object-top'
+                    }`}
                   />
+                </div>
 
-                  {/* Gradient Overlay for Text Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent lg:bg-gradient-to-t lg:from-white/90 lg:via-white/40 lg:to-transparent" />
+                {/* Main Editorial Copy Column */}
+                <div className="lg:col-span-7 space-y-6">
 
-                  {/* Info Overlay at Bottom of Photo */}
-                  <div className="relative z-10 p-6 lg:p-8 text-[#050F2C] space-y-2">
-                    <span className="inline-block px-3 py-1 bg-white/60 backdrop-blur-md border border-[#E2EEEC] text-xs font-semibold rounded-full text-[#050F2C] mb-1">
+                  {/* Header Title Block */}
+                  <div>
+                    <span className="inline-block px-3.5 py-1 bg-white border border-[#E2EEEC] text-xs font-bold uppercase tracking-widest text-[#38838A] rounded-full mb-3 shadow-2xs">
                       Practitioner Profile
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-display font-bold text-[#050F2C] drop-shadow-sm">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] leading-tight">
                       {member.name}
-                    </h3>
-                    <p className="text-sm text-[#38838A] font-bold leading-snug">
+                    </h2>
+                    <p className="text-base sm:text-lg font-bold text-[#38838A] mt-1">
                       {member.role}
                     </p>
                   </div>
-                </div>
 
-                {/* Main Content Details */}
-                <div className="lg:col-span-7 p-8 lg:p-12 space-y-8 flex flex-col justify-between bg-white">
+                  {/* Highlight Quote Box */}
+                  <div className="p-6 rounded-2xl bg-white border-l-4 border-[#B36C63] border-y border-r border-[#E2EEEC] shadow-xs flex gap-4 items-start">
+                    <Quote className="w-6 h-6 text-[#B36C63] flex-shrink-0 mt-1" />
+                    <p className="text-base italic text-[#050F2C] font-serif font-medium leading-relaxed">
+                      "{member.quote}"
+                    </p>
+                  </div>
 
-                  {/* Bio Paragraphs */}
-                  <div className="space-y-4 text-ink-soft leading-relaxed text-sm md:text-base">
+                  {/* Complete Bio Paragraphs */}
+                  <div className="space-y-4 text-slate-700 leading-relaxed text-base font-normal">
                     {member.bio.map((paragraph, pIdx) => (
                       <p key={pIdx}>{paragraph}</p>
                     ))}
                   </div>
 
-                  {/* Highlight Quote */}
-                  <div className="p-5 rounded-2xl bg-blue-faint/60 border border-blue-pale/80 flex gap-4 items-start">
-                    <Quote className="w-6 h-6 text-blue flex-shrink-0 mt-1" />
-                    <p className="text-xs md:text-sm italic text-navy-mid font-medium leading-relaxed">
-                      "{member.quote}"
-                    </p>
-                  </div>
-
-                  {/* Certifications Block (Lisa) */}
+                  {/* Certifications Block */}
                   {member.certifications && (
-                    <div className="pt-6 border-t border-blue-pale">
-                      <div className="flex items-center gap-2 text-navy-mid font-bold text-sm mb-3">
-                        <GraduationCap className="w-4 h-4 text-blue" />
+                    <div className="pt-6 border-t border-[#E2EEEC] space-y-3">
+                      <div className="flex items-center gap-2 text-[#050F2C] font-bold text-base">
+                        <GraduationCap className="w-5 h-5 text-[#38838A]" />
                         <span>Certifications & Specialized Training</span>
                       </div>
-                      <ul className="grid sm:grid-cols-1 gap-2">
+                      <ul className="space-y-2">
                         {member.certifications.map((cert, cIdx) => (
-                          <li key={cIdx} className="flex items-start gap-2.5 text-xs md:text-sm text-ink-soft">
-                            <Award className="w-4 h-4 text-blue mt-0.5 flex-shrink-0" />
+                          <li key={cIdx} className="flex items-start gap-2.5 text-sm text-slate-600">
+                            <Award className="w-4 h-4 text-[#38838A] mt-0.5 flex-shrink-0" />
                             <span>{cert}</span>
                           </li>
                         ))}
@@ -230,17 +236,17 @@ const About = () => {
                     </div>
                   )}
 
-                  {/* Highlights Block (Kimberly / Jessica) */}
+                  {/* Highlights Block */}
                   {member.highlights && (
-                    <div className="pt-6 border-t border-blue-pale">
-                      <div className="flex items-center gap-2 text-navy-mid font-bold text-sm mb-3">
-                        <Award className="w-4 h-4 text-blue" />
+                    <div className="pt-6 border-t border-[#E2EEEC] space-y-3">
+                      <div className="flex items-center gap-2 text-[#050F2C] font-bold text-base">
+                        <Award className="w-5 h-5 text-[#38838A]" />
                         <span>Specializations & Credentials</span>
                       </div>
-                      <div className="grid sm:grid-cols-2 gap-2">
+                      <div className="grid sm:grid-cols-2 gap-3">
                         {member.highlights.map((item, hIdx) => (
-                          <div key={hIdx} className="flex items-center gap-2 text-xs md:text-sm text-ink-soft">
-                            <CheckCircle2 className="w-4 h-4 text-blue flex-shrink-0" />
+                          <div key={hIdx} className="flex items-center gap-2 text-sm text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-[#38838A] flex-shrink-0" />
                             <span>{item}</span>
                           </div>
                         ))}
@@ -257,27 +263,30 @@ const About = () => {
       </section>
 
       {/* ── Call to Action Banner ── */}
-      <section className="py-16 bg-blue-faint relative overflow-hidden border-t border-blue-pale">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-navy-mid mb-4">
+      <section className="py-20 bg-white border-t border-[#E2EEEC]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C] mb-4">
             Ready to Begin Your Path to Wellness?
           </h2>
-          <p className="text-ink-soft text-sm md:text-base max-w-xl mx-auto mb-8">
+          <p className="text-slate-600 text-base max-w-xl mx-auto mb-8">
             Connect with our certified therapists and experience compassionate, natural health support tailored to your unique needs.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button
-              variant="primary"
-              onClick={() => window.open(siteContent.business.bookingUrl, '_blank')}
+            <a
+              href={siteContent.business.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full btn-primary-new text-base font-bold shadow-md hover:scale-105 transition-all"
             >
-              Book an Appointment <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => window.location.href = siteContent.business.phoneLink}
+              <span>Book an Appointment</span>
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            <a
+              href={siteContent.business.phoneLink}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white border border-[#E2EEEC] text-[#050F2C] text-base font-bold shadow-xs hover:bg-slate-50 transition-all"
             >
               Contact Our Center
-            </Button>
+            </a>
           </div>
         </div>
       </section>

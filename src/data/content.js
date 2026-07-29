@@ -76,8 +76,8 @@ export const siteContent = {
         link: '/about',
       },
       {
-        title: 'Community Resources',
-        blurb: 'Support for your wellness journey',
+        title: 'Drug & Alcohol Resources',
+        blurb: 'Support for your wellness & recovery journey',
         icon: 'leaf',
         link: '/services/community-resources',
       },
@@ -134,9 +134,9 @@ export const siteContent = {
       },
       {
         id: 'community-resources',
-        label: 'Community Resources',
+        label: 'Drug & Alcohol Resources',
         icon: 'users',
-        blurb: 'Local recovery & wellness referrals. We support the body after recovery.',
+        blurb: 'Local recovery & addiction support referrals. We support the body after recovery.',
       },
     ],
 

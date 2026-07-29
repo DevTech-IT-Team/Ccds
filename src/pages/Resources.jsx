@@ -1,4 +1,5 @@
-import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
+import PageHero from '../components/layout/PageHero';
+import { HERO_IMAGES } from '../data/heroImages';
 import { siteContent } from '../data/content';
 import { FileText, Download, ArrowRight, Sparkles } from 'lucide-react';
 

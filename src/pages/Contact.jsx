@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '../components/ui/Button';
-import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
+import PageHero from '../components/layout/PageHero';
+import { HERO_IMAGES } from '../data/heroImages';
 import { siteContent } from '../data/content';
 import { MapPin, Phone, Clock, CheckCircle2 } from 'lucide-react';
 
@@ -30,7 +31,7 @@ const Contact = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-    } catch (_) {
+    } catch {
       /* show success regardless */
     }
     setSubmitted(true);

@@ -26,15 +26,18 @@ const StepCard = ({ number, title, desc }) => (
 );
 
 // Custom Team Member Card Component for updated Cards Section UI
-const TeamMemberCard = ({ name, role, bio, titleBadge, imageSrc, certifications, imagePosition }) => (
+const TeamMemberCard = ({ name, role, bio, titleBadge, imageSrc, certifications, imagePosition, imageScale }) => (
   <article className="bg-white rounded-3xl overflow-hidden shadow-card border border-blue-pale/80 flex flex-col h-full">
     {/* Image Container with Badge */}
     <div className="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
       <img
         src={imageSrc}
         alt={name}
-        className="w-full h-full object-cover"
-        style={{ objectPosition: imagePosition || 'center top' }}
+        className="w-full h-full object-cover transition-transform duration-300"
+        style={{
+          objectPosition: imagePosition || 'center top',
+          transform: imageScale ? `scale(${imageScale})` : undefined,
+        }}
       />
       <div className="absolute top-3 right-3 z-10">
         <span className="bg-[#050F2C]/85 text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full backdrop-blur-md shadow-md border border-white/20">
@@ -85,7 +88,8 @@ const Home = () => {
       role: "Certified Colon Hydrotherapist",
       titleBadge: "Founder",
       imageSrc: lisa,
-      imagePosition: "center 8%",
+      imagePosition: "center 36%",
+      imageScale: 1.1,
       bio: "Childhood health struggles led Lisa to herbalism in 1994. After a transformative experience in 2008, she became a certified hydrotherapist in 2016, dedicated to helping others achieve lasting digestive wellness.",
       certifications: ["Foundation (2015)", "Intermediate (2019)", "Advanced (2020)", "Angel of Water (2019)"]
     },
@@ -94,7 +98,7 @@ const Home = () => {
       role: "Instructor-Level Hydrotherapist",
       titleBadge: "Instructor",
       imageSrc: kimberly,
-      imagePosition: "center 8%",
+      imagePosition: "center 15%",
       bio: "Kimberly brings a strong educational background to her practice with a double major in Physical and Health Education. As an Instructor-Level Hydrotherapist, she excels in both client care and professional education.",
       certifications: ["I-ACT Instructor-Level", "Double Major: Physical & Ed.", "Certified Wellness Coach", "Digestive Health Specialist"]
     },
@@ -103,7 +107,7 @@ const Home = () => {
       role: "Integrative Health Coach",
       titleBadge: "Advanced Specialist",
       imageSrc: jessica,
-      imagePosition: "center 8%",
+      imagePosition: "center 15%",
       bio: "Jessica offers a holistic approach to wellness with multiple certifications. Her diverse background allows her to support clients through various modalities, providing comprehensive and personalized health support.",
       certifications: ["Advanced Colon Hydrotherapist", "Integrative Health Coach", "Licensed Massage Therapist", "Reiki Practitioner"]
     }
@@ -186,7 +190,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-8 right-4 sm:right-8 lg:right-12 max-w-sm w-full hidden md:block">
+        {/* <div className="absolute bottom-8 right-4 sm:right-8 lg:right-12 max-w-sm w-full hidden md:block">
           <div className="flex flex-col gap-1.5 mb-4">
             <div className="flex gap-1.5">
               {['Colon Hydrotherapy', 'Ion Foot Detox'].map((s) => (
@@ -211,7 +215,7 @@ const Home = () => {
               ))}
             </div>
           </div>
-
+          
           <div
             className="rounded-2xl p-4 border border-white/10"
             style={{ background: 'rgba(5,15,44,0.60)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
@@ -220,8 +224,8 @@ const Home = () => {
             <p className="text-white/55 text-xs leading-relaxed">
               Our certified therapists provide personalized wellness support, helping clients find balance, cleansing, and renewed vitality.
             </p>
-          </div>
-        </div>
+          </div> 
+        </div> */}
       </section>
 
       {/* ── SERVICES ── */}

@@ -14,6 +14,7 @@ import {
 import lisa from '../assets/lisa.png';
 import kimberly from '../assets/kimberly.jpeg';
 import jessica from '../assets/jessica.png';
+import aboutHeroLogo from '../assets/logo/about_hero_logo.jpg';
 
 /* ─────────────────────────────────────────
    Team Data Structures
@@ -109,7 +110,8 @@ const About = () => {
         label="Meet Our Team"
         title="Dedicated to Your Health & Healing"
         subtitle="Compassionate experts committed to guiding you on your natural wellness journey."
-        image={HERO_IMAGES.about}
+        heroLogo={aboutHeroLogo}
+        heroLogoAlt="Colorado Colonics Detox Center Logo"
       />
 
       {/* ── Mission & Values Section ── */}

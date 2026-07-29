@@ -17,12 +17,13 @@ const Header = () => {
 
 
   const navLinks = [
-    { path: '/',          label: 'Home' },
-    { path: '/services',  label: 'Services' },
-    { path: '/pricing',   label: 'Pricing' },
-    { path: '/about',     label: 'About' },
-    { path: '/contact',   label: 'Contact' },
+    { path: '/', label: 'Home' },
+    { path: '/services', label: 'Services' },
+    { path: '/pricing', label: 'Pricing' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
     { path: '/resources', label: 'Resources' },
+    { path: '/academy', label: 'Academy' },
   ];
 
   const isActive = (path) =>
@@ -30,11 +31,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
           ? 'bg-[#F9FAF6]/95 backdrop-blur-xl shadow-md border-b border-[#E2EEEC]'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4">
@@ -50,22 +50,20 @@ const Header = () => {
 
           {/* ── Desktop nav — pill container like Healora reference ── */}
           <nav
-            className={`hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300 ${
-              isScrolled
+            className={`hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300 ${isScrolled
                 ? 'bg-white/5 border border-white/10'
                 : 'bg-black/5 backdrop-blur-sm border border-black/10'
-            }`}
+              }`}
             role="navigation"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  isActive(link.path)
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive(link.path)
                     ? 'bg-white text-[#050F2C] font-bold shadow-sm'
                     : 'text-[#050F2C]/70 hover:text-[#050F2C] hover:bg-black/5'
-                }`}
+                  }`}
               >
                 {isActive(link.path) && (
                   <span className="absolute left-3 -top-0.5 w-1 h-1 rounded-full bg-[#D98E84]" />
@@ -92,7 +90,7 @@ const Header = () => {
             >
               Book Now
               <span className="w-5 h-5 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                <svg className="w-3 h-3 fill-[#050F2C]" viewBox="0 0 8 8"><path d="M1 4h6M4 1l3 3-3 3"/><path stroke="#050F2C" strokeWidth="1.2" strokeLinecap="round" d="M1 4h6M4 1.5l2.5 2.5L4 6.5"/></svg>
+                <svg className="w-3 h-3 fill-[#050F2C]" viewBox="0 0 8 8"><path d="M1 4h6M4 1l3 3-3 3" /><path stroke="#050F2C" strokeWidth="1.2" strokeLinecap="round" d="M1 4h6M4 1.5l2.5 2.5L4 6.5" /></svg>
               </span>
             </a>
           </div>
@@ -114,9 +112,8 @@ const Header = () => {
 
       {/* ── Mobile menu ── */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="bg-[#F9FAF6]/98 backdrop-blur-xl border-t border-[#E2EEEC] px-4 py-5 space-y-1 shadow-lg">
           {navLinks.map((link) => (
@@ -124,11 +121,10 @@ const Header = () => {
               key={link.path}
               to={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
-                isActive(link.path)
+              className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive(link.path)
                   ? 'text-[#050F2C] bg-black/5 font-semibold'
                   : 'text-[#050F2C]/70 hover:text-[#050F2C] hover:bg-black/5'
-              }`}
+                }`}
             >
               {link.label}
             </Link>

@@ -134,20 +134,20 @@ const Footer = () => {
             <ul className="space-y-3 text-xs">
               <li>
                 <Link
-                  to="/contact"
-                  className="flex items-center gap-2 text-slate-300 hover:text-white font-medium transition-colors group"
-                >
-                  <ShieldCheck className="w-4 h-4 text-[#F2B2A8] flex-shrink-0" />
-                  <span className="group-hover:translate-x-0.5 transition-transform">Cancellation</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
+                  to="/privacy-policy"
                   className="flex items-center gap-2 text-slate-300 hover:text-white font-medium transition-colors group"
                 >
                   <FileText className="w-4 h-4 text-[#93C5FD] flex-shrink-0" />
                   <span className="group-hover:translate-x-0.5 transition-transform">Privacy Policy</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/terms-and-conditions"
+                  className="flex items-center gap-2 text-slate-300 hover:text-white font-medium transition-colors group"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#F2B2A8] flex-shrink-0" />
+                  <span className="group-hover:translate-x-0.5 transition-transform">Terms & Conditions</span>
                 </Link>
               </li>
             </ul>

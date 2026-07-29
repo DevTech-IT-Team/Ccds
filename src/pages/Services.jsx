@@ -465,8 +465,7 @@ const Services = () => {
         label="What We Offer"
         title="Our Services"
         subtitle="Explore our complete range of detox and wellness treatments."
-        image={HERO_IMAGES.services}
-        bgPosition="center 30%"
+        isGradient
       />
 
       <section className="py-16 bg-[#F9FAF6] relative overflow-hidden">

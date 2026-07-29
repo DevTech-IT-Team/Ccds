@@ -1,4 +1,5 @@
-import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
+import PageHero from '../components/layout/PageHero';
+import { HERO_IMAGES } from '../data/heroImages';
 import { siteContent } from '../data/content';
 import { FileText, Download, ArrowRight, Sparkles } from 'lucide-react';
 
@@ -66,7 +67,7 @@ const Resources = () => (
             href={siteContent.business.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue to-blue-btn text-white text-sm font-semibold shadow hover:shadow-glow hover:scale-105 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-rose text-white text-sm font-semibold shadow hover:shadow-glow hover:scale-105 transition-all"
           >
             Book a session to learn more <ArrowRight className="w-4 h-4" />
           </a>

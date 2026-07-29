@@ -12,17 +12,17 @@ const Button = forwardRef(({
 
   const variants = {
     primary:
-      'bg-gradient-to-r from-blue to-blue-btn text-white hover:shadow-glow hover:scale-105 active:scale-95 focus:ring-blue/40 shadow-lg',
+      'btn-primary-new',
     secondary:
-      'bg-blue-pale text-navy-mid hover:bg-blue-glow hover:text-navy active:scale-95 focus:ring-blue-pale/50',
+      'btn-secondary-new',
     clay:
-      'bg-gradient-to-r from-blue to-blue-btn text-white hover:shadow-glow hover:scale-105 active:scale-95 focus:ring-blue/50 shadow-lg',
+      'btn-primary-new',
     outline:
-      'border-2 border-blue text-blue bg-transparent hover:bg-blue hover:text-white active:scale-95 focus:ring-blue/40',
+      'btn-secondary-new bg-transparent !text-teal-900',
     'outline-white':
-      'border-2 border-white/60 text-white bg-transparent hover:bg-white hover:text-navy-mid active:scale-95 focus:ring-white/40',
+      'border-2 border-white/60 text-white bg-transparent hover:bg-white hover:text-[#050F2C] active:scale-95 focus:ring-white/40',
     ghost:
-      'text-navy-mid hover:bg-blue-pale hover:text-blue active:scale-95 focus:ring-blue-pale/50',
+      'text-[#050F2C] hover:bg-black/5 active:scale-95',
   };
 
   const sizes = {

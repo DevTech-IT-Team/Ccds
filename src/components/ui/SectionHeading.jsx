@@ -4,7 +4,7 @@ const SectionHeading = ({ title, subtitle, light = false, className = '' }) => (
       {title}
     </h2>
     {/* accent rule */}
-    <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-gradient-to-r from-blue to-blue-btn" />
+    <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-gradient-rose" />
     {subtitle && (
       <p className={`text-lg max-w-2xl mx-auto leading-relaxed ${light ? 'text-blue-glow' : 'text-ink-soft'}`}>
         {subtitle}

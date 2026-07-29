@@ -32,7 +32,7 @@ const TestimonialCarousel = ({ className = '' }) => {
           </p>
 
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue to-blue-btn flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-gradient-rose flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
               {testimonials[current].name.charAt(0)}
             </div>
             <span className="font-semibold text-navy-mid">{testimonials[current].name}</span>

@@ -1,15 +1,28 @@
+import { useState } from 'react';
 import PricingTable from '../components/ui/PricingTable';
-import PageHero, { HERO_IMAGES } from '../components/layout/PageHero';
+import PageHero from '../components/layout/PageHero';
+import { HERO_IMAGES } from '../data/heroImages';
 import { pricingData } from '../data/pricing';
 import { siteContent } from '../data/content';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight, Phone, Sparkles, Filter } from 'lucide-react';
 
 const Pricing = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeType, setActiveType] = useState('all');
+
   const pricingSections = [
-    pricingData.colonHydrotherapy,
-    pricingData.ionFootDetox,
-    pricingData.biocharger,
-    pricingData.other,
+    { ...pricingData.colonHydrotherapy, id: 'colon-hydrotherapy' },
+    { ...pricingData.ionFootDetox, id: 'ion-foot-detox' },
+    { ...pricingData.biocharger, id: 'biocharger' },
+    { ...pricingData.other, id: 'other' },
+  ];
+
+  const categoryTabs = [
+    { id: 'all', label: 'All Treatments' },
+    { id: 'colon-hydrotherapy', label: 'Colon Hydrotherapy' },
+    { id: 'ion-foot-detox', label: 'Ion Foot Detox' },
+    { id: 'biocharger', label: 'BioCharger' },
+    { id: 'other', label: 'Other Services' },
   ];
 
   return (
@@ -21,36 +34,89 @@ const Pricing = () => {
         image={HERO_IMAGES.pricing}
       />
 
-      <section className="py-20 bg-white relative">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-[#F9FAF6] relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold text-blue uppercase tracking-widest mb-2 block">
-              Upfront Rates
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-mid">
-              Service Packages & Single Sessions
-            </h2>
-            <div className="mt-3 h-1 w-12 rounded-full bg-gradient-to-r from-blue to-blue-btn mx-auto" />
+          <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest mb-2 block">
+                Upfront Rates & Transparent Value
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C]">
+                Service Packages & Single Sessions
+              </h2>
+              <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84]" />
+            </div>
+
+            {/* Quick Filter Pill Switch: All / Single / Packages */}
+            <div className="inline-flex items-center p-1 rounded-full bg-white border border-[#E2EEEC] shadow-xs">
+              <button
+                onClick={() => setActiveType('all')}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                  activeType === 'all'
+                    ? 'bg-[#050F2C] text-white shadow-xs'
+                    : 'text-slate-600 hover:text-[#050F2C]'
+                }`}
+              >
+                All Options
+              </button>
+              <button
+                onClick={() => setActiveType('single')}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                  activeType === 'single'
+                    ? 'bg-[#050F2C] text-white shadow-xs'
+                    : 'text-slate-600 hover:text-[#050F2C]'
+                }`}
+              >
+                Single Sessions
+              </button>
+              <button
+                onClick={() => setActiveType('package')}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                  activeType === 'package'
+                    ? 'bg-[#050F2C] text-white shadow-xs'
+                    : 'text-slate-600 hover:text-[#050F2C]'
+                }`}
+              >
+                Multi-Packs & Bundles
+              </button>
+            </div>
           </div>
 
-          {/* Pricing Table Wrapper */}
-          <div className="bg-white rounded-3xl border border-blue-pale shadow-card p-2 sm:p-6 md:p-8">
-            <PricingTable data={pricingSections} />
+          {/* Interactive Category Filter Tabs */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none">
+            {categoryTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveCategory(tab.id)}
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 ${
+                  activeCategory === tab.id
+                    ? 'bg-[#38838A] text-white shadow-md scale-105'
+                    : 'bg-white border border-[#E2EEEC] text-[#050F2C]/75 hover:bg-slate-50 hover:text-[#050F2C]'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
 
-          {/* Consultation Banner */}
-          <div className="mt-10 bg-gradient-to-br from-navy via-navy-mid to-blue text-white rounded-3xl p-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-blue-btn/20 rounded-full blur-2xl pointer-events-none" />
+          {/* Unboxed Interactive Pricing Table directly on page background */}
+          <PricingTable
+            data={pricingSections}
+            activeCategory={activeCategory}
+            activeType={activeType}
+          />
 
-            <div className="flex items-center gap-5 relative z-10">
-              <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                <Phone className="w-6 h-6 text-blue-glow" />
+          {/* Clean Consultation Banner Strip */}
+          <div className="mt-16 bg-white rounded-3xl p-8 border border-[#E2EEEC] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-5">
+              <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6 text-[#38838A]" />
               </div>
               <div>
-                <h3 className="font-bold text-white text-lg">Need help choosing a plan?</h3>
-                <p className="text-blue-glow/80 text-sm mt-0.5">
+                <h3 className="font-bold text-[#050F2C] text-lg">Need help choosing a plan?</h3>
+                <p className="text-slate-600 text-sm mt-0.5">
                   Call or text us and we'll help tailor the right package for your wellness goals.
                 </p>
               </div>
@@ -58,9 +124,10 @@ const Pricing = () => {
 
             <a
               href={siteContent.business.phoneLink}
-              className="relative z-10 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-white text-navy-mid text-sm font-bold shadow-lg hover:bg-blue-faint hover:scale-105 transition-all flex-shrink-0"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full btn-primary-new text-sm font-bold shadow-md hover:scale-105 transition-all flex-shrink-0"
             >
-              {siteContent.business.phone} <ArrowRight className="w-4 h-4" />
+              <span>{siteContent.business.phone}</span>
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 

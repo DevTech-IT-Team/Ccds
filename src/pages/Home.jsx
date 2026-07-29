@@ -1,19 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Sparkles, Radio, Leaf, Star, MapPin, Phone } from 'lucide-react';
-import ServiceCard from '../components/ui/ServiceCard';
 import SectionHeading from '../components/ui/SectionHeading';
-import StaffCard from '../components/ui/StaffCard';
+import VideoThumbnailCard from '../components/ui/VideoThumbnailCard';
 import { siteContent } from '../data/content';
-import { staff } from '../data/staff';
-import hospitalImg from '../assets/herobg.jpg';
+import heroBgImg from '../assets/ccdcbg.webp';
 import glassShapeImg from '../assets/hero.png';
 import lisa from '../assets/lisa.png';
+import kimberly from '../assets/kimberly.jpeg';
+import jessica from '../assets/jessica.png';
 
 const StepCard = ({ number, title, desc }) => (
   <div className="relative flex gap-5">
     <div className="flex flex-col items-center">
-      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue to-blue-btn text-white text-sm font-bold flex items-center justify-center flex-shrink-0 shadow-glow z-10">
+      <div className="w-10 h-10 rounded-full bg-gradient-rose text-white text-sm font-bold flex items-center justify-center flex-shrink-0 shadow-glow z-10">
         {number}
       </div>
       {number < 3 && <div className="flex-1 w-0.5 bg-gradient-to-b from-blue/50 to-transparent mt-1" />}
@@ -26,62 +26,58 @@ const StepCard = ({ number, title, desc }) => (
 );
 
 // Custom Team Member Card Component for updated Cards Section UI
-const TeamMemberCard = ({ name, role, bio, titleBadge, imageSrc, certifications }) => (
-  <article className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col h-full">
+const TeamMemberCard = ({ name, role, bio, titleBadge, imageSrc, certifications, imagePosition }) => (
+  <article className="bg-white rounded-3xl overflow-hidden shadow-card border border-blue-pale/80 flex flex-col h-full">
     {/* Image Container with Badge */}
-    <div className="relative aspect-[4/3] bg-sky-50 overflow-hidden">
+    <div className="relative aspect-[4/3] w-full bg-slate-100 overflow-hidden">
       <img
         src={imageSrc}
         alt={name}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        className="w-full h-full object-cover"
+        style={{ objectPosition: imagePosition || 'center top' }}
       />
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center">
-        <span className="bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest py-1.5 px-4 rounded-t-lg shadow-sm">
+      <div className="absolute top-3 right-3 z-10">
+        <span className="bg-[#050F2C]/85 text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full backdrop-blur-md shadow-md border border-white/20">
           {titleBadge}
         </span>
       </div>
     </div>
 
     {/* Content Container */}
-    <div className="p-6 sm:p-8 flex flex-col flex-grow items-center text-center">
-      <h3 className="text-xl font-bold text-slate-900 mb-0.5">{name}</h3>
-      <p className="text-xs font-semibold text-blue-600 mb-4">{role}</p>
+    <div className="p-6 sm:p-7 flex flex-col flex-grow text-left justify-between">
+      <div className="space-y-3">
+        <div>
+          <h3 className="text-xl font-bold text-[#050F2C] leading-snug">{name}</h3>
+          <p className="text-xs font-bold text-[#38838A] uppercase tracking-wide mt-1">{role}</p>
+        </div>
 
-      <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
-        {bio}
-      </p>
+        <p className="text-slate-600 text-sm leading-relaxed">
+          {bio}
+        </p>
+      </div>
 
       {/* Badges / Certifications Container */}
-      <div className="w-full pt-4 border-t border-slate-100 mt-auto flex flex-wrap gap-1.5 justify-center">
-        {certifications.map((cert, idx) => (
-          <span
-            key={idx}
-            className="bg-sky-50 text-blue-700 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-sky-100 inline-flex items-center gap-1"
-          >
-            <span className="text-blue-500 font-bold">✓</span> {cert}
-          </span>
-        ))}
+      <div className="mt-6 pt-4 border-t border-slate-100 bg-[#F4F9F8] rounded-2xl p-4 border border-[#E2EEEC]">
+        <span className="text-[10px] font-bold text-[#38838A] uppercase tracking-wider block mb-2.5">
+          Credentials & Specialties
+        </span>
+        <div className="flex flex-wrap gap-1.5">
+          {certifications.map((cert, idx) => (
+            <span
+              key={idx}
+              className="bg-white text-[#050F2C] text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-[#E2EEEC] shadow-2xs inline-flex items-center gap-1.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B36C63] flex-shrink-0" />
+              {cert}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   </article>
 );
 
 const Home = () => {
-  const heroRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouse = (e) => {
-      const { innerWidth, innerHeight } = window;
-      setMousePos({
-        x: (e.clientX / innerWidth - 0.5) * 20,
-        y: (e.clientY / innerHeight - 0.5) * 12,
-      });
-    };
-    window.addEventListener('mousemove', handleMouse);
-    return () => window.removeEventListener('mousemove', handleMouse);
-  }, []);
-
   // Updated Cards Data
   const teamMembers = [
     {
@@ -89,6 +85,7 @@ const Home = () => {
       role: "Certified Colon Hydrotherapist",
       titleBadge: "Founder",
       imageSrc: lisa,
+      imagePosition: "center 8%",
       bio: "Childhood health struggles led Lisa to herbalism in 1994. After a transformative experience in 2008, she became a certified hydrotherapist in 2016, dedicated to helping others achieve lasting digestive wellness.",
       certifications: ["Foundation (2015)", "Intermediate (2019)", "Advanced (2020)", "Angel of Water (2019)"]
     },
@@ -96,7 +93,8 @@ const Home = () => {
       name: "Kimberly Allenson, PHE",
       role: "Instructor-Level Hydrotherapist",
       titleBadge: "Instructor",
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgIU5tOg0WnA6MzkCROXARJfzujCVNwv1ru6Qa7iywFn27t-nTXWqWUKYLEi-jO1BNzh-_lreHePDz9c0TVN3j9UkyVl1SP5Gngdt_bPR8c2BnjpzRQcsEf0aRTUn0roWiIOq16NDhnhsHRGkkYVvJkCVKfjaod-YQbWA_Dvlo7XJ5w35y5btIGImBr-l9E0a4lO1w412XIxdrj8KTTl4LayPoDtBGqhQ9qNplkggaHIxs-HdPkiCCTia-CagXIIHLRSpo7YLkD-RZ",
+      imageSrc: kimberly,
+      imagePosition: "center 8%",
       bio: "Kimberly brings a strong educational background to her practice with a double major in Physical and Health Education. As an Instructor-Level Hydrotherapist, she excels in both client care and professional education.",
       certifications: ["I-ACT Instructor-Level", "Double Major: Physical & Ed.", "Certified Wellness Coach", "Digestive Health Specialist"]
     },
@@ -104,7 +102,8 @@ const Home = () => {
       name: "Jessica Fuentes, LMT",
       role: "Integrative Health Coach",
       titleBadge: "Advanced Specialist",
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuBL9RyslOxlXFyFdgkzRNOynUXYwU88BZGZFr7POFQds1_zL-7HOYu0O-jyV6-ObK6C_yLF0eL3qPEyFIVxTQhcnYwVc5B3cdOJRAKfun601RZ_79UM33Cu6pKBdTHxCgdmR0WPM9HgEqEgA_d3eXZemT1dfw7lBNipEHulzt1ywen7pQofq7_SbqdBi7fFHMXwBnqur9e9IrSBuSjlSBzIbAx357jCEWEUUwOddBSczKOe5J_kgtZeoLXrLESosD4BALYnSEquCb7r",
+      imageSrc: jessica,
+      imagePosition: "center 8%",
       bio: "Jessica offers a holistic approach to wellness with multiple certifications. Her diverse background allows her to support clients through various modalities, providing comprehensive and personalized health support.",
       certifications: ["Advanced Colon Hydrotherapist", "Integrative Health Coach", "Licensed Massage Therapist", "Reiki Practitioner"]
     }
@@ -113,23 +112,18 @@ const Home = () => {
   return (
     <div>
       {/* ── HERO SECTION ── */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-no-repeat transition-transform duration-100 ease-out"
+          className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url(${hospitalImg})`,
-            backgroundPosition: `calc(50% + ${mousePos.x * 0.4}px) calc(30% + ${mousePos.y * 0.4}px)`,
-            transform: `scale(1.04)`,
+            backgroundImage: `url(${heroBgImg})`,
+            backgroundPosition: 'center 85%',
           }}
           aria-hidden="true"
         />
 
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(105deg, rgba(5,15,44,0.96) 0%, rgba(10,31,92,0.88) 38%, rgba(10,31,92,0.60) 60%, rgba(5,15,44,0.30) 100%)',
-          }}
+          className="absolute inset-0 bg-overlay-new"
           aria-hidden="true"
         />
 
@@ -150,10 +144,6 @@ const Home = () => {
 
         <div
           className="absolute right-[4%] top-[12%] w-48 opacity-20 pointer-events-none hidden xl:block"
-          style={{
-            transform: `translate(${mousePos.x * 0.6}px, ${mousePos.y * 0.6}px)`,
-            transition: 'transform 0.15s ease-out',
-          }}
           aria-hidden="true"
         >
           <img src={glassShapeImg} alt="" className="w-full h-auto" />
@@ -161,18 +151,16 @@ const Home = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 w-full">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-btn/40 bg-blue/15 backdrop-blur-sm mb-7">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-btn animate-pulse" />
-              <span className="text-xs font-bold text-blue-glow uppercase tracking-[0.15em]">
-                Certified Colon Hydrotherapy
-              </span>
-            </div>
 
-            <h1 className="text-white mb-6">
-              {siteContent.home.hero.headline}
+
+            <h1 className="text-[#050F2C] mb-6 text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              <span className="bg-gradient-to-r from-[#B36C63] via-[#D98E84] to-[#38838A] bg-clip-text text-transparent drop-shadow-sm">
+                Revitalize Your Life.
+              </span>{' '}
+              Master the Practice at Our Academy.
             </h1>
 
-            <p className="text-white/70 text-lg leading-relaxed mb-9 max-w-lg">
+            <p className="text-[#050F2C]/80 text-lg leading-relaxed mb-9 max-w-lg font-medium">
               {siteContent.home.hero.subhead}
             </p>
 
@@ -181,16 +169,16 @@ const Home = () => {
                 href={siteContent.business.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-blue to-blue-btn text-white font-bold text-base shadow-glow hover:scale-105 hover:shadow-[0_0_50px_rgba(59,130,246,0.55)] transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white font-bold text-base hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg btn-primary-new"
               >
                 {siteContent.home.hero.ctaPrimary}
-                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <span className="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </a>
               <a
                 href={siteContent.business.phoneLink}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/25 text-white font-semibold text-base hover:bg-white/10 hover:border-white/40 transition-all duration-200 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base transition-all duration-200 shadow-md hover:scale-105 btn-secondary-new"
               >
                 {siteContent.home.hero.ctaSecondary}
               </a>
@@ -248,7 +236,7 @@ const Home = () => {
               <h2 className="text-4xl md:text-5xl font-display font-bold text-navy-mid leading-tight">
                 Our Services
               </h2>
-              <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-blue to-blue-btn" />
+              <div className="mt-3 h-1 w-14 rounded-full bg-gradient-rose" />
             </div>
             <Link
               to="/services"
@@ -299,7 +287,7 @@ const Home = () => {
               {
                 icon: Users,
                 num: '06',
-                title: 'Community Resources',
+                title: 'Drug & Alcohol Resources',
                 blurb: 'Local recovery & wellness referrals. We support the body on the journey after recovery.',
                 link: '/services/community-resources',
               },
@@ -354,7 +342,7 @@ const Home = () => {
               <h2 className="text-4xl md:text-5xl font-display font-bold text-navy-mid mb-3 leading-tight">
                 How Your Session<br />Is Built
               </h2>
-              <div className="h-1 w-16 rounded-full bg-gradient-to-r from-blue to-blue-btn mb-8" />
+              <div className="h-1 w-16 rounded-full bg-gradient-rose mb-8" />
 
               <div className="space-y-0">
                 <StepCard number={1} title="Intake & Consultation" desc="We review your health history and answer any questions in a comfortable, judgment-free environment." />
@@ -366,7 +354,7 @@ const Home = () => {
                 href={siteContent.business.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue to-blue-btn text-white font-semibold shadow-lg hover:shadow-glow hover:scale-105 transition-all"
+                className="inline-flex items-center gap-2 mt-4 px-7 py-3.5 rounded-xl bg-gradient-rose text-white font-semibold shadow-lg hover:shadow-glow hover:scale-105 transition-all"
               >
                 Book Your First Session <ArrowRight className="w-4 h-4" />
               </a>
@@ -387,6 +375,40 @@ const Home = () => {
                   <p className="text-ink-soft text-xs leading-relaxed">{desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VIDEO PROMO SECTION ── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="lg:w-5/12">
+              <span className="inline-block text-xs font-semibold text-[#38838A] uppercase tracking-widest mb-3">
+                Watch & Learn
+              </span>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C] mb-6 leading-tight">
+                Discover the Benefits of Colon Hydrotherapy
+              </h2>
+              <div className="h-1 w-16 rounded-full bg-[#B36C63] mb-6" />
+              <p className="text-[#050F2C]/80 text-lg leading-relaxed font-medium mb-8">
+                Curious about what a session looks like? Watch this informative guide on the process, benefits, and why so many people are turning to hydro colonics for digestive wellness and renewed energy.
+              </p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://www.youtube.com/watch?v=CXFi6TEPplY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold text-[#B36C63] hover:text-[#050F2C] transition-colors"
+                >
+                  Watch on YouTube <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:w-7/12 w-full">
+              <VideoThumbnailCard videoId="CXFi6TEPplY" title="YouTube video" />
             </div>
           </div>
         </div>
@@ -417,88 +439,88 @@ const Home = () => {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="w-full bg-[#0b1320] py-20 md:py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      <section className="w-full bg-[#F9FAF6] py-20 md:py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Heading */}
         <div className="flex flex-col items-center mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold text-white tracking-tight mb-3">
+          <h2 className="text-4xl md:text-5xl font-serif font-semibold text-[#050F2C] tracking-tight mb-3">
             What our clients say
           </h2>
-          <div className="w-10 h-1 bg-blue-500 rounded-full"></div>
+          <div className="w-10 h-1 bg-[#B36C63] rounded-full"></div>
         </div>
 
         <div className="relative w-full max-w-6xl">
           {/* Subtle Ambient Glows */}
-          <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-          <div className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-400/5 rounded-full blur-[120px] pointer-events-none"></div>
+          <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#B36C63]/10 rounded-full blur-[100px] pointer-events-none"></div>
+          <div className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#38838A]/10 rounded-full blur-[120px] pointer-events-none"></div>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10 items-start">
 
             {/* Card 1 */}
-            <div className="bg-[#121c2e]/90 backdrop-blur-md border border-white/5 p-8 md:p-10 rounded-3xl shadow-2xl flex flex-col justify-between min-h-[300px]">
+            <div className="bg-white/90 backdrop-blur-md border border-[#E2EEEC] p-8 md:p-10 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] flex flex-col justify-between min-h-[300px]">
               <div>
-                <div className="flex gap-1.5 text-blue-200 mb-6">
+                <div className="flex gap-1.5 text-[#CBB06B] mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current text-blue-200" />
+                    <Star key={i} className="w-5 h-5 fill-current text-[#CBB06B]" />
                   ))}
                 </div>
-                <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed">
+                <blockquote className="text-[#050F2C]/90 text-sm md:text-base italic leading-relaxed font-medium">
                   "Lisa is absolutely amazing! Her knowledge of colon hydrotherapy is incredible and the environment is so peaceful."
                 </blockquote>
               </div>
               <div className="flex items-center gap-3 mt-8">
-                <div className="w-9 h-9 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
+                <div className="w-9 h-9 bg-[#B36C63] text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
                   M
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-white text-sm">Maggie P.</span>
-                  <span className="text-xs text-blue-300/70">Verified Patient</span>
+                  <span className="font-bold text-[#050F2C] text-sm">Maggie P.</span>
+                  <span className="text-xs text-[#38838A] font-medium">Verified Patient</span>
                 </div>
               </div>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-[#121c2e]/90 backdrop-blur-md border border-white/5 p-8 md:p-10 rounded-3xl shadow-2xl flex flex-col justify-between min-h-[300px]">
+            <div className="bg-white/90 backdrop-blur-md border border-[#E2EEEC] p-8 md:p-10 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] flex flex-col justify-between min-h-[300px]">
               <div>
-                <div className="flex gap-1.5 text-blue-200 mb-6">
+                <div className="flex gap-1.5 text-[#CBB06B] mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current text-blue-200" />
+                    <Star key={i} className="w-5 h-5 fill-current text-[#CBB06B]" />
                   ))}
                 </div>
-                <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed">
+                <blockquote className="text-[#050F2C]/90 text-sm md:text-base italic leading-relaxed font-medium">
                   "The clinical excellence here is unmatched. I felt completely supported throughout my entire wellness journey."
                 </blockquote>
               </div>
               <div className="flex items-center gap-3 mt-8">
-                <div className="w-9 h-9 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
+                <div className="w-9 h-9 bg-[#B36C63] text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
                   J
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-white text-sm">James R.</span>
-                  <span className="text-xs text-blue-300/70">Verified Patient</span>
+                  <span className="font-bold text-[#050F2C] text-sm">James R.</span>
+                  <span className="text-xs text-[#38838A] font-medium">Verified Patient</span>
                 </div>
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className="bg-[#121c2e]/90 backdrop-blur-md border border-white/5 p-8 md:p-10 rounded-3xl shadow-2xl flex flex-col justify-between min-h-[300px] md:translate-y-6">
+            <div className="bg-white/90 backdrop-blur-md border border-[#E2EEEC] p-8 md:p-10 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] flex flex-col justify-between min-h-[300px] md:translate-y-6">
               <div>
-                <div className="flex gap-1.5 text-blue-200 mb-6">
+                <div className="flex gap-1.5 text-[#CBB06B] mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current text-blue-200" />
+                    <Star key={i} className="w-5 h-5 fill-current text-[#CBB06B]" />
                   ))}
                 </div>
-                <blockquote className="text-white/90 text-sm md:text-base italic leading-relaxed">
+                <blockquote className="text-[#050F2C]/90 text-sm md:text-base italic leading-relaxed font-medium">
                   "A truly transformative experience. The staff is professional, empathetic, and highly skilled."
                 </blockquote>
               </div>
               <div className="flex items-center gap-3 mt-8">
-                <div className="w-9 h-9 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
+                <div className="w-9 h-9 bg-[#B36C63] text-white rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0">
                   S
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-white text-sm">Sarah L.</span>
-                  <span className="text-xs text-blue-300/70">Verified Patient</span>
+                  <span className="font-bold text-[#050F2C] text-sm">Sarah L.</span>
+                  <span className="text-xs text-[#38838A] font-medium">Verified Patient</span>
                 </div>
               </div>
             </div>
@@ -512,10 +534,10 @@ const Home = () => {
             href={siteContent.home.testimonialSection.googleReviewUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 border border-white/10 rounded-full font-semibold text-sm text-white bg-[#162238] hover:bg-[#1d2d4a] hover:border-white/20 transition-all duration-300 shadow-lg group"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 border-2 border-[#38838A] rounded-full font-semibold text-sm text-[#050F2C] hover:bg-black/5 transition-all duration-300 group"
           >
             View All Stories
-            <ArrowRight className="w-4 h-4 text-white/80 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </section>
@@ -534,27 +556,42 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── CLOSING CTA (NEW REPLACED SECTION) ── */}
+      {/* ── CLOSING CTA ── */}
       <section className="py-20 bg-white px-4 sm:px-6 lg:px-8">
-        <div className="relative w-full max-w-7xl mx-auto overflow-hidden rounded-3xl shadow-[0px_20px_50px_rgba(0,0,0,0.3)] bg-gradient-to-br from-[#031427] to-[#1e3a8a]">
-          {/* Atmospheric Glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.15)_0%,transparent_70%)] pointer-events-none" />
+        <div className="relative w-full max-w-7xl mx-auto overflow-hidden rounded-3xl shadow-xl bg-gradient-to-br from-[#F9FAF6] via-[#E2EEEC] to-[#C8DFDC] border border-[#B2D4D0] text-[#050F2C]">
+          {/* Subtle Ambient Lighting */}
+          <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#B36C63]/15 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#38838A]/20 rounded-full blur-[120px] pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col items-center justify-center text-center py-16 px-8 md:px-16">
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-[#eeefff] mb-4 tracking-tight">
-              {siteContent.home.closingCTA.heading || "Ready to feel your best?"}
+          {/* Dot pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-15 pointer-events-none"
+            style={{
+              backgroundImage: 'radial-gradient(rgba(5,15,44,0.4) 1px, transparent 1px)',
+              backgroundSize: '28px 28px',
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col items-center justify-center text-center py-20 px-6 sm:px-12 md:px-20">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-[#B2D4D0] backdrop-blur-md text-xs font-bold uppercase tracking-widest text-[#38838A] mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#B36C63]" />
+              Start Your Wellness Journey Today
+            </span>
+
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight leading-tight max-w-4xl text-[#050F2C]">
+              Ready to feel your <span className="bg-gradient-to-r from-[#B36C63] via-[#D98E84] to-[#38838A] bg-clip-text text-transparent">best?</span>
             </h2>
 
-            <p className="font-sans text-base md:text-xl text-[#b4c5ff] max-w-2xl mx-auto mb-8 leading-relaxed">
-              {siteContent.home.closingCTA.subhead || "Book your appointment today and start your journey to wellness with our world-class team of dedicated professionals."}
+            <p className="text-base sm:text-lg md:text-xl text-[#050F2C]/80 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+              Book your appointment today and experience personalized digestive care with our world-class team of certified hydrotherapists.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
               <a
                 href={siteContent.business.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 bg-[#eeefff] text-[#000f21] font-semibold text-lg px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-[0px_10px_30px_rgba(255,255,255,0.15)] hover:-translate-y-1"
+                className="group flex items-center justify-center gap-3 text-white font-bold text-base px-9 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg btn-primary-new w-full sm:w-auto"
               >
                 {siteContent.home.closingCTA.cta || "Book Now"}
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -562,31 +599,27 @@ const Home = () => {
 
               <Link
                 to="/services"
-                className="font-semibold text-[#eeefff] backdrop-blur-md border border-[#434655] px-8 py-5 rounded-xl transition-all hover:bg-white/5"
+                className="flex items-center justify-center gap-2 text-[#050F2C] font-semibold text-base px-8 py-4 rounded-full border-2 border-[#38838A] bg-white/80 backdrop-blur-md hover:bg-white transition-all duration-300 hover:scale-105 shadow-sm w-full sm:w-auto"
               >
-                Our Services
+                Explore Services
               </Link>
             </div>
 
-            {/* Footer Info Embedded in Section */}
-            <div className="mt-16 pt-6 border-t border-[#434655]/30 w-full flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 opacity-80">
-              <div className="flex items-center gap-2 font-medium text-[#c3c6d7] text-sm">
-                <MapPin className="w-4 h-4 text-[#b4c5ff]" />
-                {siteContent.business.address}
+            {/* Footer Contact Info Pill Strip */}
+            <div className="mt-14 pt-8 border-t border-[#B2D4D0]/60 w-full flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 border border-[#B2D4D0] backdrop-blur-sm text-xs sm:text-sm text-[#050F2C] font-medium shadow-xs">
+                <MapPin className="w-4 h-4 text-[#B36C63]" />
+                <span>{siteContent.business.address}</span>
               </div>
               <a
                 href={siteContent.business.phoneLink}
-                className="flex items-center gap-2 font-medium text-[#c3c6d7] text-sm hover:text-white transition-colors"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 border border-[#B2D4D0] backdrop-blur-sm text-xs sm:text-sm text-[#050F2C] font-semibold hover:bg-white transition-all shadow-xs"
               >
-                <Phone className="w-4 h-4 text-[#b4c5ff]" />
-                {siteContent.business.phone}
+                <Phone className="w-4 h-4 text-[#38838A]" />
+                <span>{siteContent.business.phone}</span>
               </a>
             </div>
           </div>
-
-          {/* Floating Aesthetic Elements */}
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
         </div>
       </section>
     </div>

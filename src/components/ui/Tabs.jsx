@@ -15,7 +15,7 @@ const Tabs = ({ tabs, defaultTab = 0, className = '' }) => {
             aria-selected={activeTab === index}
             className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue/30 ${
               activeTab === index
-                ? 'bg-gradient-to-r from-blue to-blue-btn text-white shadow-md'
+                ? 'bg-gradient-rose text-white shadow-md'
                 : 'bg-blue-faint text-ink-soft hover:bg-blue-pale hover:text-navy-mid'
             }`}
           >

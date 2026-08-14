@@ -378,42 +378,7 @@ const MineralizingSoakView = ({ services, image }) => (
   </div>
 );
 
-/* ─────────────────────────────────────────
-   6. COMMUNITY RESOURCES VIEW
-───────────────────────────────────────── */
-const CommunityResourcesView = ({ services, image }) => (
-  <div className="space-y-10">
-    <div>
-      <span className="text-xs font-bold uppercase tracking-widest text-[#93C5FD] mb-3 block">
-        Integrative Care Network
-      </span>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
-        Drug & Alcohol Resources
-      </h2>
-      <p className="text-base sm:text-lg text-[#050F2C]/80 max-w-3xl leading-relaxed italic font-medium">
-        {services.communityResources.disclaimer}
-      </p>
-    </div>
 
-    <div className="w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden shadow-md">
-      <img src={image} alt="Community Referral Network" className="w-full h-full object-cover" />
-    </div>
-
-    <div className="pt-2">
-      <h3 className="text-2xl font-bold font-display text-[#050F2C] mb-6 pb-2 border-b border-[#E2EEEC]">
-        Verified Referral Network
-      </h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.communityResources.referrals.map((r, i) => (
-          <div key={i} className="space-y-1">
-            <h4 className="font-bold text-lg text-[#050F2C]">{r.name}</h4>
-            {r.phone && <p className="text-sm text-[#38838A] font-semibold">{r.phone}</p>}
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
 
 const detailPanelMap = {
   'colon-hydrotherapy': (s, img) => <ColonHydrotherapyView services={s} image={img} />,
@@ -421,7 +386,6 @@ const detailPanelMap = {
   'biocharger': (s, img) => <BioChargerView services={s} image={img} />,
   'liver-cleanse': (s, img) => <LiverCleanseView services={s} image={img} />,
   'mineralizing-soak': (s, img) => <MineralizingSoakView services={s} image={img} />,
-  'community-resources': (s, img) => <CommunityResourcesView services={s} image={img} />,
 };
 
 /* ─────────────────────────────────────────

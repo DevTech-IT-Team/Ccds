@@ -75,12 +75,6 @@ export const siteContent = {
         icon: 'users',
         link: '/about',
       },
-      {
-        title: 'Drug & Alcohol Resources',
-        blurb: 'Support for your wellness & recovery journey',
-        icon: 'leaf',
-        link: '/services/community-resources',
-      },
     ],
     valuesStrip: {
       text: 'Circulation · Assimilation · Relaxation · Elimination — All are welcome',
@@ -131,12 +125,6 @@ export const siteContent = {
         label: 'Mineralizing Foot Soak',
         icon: 'sparkles',
         blurb: 'Replenishing 30-min mineral soak. Standalone or stacked with detox sessions.',
-      },
-      {
-        id: 'community-resources',
-        label: 'Drug & Alcohol Resources',
-        icon: 'users',
-        blurb: 'Local recovery & addiction support referrals. We support the body after recovery.',
       },
     ],
 

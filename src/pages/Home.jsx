@@ -288,13 +288,6 @@ const Home = () => {
                 blurb: 'Replenishing 30-min mineral soak. Take it standalone or stack with detox sessions.',
                 link: '/services/mineralizing-soak',
               },
-              {
-                icon: Users,
-                num: '06',
-                title: 'Drug & Alcohol Resources',
-                blurb: 'Local recovery & wellness referrals. We support the body on the journey after recovery.',
-                link: '/services/community-resources',
-              },
             ].map(({ icon: Icon, num, title, blurb, link, badge }) => (
               <Link
                 key={title}
@@ -331,6 +324,7 @@ const Home = () => {
                 </div>
               </Link>
             ))}
+            <div className="hidden sm:block bg-white" />
           </div>
         </div>
       </section>

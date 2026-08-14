@@ -158,7 +158,7 @@ const Academy = () => {
       <section className="py-20 bg-[#F9FAF6] border-b border-[#E2EEEC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#B2D4D0] text-xs font-bold uppercase tracking-widest text-[#38838A] shadow-2xs">
@@ -182,18 +182,18 @@ const Academy = () => {
               </p>
 
               {/* Stat Highlights */}
-              <div className="grid sm:grid-cols-3 gap-4 pt-4">
-                <div className="p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 overflow-hidden">
+                <div className="flex-1 p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
                   <span className="text-2xl font-bold text-[#050F2C] block">24/7 Access</span>
-                  <span className="text-xs font-semibold text-[#38838A] uppercase tracking-wider">Athena LMS Digital</span>
+                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Athena LMS Digital</span>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
+                <div className="flex-1 p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
                   <span className="text-2xl font-bold text-[#050F2C] block">Clinical</span>
-                  <span className="text-xs font-semibold text-[#38838A] uppercase tracking-wider">Hands-On Practicum</span>
+                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Hands-On Practicum</span>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
+                <div className="flex-1 p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
                   <span className="text-2xl font-bold text-[#050F2C] block">Recognized</span>
-                  <span className="text-xs font-semibold text-[#38838A] uppercase tracking-wider">Professional License</span>
+                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Professional Certification</span>
                 </div>
               </div>
             </div>
@@ -255,7 +255,7 @@ const Academy = () => {
       {/* ── Curriculum Section: What You Will Learn ── */}
       <section className="py-24 bg-white border-b border-[#E2EEEC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest block mb-2">
@@ -272,7 +272,7 @@ const Academy = () => {
 
           {/* Interactive Curriculum Selector */}
           <div className="grid lg:grid-cols-12 gap-8 items-start">
-            
+
             {/* Module Selector Buttons (Left Column) */}
             <div className="lg:col-span-5 space-y-3">
               {curriculumModules.map((mod, idx) => {
@@ -283,19 +283,17 @@ const Academy = () => {
                   <button
                     key={mod.id}
                     onClick={() => setActiveModule(idx)}
-                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-4 ${
-                      isActive
+                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-4 ${isActive
                         ? 'bg-[#050F2C] text-white border-[#050F2C] shadow-lg scale-[1.01]'
                         : 'bg-[#F9FAF6] text-[#050F2C] border-[#E2EEEC] hover:bg-white hover:border-[#38838A]/40 shadow-2xs'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-4">
                       <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm ${
-                          isActive
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm ${isActive
                             ? 'bg-gradient-to-r from-[#B36C63] to-[#D98E84] text-white shadow-xs'
                             : 'bg-white text-[#38838A] border border-[#E2EEEC]'
-                        }`}
+                          }`}
                       >
                         {mod.number}
                       </div>
@@ -378,7 +376,7 @@ const Academy = () => {
       {/* ── Why Choose Our Academy? ── */}
       <section className="py-24 bg-[#F9FAF6] border-b border-[#E2EEEC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest block mb-2">
               The Academy Advantage
@@ -427,7 +425,7 @@ const Academy = () => {
       {/* ── Closing Call-To-Action & Quote Banner ── */}
       <section className="py-20 bg-white px-4 sm:px-6 lg:px-8">
         <div className="relative w-full max-w-7xl mx-auto overflow-hidden rounded-3xl shadow-xl bg-gradient-to-br from-[#050F2C] via-[#0E204A] to-[#162B5E] text-white">
-          
+
           {/* Ambient Lighting Orbs */}
           <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#B36C63]/25 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#38838A]/30 rounded-full blur-[120px] pointer-events-none" />
@@ -442,7 +440,7 @@ const Academy = () => {
           />
 
           <div className="relative z-10 flex flex-col items-center justify-center text-center py-16 sm:py-20 px-6 sm:px-12 md:px-20">
-            
+
             {/* Quote Badge */}
             <div className="max-w-2xl bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 mb-10 shadow-inner">
               <Quote className="w-8 h-8 text-[#D98E84] mx-auto mb-3 opacity-90" />

@@ -6,6 +6,8 @@ import { pricingData } from '../data/pricing';
 import { siteContent } from '../data/content';
 import { ArrowRight, Phone, Sparkles, Filter } from 'lucide-react';
 
+import PricingCards from '../components/ui/PricingCards';
+
 const Pricing = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeType, setActiveType] = useState('all');
@@ -34,6 +36,10 @@ const Pricing = () => {
         image={HERO_IMAGES.pricing}
       />
 
+      {/* Wellness Journey Subscription Cards */}
+      <PricingCards />
+
+      {false && (
       <section className="py-16 bg-[#F9FAF6] relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -133,6 +139,7 @@ const Pricing = () => {
 
         </div>
       </section>
+      )}
     </div>
   );
 };

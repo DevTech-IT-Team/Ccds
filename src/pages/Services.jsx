@@ -5,13 +5,10 @@ import Contraindications from '../components/ui/Contraindications';
 import PageHero from '../components/layout/PageHero';
 import VideoThumbnailCard from '../components/ui/VideoThumbnailCard';
 import biochargerImg from '../assets/service/Biocharger/bio.png';
-import footDetoxVideo from '../assets/service/Ionfoot/foot_detox_video_421_210.mp4';
-import footDetoxPoster from '../assets/service/Ionfoot/foot.png';
 import colonClosedSys1 from '../assets/service/colon/closed-system-1.jpg';
 import colonRelax from '../assets/service/colon/Relax-and-reconnect.jpg';
 import colonAngel1 from '../assets/service/colon/angel-of-water-treatment-room-2-1.jpg';
 import colonAngel3 from '../assets/service/colon/angel-of-water-treatment-room-2-3.jpg';
-import closedSystemVideo from '../assets/service/colon/closed_system.mp4';
 import { HERO_IMAGES } from '../data/heroImages';
 import { siteContent } from '../data/content';
 import {
@@ -61,9 +58,8 @@ const ColonHydrotherapyView = ({ services }) => {
     },
     {
       title: 'Closed System',
-      type: 'local',
-      src: closedSystemVideo,
-      poster: colonClosedSys1
+      type: 'drive',
+      src: 'https://drive.google.com/file/d/1o4rDpQJCVNPMAwGiBcNRbrlv_RZHx1kE/preview'
     }
   ];
 
@@ -114,6 +110,14 @@ const ColonHydrotherapyView = ({ services }) => {
                 title={videos[activeVideoIndex].title}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            ) : videos[activeVideoIndex].type === 'drive' ? (
+              <iframe
+                className="w-full h-full border-0"
+                src={videos[activeVideoIndex].src}
+                title={videos[activeVideoIndex].title}
+                allow="autoplay; fullscreen"
                 allowFullScreen
               ></iframe>
             ) : (
@@ -240,35 +244,85 @@ const ColonHydrotherapyView = ({ services }) => {
 /* ─────────────────────────────────────────
    2. ION FOOT DETOX VIEW
 ───────────────────────────────────────── */
-const IonFootDetoxView = ({ services }) => (
-  <div className="space-y-10 pb-16">
-    <div className="grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <span className="text-xs font-bold uppercase tracking-widest text-[#38838A] mb-3 block">
-          Cellular Detoxification
-        </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
-          Ion Foot Detox
-        </h2>
-        <div className="text-base sm:text-lg text-[#050F2C]/80 leading-relaxed font-medium space-y-4">
-          <p>
-            During an Ion Foot Cleanse, the body can safely and naturally eliminate impurities. Using a low level of D.C. (direct current) to create an environment called Electrolysis of the Water. The newly created ions are allowed to penetrate the skin’s surface, attach, and neutralize the existing ions in the body.
-          </p>
-          <p>
-            The now neutralized ions are eliminated through the pores of the skin. This is typically done with either the hands or the feet because of the abundance of pores in a small area. Sessions are 30-60 minutes. Multiple sessions will be customized to your needs.
-          </p>
+const IonFootDetoxView = ({ services }) => {
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+
+  const videos = [
+    {
+      title: 'Foot Detox - Part 1',
+      src: 'https://drive.google.com/file/d/1QMlxc9n8aa6_IjcB-ShbSY4oDoHPkgau/preview'
+    },
+    {
+      title: 'Foot Detox - Part 2',
+      src: 'https://drive.google.com/file/d/17nfsIJbhV31Nd5f-aSraggtF42RiWN1J/preview'
+    }
+  ];
+
+  const handleNext = () => setActiveVideoIndex((prev) => (prev + 1) % videos.length);
+  const handlePrev = () => setActiveVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
+
+  return (
+    <div className="space-y-10 pb-16">
+      <div className="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span className="text-xs font-bold uppercase tracking-widest text-[#38838A] mb-3 block">
+            Cellular Detoxification
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] mb-4 leading-tight">
+            Ion Foot Detox
+          </h2>
+          <div className="text-base sm:text-lg text-[#050F2C]/80 leading-relaxed font-medium space-y-4">
+            <p>
+              During an Ion Foot Cleanse, the body can safely and naturally eliminate impurities. Using a low level of D.C. (direct current) to create an environment called Electrolysis of the Water. The newly created ions are allowed to penetrate the skin’s surface, attach, and neutralize the existing ions in the body.
+            </p>
+            <p>
+              The now neutralized ions are eliminated through the pores of the skin. This is typically done with either the hands or the feet because of the abundance of pores in a small area. Sessions are 30-60 minutes. Multiple sessions will be customized to your needs.
+            </p>
+          </div>
+        </div>
+
+        {/* Video Slider */}
+        <div className="relative w-full rounded-[24px] overflow-hidden shadow-2xl bg-[#050F2C] border border-[#E2EEEC]/50 group h-64 sm:h-[400px]">
+          <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold text-[#050F2C] shadow-sm tracking-wide">
+            {videos[activeVideoIndex].title}
+          </div>
+          
+          <div className="w-full h-full flex items-center justify-center relative">
+            <iframe
+              className="w-full h-full border-0"
+              src={videos[activeVideoIndex].src}
+              title={videos[activeVideoIndex].title}
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          {/* Slider Controls */}
+          <button 
+            onClick={handlePrev} 
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-20 shadow-lg opacity-0 group-hover:opacity-100"
+          >
+            <ChevronLeft className="w-5 h-5 text-[#050F2C]" />
+          </button>
+          <button 
+            onClick={handleNext} 
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-20 shadow-lg opacity-0 group-hover:opacity-100"
+          >
+            <ChevronRight className="w-5 h-5 text-[#050F2C]" />
+          </button>
+          
+          {/* Dots Indicator */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {videos.map((_, idx) => (
+              <button 
+                key={idx}
+                onClick={() => setActiveVideoIndex(idx)}
+                className={`h-2 rounded-full transition-all ${idx === activeVideoIndex ? 'w-6 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="w-full h-64 sm:h-[400px] rounded-3xl overflow-hidden shadow-md bg-[#050F2C] border border-[#E2EEEC] flex items-center justify-center relative">
-        <video 
-          src={footDetoxVideo} 
-          controls
-          className="w-full h-full object-cover rounded-2xl"
-          poster={footDetoxPoster}
-        />
-      </div>
-    </div>
 
     <div className="grid lg:grid-cols-12 gap-12 pt-8">
       <div className="lg:col-span-6 space-y-6">

@@ -435,7 +435,8 @@ const IonFootDetoxView = ({ services }) => {
       </div>
     </div>
   </div>
-);
+  );
+};
 
 /* ─────────────────────────────────────────
    3. BIOCHARGER VIEW

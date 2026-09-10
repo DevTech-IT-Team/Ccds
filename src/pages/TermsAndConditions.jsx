@@ -16,7 +16,7 @@ const TermsAndConditions = () => {
       {/* ── Main Content ── */}
       <section className="py-20 bg-[#F9FAF6] border-b border-[#E2EEEC]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
+
           {/* Intro */}
           <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E2EEEC] shadow-xs space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F4F9F8] border border-[#E2EEEC] text-xs font-bold text-[#38838A] uppercase tracking-wider">
@@ -27,7 +27,7 @@ const TermsAndConditions = () => {
               Terms of Service Agreement
             </h2>
             <p className="text-slate-600 text-base leading-relaxed">
-              Welcome to Colorado Colonics and Detox Center. By accessing our website, booking appointments, or enrolling in our Academy certification programs, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.
+              Welcome to Colorado Colonics. By accessing our website, booking appointments, or enrolling in our Academy certification programs, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.
             </p>
           </div>
 
@@ -76,7 +76,7 @@ const TermsAndConditions = () => {
               </p>
             </div>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed italic">
-              * Services provided at Colorado Colonics and Detox Center are not intended to diagnose, treat, cure, or prevent any disease. Always consult your primary physician before beginning any new wellness regimen.
+              * Services provided at Colorado Colonics are not intended to diagnose, treat, cure, or prevent any disease. Always consult your primary physician before beginning any new wellness regimen.
             </p>
           </div>
 

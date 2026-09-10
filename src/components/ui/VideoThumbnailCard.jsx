@@ -10,16 +10,8 @@ const FaYoutube = (props) => (
 // Replace <Youtube /> in your JSX
 const VideoThumbnailCard = ({ videoId, title = "YouTube video" }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [copied, setCopied] = useState(false);
-
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(videoUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <div className="bg-white rounded-[24px] border border-[#E2EEEC] shadow-sm overflow-hidden flex flex-col w-full">
@@ -29,13 +21,6 @@ const VideoThumbnailCard = ({ videoId, title = "YouTube video" }) => {
           <FaYoutube className="w-5 h-5 text-red-600" />
           <span className="font-semibold text-blue-600 text-[15px] tracking-tight">{title}</span>
         </div>
-        <button
-          onClick={handleCopy}
-          className="text-slate-500 hover:text-slate-800 transition-colors p-1"
-          title="Copy link"
-        >
-          {copied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5" />}
-        </button>
       </div>
 
       {/* Video / Thumbnail Area */}

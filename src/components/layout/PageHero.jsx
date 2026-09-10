@@ -112,10 +112,10 @@ const PageHero = ({ label, title, subtitle, image, bgPosition, bgSize, imageOpac
               <div className="relative flex items-center justify-center p-2">
                 {/* Glow ring behind logo */}
                 <div className="absolute -inset-4 bg-gradient-to-tr from-[#B36C63]/25 via-[#D98E84]/20 to-[#38838A]/25 rounded-full blur-2xl opacity-75 pointer-events-none" />
-                
+
                 <img
                   src={heroLogo}
-                  alt={heroLogoAlt || 'Colorado Colonics Detox Center Logo'}
+                  alt={heroLogoAlt || 'Colorado Colonics Logo'}
                   className="w-64 sm:w-72 md:w-80 lg:w-[340px] h-auto object-contain relative z-10 transition-transform duration-300 hover:scale-105"
                   style={{ mixBlendMode: 'multiply' }}
                 />

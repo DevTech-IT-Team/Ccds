@@ -15,6 +15,16 @@ import NotFound from './pages/NotFound';
 import Academy from './pages/Academy';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
+import ContraindicationsPage from './pages/ContraindicationsPage';
+import BlogGlyphosate from './pages/BlogGlyphosate';
+import BlogYana from './pages/BlogYana';
+import BlogAlternativeDaily from './pages/BlogAlternativeDaily';
+import BlogPooPoo from './pages/BlogPooPoo';
+import BlogMelani from './pages/BlogMelani';
+import BlogPuffyEyes from './pages/BlogPuffyEyes';
+import BlogColonicIrrigation from './pages/BlogColonicIrrigation';
+import BlogHistoricalControversy from './pages/BlogHistoricalControversy';
+import BlogMortonWalker from './pages/BlogMortonWalker';
 
 function App() {
   return (
@@ -27,10 +37,20 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:category" element={<Services />} />
+            <Route path="/contraindications/:service" element={<ContraindicationsPage />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/blog/glyphosate" element={<BlogGlyphosate />} />
+            <Route path="/blog/ccdc-supports-yana" element={<BlogYana />} />
+            <Route path="/blog/from-alternative-daily" element={<BlogAlternativeDaily />} />
+            <Route path="/blog/on-the-town-with-ccdc-poo-poo-putt-putt" element={<BlogPooPoo />} />
+            <Route path="/blog/melani-hagans-presentation-visit-to-ccdc" element={<BlogMelani />} />
+            <Route path="/blog/how-to-get-rid-of-puffy-eyes" element={<BlogPuffyEyes />} />
+            <Route path="/blog/the-influence-of-colonic-irrigation-on-human-intestinal-microbiota" element={<BlogColonicIrrigation />} />
+            <Route path="/blog/colonic-irrigations-historical-controversy" element={<BlogHistoricalControversy />} />
+            <Route path="/blog/value-of-colon-hydrotherapy" element={<BlogMortonWalker />} />
             <Route path="/academy" element={<Academy />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

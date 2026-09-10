@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { siteContent } from '../../data/content';
-import logo from '../../assets/logo/ccdslogo.png';
+import logo from '../../assets/logo/ccdclogo.png';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +40,10 @@ const Header = () => {
         <div className="flex items-center justify-between py-4">
 
           {/* ── Logo ── */}
-          <Link to="/" className="flex items-center flex-shrink-0 group">
+          <Link 
+            to="/" 
+            className={`flex items-center flex-shrink-0 group transition-all duration-500 ${!isScrolled && location.pathname === '/' ? 'opacity-0 invisible pointer-events-none' : 'opacity-100 visible'}`}
+          >
             <img
               src={logo}
               alt="Colorado Colonics Detox Center"

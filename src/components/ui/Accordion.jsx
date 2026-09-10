@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const Accordion = ({ items, className = '' }) => {
+const Accordion = ({ items, className = '', hideCaret = false }) => {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
@@ -10,16 +10,21 @@ const Accordion = ({ items, className = '' }) => {
         <div key={index} className="border border-blue-pale rounded-xl overflow-hidden bg-white shadow-card">
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-blue-faint transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue/30"
+            className="accordion-btn w-full px-5 py-4 flex items-center justify-between text-left hover:bg-blue-faint transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue/30"
             aria-expanded={openIndex === index}
           >
             <span className="font-semibold text-navy-mid text-sm">{item.title}</span>
-            <ChevronDown
-              className={`w-4 h-4 text-blue flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}
-            />
+            {!hideCaret && (
+              <ChevronDown
+                className={`w-4 h-4 text-blue flex-shrink-0 transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}
+              />
+            )}
           </button>
-          <div className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-[500px]' : 'max-h-0'}`}>
-            <div className="px-5 py-4 bg-blue-faint border-t border-blue-pale/50">
+          <div 
+            className={`grid transition-all duration-300 ease-in-out ${openIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+          >
+            <div className="overflow-hidden">
+              <div className="px-5 py-4 bg-blue-faint border-t border-blue-pale/50">
               {Array.isArray(item.content) ? (
                 <ul className="space-y-2">
                   {item.content.map((listItem, i) => (
@@ -32,6 +37,7 @@ const Accordion = ({ items, className = '' }) => {
               ) : (
                 <div className="text-sm text-ink-soft">{item.content}</div>
               )}
+              </div>
             </div>
           </div>
         </div>

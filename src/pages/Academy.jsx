@@ -18,7 +18,7 @@ import {
   ChevronRight,
   Compass,
 } from 'lucide-react';
-import aboutHeroLogo from '../assets/logo/about_hero_logo.jpg';
+import aboutHeroLogo from '../assets/logo/ccdclogo.png';
 
 /* ─────────────────────────────────────────
    Curriculum Modules Data
@@ -284,15 +284,15 @@ const Academy = () => {
                     key={mod.id}
                     onClick={() => setActiveModule(idx)}
                     className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between gap-4 ${isActive
-                        ? 'bg-[#050F2C] text-white border-[#050F2C] shadow-lg scale-[1.01]'
-                        : 'bg-[#F9FAF6] text-[#050F2C] border-[#E2EEEC] hover:bg-white hover:border-[#38838A]/40 shadow-2xs'
+                      ? 'bg-[#050F2C] text-white border-[#050F2C] shadow-lg scale-[1.01]'
+                      : 'bg-[#F9FAF6] text-[#050F2C] border-[#E2EEEC] hover:bg-white hover:border-[#38838A]/40 shadow-2xs'
                       }`}
                   >
                     <div className="flex items-center gap-4">
                       <div
                         className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm ${isActive
-                            ? 'bg-gradient-to-r from-[#B36C63] to-[#D98E84] text-white shadow-xs'
-                            : 'bg-white text-[#38838A] border border-[#E2EEEC]'
+                          ? 'bg-gradient-to-r from-[#B36C63] to-[#D98E84] text-white shadow-xs'
+                          : 'bg-white text-[#38838A] border border-[#E2EEEC]'
                           }`}
                       >
                         {mod.number}

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Clock, ArrowUpRight, ShieldCheck, FileText } from 'lucide-react';
 import { siteContent } from '../../data/content';
-import logo from '../../assets/logo/ccdslogo.png';
+import logo from '../../assets/logo/ccdclogo.png';
 
 const Footer = () => {
   const hours = siteContent.hours;

@@ -9,14 +9,14 @@ const PrivacyPolicy = () => {
       <PageHero
         label="Legal & Data Protection"
         title="Privacy Policy"
-        subtitle="How Colorado Colonics and Detox Center collects, protects, and handles your personal health information."
+        subtitle="How Colorado Colonics collects, protects, and handles your personal health information."
         isGradient
       />
 
       {/* ── Main Content ── */}
       <section className="py-20 bg-[#F9FAF6] border-b border-[#E2EEEC]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
+
           {/* Effective Date & Intro */}
           <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E2EEEC] shadow-xs space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F4F9F8] border border-[#E2EEEC] text-xs font-bold text-[#38838A] uppercase tracking-wider">

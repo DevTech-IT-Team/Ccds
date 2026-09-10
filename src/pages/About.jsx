@@ -11,10 +11,10 @@ import {
   Quote,
   CheckCircle2,
 } from 'lucide-react';
-import lisa from '../assets/lisa.png';
+import lisa from '../assets/about/lisa.jpg';
 import kimberly from '../assets/kimberly.jpeg';
-import jessica from '../assets/jessica.png';
-import aboutHeroLogo from '../assets/logo/about_hero_logo.jpg';
+import aboutHeroLogo from '../assets/logo/ccdclogo.png';
+import iactLogo from '../assets/about/iact-logo.jpg';
 
 /* ─────────────────────────────────────────
    Team Data Structures
@@ -24,14 +24,15 @@ const teamMembers = [
     id: 'lisa-smith',
     name: 'Lisa Smith',
     image: lisa,
-    role: 'CCDC Founder & Certified Colon Hydrotherapist',
+    role: 'Certified Colon Hydrotherapist',
     experience: '20+ Years Experience',
-    badge: 'Founder & Lead Hydrotherapist',
+    badge: 'CCDC Founder',
     quote: 'My energy, passion, and enthusiasm to help others are gifts I love to share.',
     bio: [
       `There are many events in my life that pointed towards becoming a Colon Hydrotherapist. My first enema was at the age of 2 because of trauma that affected my colon and natural process of elimination. However, there were multiple reasons for my lifelong constipation: trauma, very little fresh food, all my meals were frozen, from a can, from a restaurant, or fast food, stress, PTSD, and many deep emotional issues. As a teenager my digestive problems showed on my skin making it rough for my already fragile self-esteem.`,
-      `In 1994, I was given my first herbs to help my body with the healing process. This new approach helped me to see and understand the logic behind a more natural approach and preventative health care. In 2000, an opportunity to help others who were suffering from their own health issues presented itself and it was exciting! Suddenly everything that was natural, drug and chemical free made sense. Helping people with natural products was extremely satisfying.`,
-      `In April of 2008, it was recommended that I have a colon hydrotherapy session. The experience plus many more with multiple practitioners was life-changing. It seemed so important to share that enlightened experience with others. By October 2016, I had completed my training to become certified as a Colon Hydrotherapist. My training has helped me understand the digestive system and to help ease the body to work at its best for optimal results.`,
+      `In 1994, I was given my first herbs to help my body with the healing process.  This new approach helped me to see and understand the logic behind a more natural approach and preventative health care. In 2000, an opportunity to help others who were suffering from their own health issues presented itself and it was exciting! Suddenly everything that was natural, drug and chemical free made sense. Helping people with natural products was extremely satisfying.`,
+      `In April of 2008, it was recommended that I have colon hydrotherapy session. The experience plus many more with multiple practitioners was life-changing. It seemed so important to share that enlightened experience with others. By October 2016, I had completed by training to become a certified as a Colon Hydrotherapist.  My training has helped me understand the digestive system and to help ease the body to work at its best for optimal results.`,
+      `I am eager to connect with you. My energy, passion, and enthusiasm to help others are gifts I love to share.`
     ],
     certifications: [
       'Certified Colon Hydrotherapist with I-ACT',
@@ -52,33 +53,13 @@ const teamMembers = [
     bio: [
       `Hi, I’m Kimberly, a certified Instructor Level I-ACT Colon Hydrotherapist with a lifelong passion for health and the human body. My curiosity started young. At just four years old, I asked my mom, “Does food pile up and come out of your mouth when you get older?” That innocent question sparked a fascination with how the body works. I devoured anatomy books and read my grandparents’ Nutrition Facts newsletters from their AARP catalog like they were treasure maps.`,
       `I went on to earn a double major in Physical and Health Education, driven by a desire to learn and share what I discovered. My path eventually led me to California, where I was introduced to colon hydrotherapy, and it was like everything clicked. I knew I’d found not just a career, but a calling.`,
-      `Helping people feel healthier, more empowered, and at ease in their bodies is what lights me up. I’m committed to creating a safe, comfortable space for my clients to heal and thrive. I’m thrilled to be part of the Colorado Colonics and Detox Center family, working alongside Lisa and supporting our amazing community.`,
+      `Helping people feel healthier, more empowered, and at ease in their bodies is what lights me up. I’m committed to creating a safe, comfortable space for my clients to heal and thrive. I’m thrilled to be part of the Colorado Colonics family, working alongside Lisa and supporting our amazing community.`,
     ],
-    highlights: [
-      'Instructor Level I-ACT Certified',
-      'Double Major in Physical & Health Education',
-      'Dedicated to compassionate client empowerment',
-    ],
-  },
-  {
-    id: 'jessica-fuentes',
-    name: 'Jessica Fuentes',
-    image: jessica,
-    role: 'Advanced Colon Hydrotherapist & Integrative Health Coach',
-    experience: 'Holistic Bodywork Specialist',
-    badge: 'Advanced Therapist & Coach',
-    quote: 'True well-being isn’t just physical—it encompasses emotional, mental, and spiritual health as well.',
-    bio: [
-      `Hi, I’m Jessica Fuentes. I’m an Advanced Colon Hydrotherapist, Integrative Health Coach, Licensed Massage Therapist, Certified Gluten-Free Practitioner, and Advanced Reiki Practitioner. I recently completed training in Arvigo, a traditional Maya Indigenous Abdominal Massage.`,
-      `I’m originally from Connecticut but now call Colorado home. My healthcare journey began in high school, and after working as a physical therapy assistant, I came to embrace the idea that “food is medicine.” Studying at the University of Connecticut provided me with a deeper understanding of the human body and inspired my holistic approach to health and wellness.`,
-      `Over time, I came to see just how powerful gut health and stress are and how the digestive system is our “brain in the gut.” Now, I guide my clients to understand that true well-being isn’t just physical, it encompasses emotional, mental, and spiritual health as well. Through compassionate education and hands-on therapy, I empower people to take charge of their health with mindfulness and self-care.`,
-    ],
-    highlights: [
-      'Advanced Colon Hydrotherapist & Integrative Health Coach',
-      'Licensed Massage Therapist & Advanced Reiki Practitioner',
-      'Trained in Arvigo Maya Abdominal Massage',
-      'Certified Gluten-Free Practitioner',
-    ],
+    // highlights: [
+    //   'Instructor Level I-ACT Certified',
+    //   'Double Major in Physical & Health Education',
+    //   'Dedicated to compassionate client empowerment',
+    // ],
   },
 ];
 
@@ -128,7 +109,7 @@ const About = () => {
             </h2>
             <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84] mx-auto" />
             <p className="mt-4 text-slate-600 text-base leading-relaxed">
-              At Colorado Colonics and Detox Center, we view gut health as the foundation of total well-being.
+              At Colorado Colonics, we view gut health as the foundation of total well-being.
               Our team combines deep clinical expertise with genuine empathy to empower your journey.
             </p>
           </div>
@@ -170,92 +151,133 @@ const About = () => {
               <div
                 key={member.id}
                 id={member.id}
-                className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start scroll-mt-28"
+                className="bg-white rounded-[2.5rem] p-6 sm:p-10 lg:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.08)] border border-[#E2EEEC]/60 relative overflow-hidden group scroll-mt-28 transition-all duration-500"
               >
-                {/* Visual Side Column (Photo Frame) */}
-                <div
-                  className={`lg:col-span-5 w-full h-[460px] sm:h-[540px] rounded-3xl overflow-hidden shadow-md border border-[#E2EEEC] bg-white ${
-                    !isEven ? 'lg:order-last' : ''
-                  }`}
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className={`w-full h-full object-cover ${
-                      member.id === 'lisa-smith'
-                        ? 'object-[center_35%] scale-[1.18] origin-bottom'
-                        : 'object-top'
-                    }`}
-                  />
-                </div>
+                {/* Subtle Background Glows inside the card */}
+                <div className={`absolute top-0 w-full h-full pointer-events-none opacity-40 transition-opacity duration-700 group-hover:opacity-70 ${isEven ? 'right-0 bg-gradient-to-l from-[#F4F9F8] to-transparent' : 'left-0 bg-gradient-to-r from-[#F4F9F8] to-transparent'}`} />
+                <div className={`absolute -top-32 w-96 h-96 bg-[#38838A]/5 rounded-full blur-3xl pointer-events-none transition-transform duration-700 group-hover:scale-110 ${isEven ? '-right-20' : '-left-20'}`} />
+                <div className={`absolute -bottom-32 w-96 h-96 bg-[#B36C63]/5 rounded-full blur-3xl pointer-events-none transition-transform duration-700 group-hover:scale-110 ${isEven ? '-left-20' : '-right-20'}`} />
 
-                {/* Main Editorial Copy Column */}
-                <div className="lg:col-span-7 space-y-6">
-
-                  {/* Header Title Block */}
-                  <div>
-                    <span className="inline-block px-3.5 py-1 bg-white border border-[#E2EEEC] text-xs font-bold uppercase tracking-widest text-[#38838A] rounded-full mb-3 shadow-2xs">
-                      Practitioner Profile
-                    </span>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] leading-tight">
-                      {member.name}
-                    </h2>
-                    <p className="text-base sm:text-lg font-bold text-[#38838A] mt-1">
-                      {member.role}
-                    </p>
-                  </div>
-
-                  {/* Highlight Quote Box */}
-                  <div className="p-6 rounded-2xl bg-white border-l-4 border-[#B36C63] border-y border-r border-[#E2EEEC] shadow-xs flex gap-4 items-start">
-                    <Quote className="w-6 h-6 text-[#B36C63] flex-shrink-0 mt-1" />
-                    <p className="text-base italic text-[#050F2C] font-serif font-medium leading-relaxed">
-                      "{member.quote}"
-                    </p>
-                  </div>
-
-                  {/* Complete Bio Paragraphs */}
-                  <div className="space-y-4 text-slate-700 leading-relaxed text-base font-normal">
-                    {member.bio.map((paragraph, pIdx) => (
-                      <p key={pIdx}>{paragraph}</p>
-                    ))}
-                  </div>
-
-                  {/* Certifications Block */}
-                  {member.certifications && (
-                    <div className="pt-6 border-t border-[#E2EEEC] space-y-3">
-                      <div className="flex items-center gap-2 text-[#050F2C] font-bold text-base">
-                        <GraduationCap className="w-5 h-5 text-[#38838A]" />
-                        <span>Certifications & Specialized Training</span>
-                      </div>
-                      <ul className="space-y-2">
-                        {member.certifications.map((cert, cIdx) => (
-                          <li key={cIdx} className="flex items-start gap-2.5 text-sm text-slate-600">
-                            <Award className="w-4 h-4 text-[#38838A] mt-0.5 flex-shrink-0" />
-                            <span>{cert}</span>
-                          </li>
-                        ))}
-                      </ul>
+                <div className="relative z-10 space-y-12">
+                  <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                  
+                  {/* Visual Side Column (Photo Frame) */}
+                  <div
+                    className={`lg:col-span-5 w-full relative lg:sticky lg:top-32 ${!isEven ? 'lg:order-last' : ''}`}
+                  >
+                    {/* Decorative elegant frames behind image */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#38838A]/20 to-[#B36C63]/20 rounded-[2rem] transform rotate-3 scale-[1.02] transition-transform duration-700 group-hover:rotate-6"></div>
+                    <div className="absolute inset-0 bg-[#F4F9F8] rounded-[2rem] transform -rotate-2 scale-[1.02] transition-transform duration-700 group-hover:-rotate-4 border border-[#E2EEEC]"></div>
+                    
+                    <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg border border-white/50 bg-white">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
+                          member.id === 'lisa-smith'
+                            ? 'object-[center_35%] scale-[1.12]'
+                            : 'object-top'
+                        }`}
+                      />
                     </div>
-                  )}
+                  </div>
 
-                  {/* Highlights Block */}
-                  {member.highlights && (
-                    <div className="pt-6 border-t border-[#E2EEEC] space-y-3">
-                      <div className="flex items-center gap-2 text-[#050F2C] font-bold text-base">
-                        <Award className="w-5 h-5 text-[#38838A]" />
-                        <span>Specializations & Credentials</span>
+                  {/* Main Editorial Copy Column */}
+                  <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
+
+                    {/* Header Title Block */}
+                    <div>
+                      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-[#F4F9F8] to-white border border-[#E2EEEC] text-xs font-bold uppercase tracking-widest text-[#38838A] rounded-full mb-4 shadow-sm">
+                        <Sparkles className="w-3.5 h-3.5 text-[#B36C63]" />
+                        Practitioner Profile
                       </div>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        {member.highlights.map((item, hIdx) => (
-                          <div key={hIdx} className="flex items-center gap-2 text-sm text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-[#38838A] flex-shrink-0" />
-                            <span>{item}</span>
-                          </div>
-                        ))}
+                      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#050F2C] leading-tight mb-2 tracking-tight">
+                        {member.name}
+                      </h2>
+                      <p className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-[#38838A] to-[#2C6A70] bg-clip-text text-transparent">
+                        {member.role}
+                      </p>
+                    </div>
+
+                    {/* Highlight Quote Box */}
+                    <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#F9FAF6] to-white border border-[#E2EEEC] shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                      <Quote className="absolute top-4 left-4 w-12 h-12 text-[#B36C63]/10" />
+                      <div className="relative z-10 flex gap-4 items-stretch">
+                        <div className="w-1.5 flex-shrink-0 bg-gradient-to-b from-[#B36C63] to-[#D98E84] rounded-full" />
+                        <p className="text-lg sm:text-xl italic text-[#050F2C] font-serif font-medium leading-relaxed">
+                          "{member.quote}"
+                        </p>
                       </div>
                     </div>
-                  )}
 
+                    {/* Complete Bio Paragraphs */}
+                    <div className="space-y-4 text-slate-600 leading-relaxed text-base sm:text-lg font-medium">
+                      {member.bio.map((paragraph, pIdx) => (
+                        <p key={pIdx}>{paragraph}</p>
+                      ))}
+                    </div>
+
+                    </div>
+                  </div>
+
+                  {/* Full-width Credentials Section (Shifted to Left/Full Width) */}
+                  {(member.certifications || member.highlights) && (
+                    <div className="pt-10 border-t border-[#E2EEEC]/80">
+                      <div className="grid lg:grid-cols-12 gap-10">
+                        <div className="lg:col-span-12 space-y-8">
+                          
+                          {/* Certifications Block */}
+                          {member.certifications && (
+                            <div className="flex flex-col sm:flex-row items-start gap-8">
+                              {member.id === 'lisa-smith' && (
+                                <div className="w-32 sm:w-40 flex-shrink-0 self-center sm:self-start bg-white p-4 rounded-2xl border border-[#E2EEEC] shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.05] hover:-translate-y-1 relative overflow-hidden group/logo cursor-pointer">
+                                  <div className="absolute inset-0 bg-gradient-to-tr from-[#38838A]/10 to-[#B36C63]/5 opacity-0 group-hover/logo:opacity-100 transition-opacity duration-300" />
+                                  <img src={iactLogo} alt="I-ACT Certification" className="w-full h-auto object-contain relative z-10 transition-transform duration-500 group-hover/logo:scale-105" />
+                                </div>
+                              )}
+                              <div className="flex-1 space-y-4">
+                                <div className="flex items-center gap-2.5 text-[#050F2C] font-bold text-lg">
+                                  <div className="p-1.5 bg-[#F4F9F8] rounded-lg">
+                                    <GraduationCap className="w-5 h-5 text-[#38838A]" />
+                                  </div>
+                                  <span>Certifications & Specialized Training</span>
+                                </div>
+                                <ul className="space-y-3.5">
+                                  {member.certifications.map((cert, cIdx) => (
+                                    <li key={cIdx} className="flex items-start gap-3.5 text-sm sm:text-base text-slate-600 group/cert">
+                                      <Award className="w-5 h-5 text-[#38838A]/70 mt-0.5 flex-shrink-0 transition-all duration-300 group-hover/cert:scale-110 group-hover/cert:text-[#B36C63]" />
+                                      <span className="transition-colors duration-300 group-hover/cert:text-[#050F2C] leading-snug">{cert}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Highlights Block */}
+                          {member.highlights && (
+                            <div className="space-y-4">
+                              <div className="flex items-center gap-2.5 text-[#050F2C] font-bold text-lg">
+                                <div className="p-1.5 bg-[#F4F9F8] rounded-lg">
+                                  <Award className="w-5 h-5 text-[#38838A]" />
+                                </div>
+                                <span>Specializations & Credentials</span>
+                              </div>
+                              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {member.highlights.map((item, hIdx) => (
+                                  <div key={hIdx} className="flex items-start gap-3 text-sm sm:text-base text-slate-600 group/highlight">
+                                    <CheckCircle2 className="w-5 h-5 text-[#38838A]/70 flex-shrink-0 mt-0.5 transition-colors duration-300 group-hover/highlight:text-[#38838A]" />
+                                    <span className="transition-colors duration-300 group-hover/highlight:text-[#050F2C]">{item}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             );

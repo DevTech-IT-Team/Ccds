@@ -89,7 +89,7 @@ const TermsAndConditions = () => {
               <h3 className="text-xl font-bold text-[#050F2C]">3. Academy Enrollment & Certification Terms</h3>
             </div>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Students enrolled in the Colorado Colonics Professional Certification Program must complete all digital Athena LMS modules and required clinical practicum hours to earn official certification. Course materials are protected by intellectual property laws.
+              Students of Genesis Colon Hydrotherapy School (GCHS) complete I-ACT’s required 200-hour online course curriculum followed by 65 hours of hands-on clinical training. Course materials are protected by intellectual property laws.
             </p>
           </div>
 

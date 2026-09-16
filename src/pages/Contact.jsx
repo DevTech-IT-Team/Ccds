@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
 import { siteContent } from '../data/content';
 import { MapPin, Phone, Mail, Clock, CheckCircle2, AlertTriangle, ExternalLink } from 'lucide-react';
@@ -11,21 +12,38 @@ const inquirySubjects = [
   'Ion Foot Detox',
   'BioCharger',
   'Detox Classes & Coaching',
+  'Becoming a Colon Hydrotherapist',
   'Something Else',
 ];
 
 const contactMethods = ['Text', 'Phone Call', 'Email'];
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const subjectFromUrl = searchParams.get('subject');
+  const initialSubject = inquirySubjects.includes(subjectFromUrl)
+    ? subjectFromUrl
+    : 'Colon Hydrotherapy';
+
   const [form, setForm] = useState({
     name: '',
     phone: '',
     email: '',
     preferredMethod: 'Text',
-    subject: 'Colon Hydrotherapy',
+    subject: initialSubject,
     comment: '',
   });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (inquirySubjects.includes(subjectFromUrl)) {
+      setForm((prev) => ({ ...prev, subject: subjectFromUrl }));
+    }
+
+    if (window.location.hash === '#contact-form') {
+      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [subjectFromUrl]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +98,7 @@ const Contact = () => {
             
             {/* ── Left: Contact Form (7 cols) ── */}
             <div className="lg:col-span-7">
-              <div className="h-full bg-white rounded-3xl sm:rounded-[2.5rem] border border-[#E2EEEC] shadow-md p-6 sm:p-10">
+              <div id="contact-form" className="h-full bg-white rounded-3xl sm:rounded-[2.5rem] border border-[#E2EEEC] shadow-md p-6 sm:p-10">
                 
                 {/* Cancellation Alert Notice */}
                 <div className="mb-8 p-4 rounded-2xl bg-[#FFF8F0] border border-[#FFE6D0] flex items-start gap-3.5">

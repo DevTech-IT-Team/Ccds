@@ -12,13 +12,13 @@ import {
   CheckCircle2,
   ArrowRight,
   Quote,
-  Clock,
   Users,
   Building,
   ChevronRight,
   Compass,
 } from 'lucide-react';
-import aboutHeroLogo from '../assets/logo/ccdclogo.png';
+
+const CONTACT_INFO_HREF = '/contact?subject=Becoming%20a%20Colon%20Hydrotherapist#contact-form';
 
 /* ─────────────────────────────────────────
    Curriculum Modules Data
@@ -112,17 +112,17 @@ const curriculumModules = [
 const whyChoosePillars = [
   {
     icon: Laptop,
-    title: 'State-of-the-Art Digital Learning',
+    title: 'I-ACT 200-Hour Online Curriculum',
     description:
-      'Our partnership with Athena LMS means your coursework is beautifully organized, easy to navigate, and accessible 24/7. Study at your own pace with high-quality video modules, interactive quizzes, and downloadable resources.',
-    highlight: '24/7 Athena LMS Access',
+      'Students complete I-ACT’s required 200-hour online course curriculum, covering the theoretical foundations of colon hydrotherapy before beginning in-person clinical work.',
+    highlight: '200-Hour Online Course',
   },
   {
     icon: Users,
-    title: 'Industry-Leading Instructors',
+    title: '65 Hours of Hands-On Clinical Training',
     description:
-      'Learn directly from seasoned professionals who have successfully built and managed their own thriving hydrotherapy practices with decades of clinical experience.',
-    highlight: 'Mentorship by Licensed Experts',
+      'After the online course, students complete 65 hours of hands-on clinical training with FDA-registered equipment, guided by experienced instructors in a professional setting.',
+    highlight: 'Hands-On Clinical Hours',
   },
   {
     icon: Compass,
@@ -133,10 +133,10 @@ const whyChoosePillars = [
   },
   {
     icon: Award,
-    title: 'Professional Certification',
+    title: 'Professional Training Pathway',
     description:
-      'Graduate with a recognized credential that demonstrates your commitment to excellence, safety, and professional ethics in the global wellness community.',
-    highlight: 'Industry-Recognized Credential',
+      'Graduate prepared to practice with a strong foundation in safety, ethics, and client care—supported by I-ACT’s required curriculum and supervised clinical experience.',
+    highlight: 'I-ACT Required Curriculum',
   },
 ];
 
@@ -147,11 +147,10 @@ const Academy = () => {
     <div>
       {/* ── Page Hero ── */}
       <PageHero
-        label="Professional Certification Program"
+        label="Genesis Colon Hydrotherapy School (GCHS)"
         title="Empower Others Through Digestive Health"
-        subtitle="Turn your passion for holistic wellness into a rewarding, professional career as a Certified Hydro Colonics Therapist."
-        heroLogo={aboutHeroLogo}
-        heroLogoAlt="Colorado Colonics Certification Academy Logo"
+        subtitle="Train as a Colon Hydrotherapist through I-ACT’s required 200-hour online course curriculum, followed by 65 hours of hands-on clinical training."
+        isGradient
       />
 
       {/* ── Intro & Market Demand Section ── */}
@@ -169,31 +168,31 @@ const Academy = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C] leading-tight">
                 The Skyrocketing Demand for{' '}
                 <span className="bg-gradient-to-r from-[#B36C63] via-[#D98E84] to-[#38838A] bg-clip-text text-transparent">
-                  Certified Specialists
+                  Colon Hydrotherapists
                 </span>
               </h2>
 
               <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-                At the intersection of modern wellness and ancient healing lies the foundational importance of gut health. As awareness of the microbiome and digestive wellness continues to skyrocket, the demand for trained, compassionate, and highly skilled Hydro Colonics Therapists is at an all-time high.
+                At the intersection of modern wellness and ancient healing lies the foundational importance of gut health. As awareness of the microbiome and digestive wellness continues to skyrocket, the demand for trained, compassionate, and highly skilled Colon Hydrotherapists is at an all-time high.
               </p>
 
               <p className="text-slate-600 text-base leading-relaxed">
-                Whether you are looking to start a new career in the holistic health sector or expand the offerings of your current wellness practice, our comprehensive certification program provides the knowledge, technical expertise, and business foundation you need to succeed.
+                Genesis Colon Hydrotherapy School (GCHS) prepares students to enter this field by completing I-ACT’s required 200-hour online course curriculum, followed by 65 hours of hands-on clinical training with FDA-registered equipment.
               </p>
 
               {/* Stat Highlights */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4 overflow-hidden">
                 <div className="flex-1 p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
-                  <span className="text-2xl font-bold text-[#050F2C] block">24/7 Access</span>
-                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Athena LMS Digital</span>
+                  <span className="text-2xl font-bold text-[#050F2C] block">200 Hours</span>
+                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">I-ACT Online Curriculum</span>
                 </div>
                 <div className="flex-1 p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
-                  <span className="text-2xl font-bold text-[#050F2C] block">Clinical</span>
-                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Hands-On Practicum</span>
+                  <span className="text-2xl font-bold text-[#050F2C] block">65 Hours</span>
+                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Hands-On Clinical Training</span>
                 </div>
                 <div className="flex-1 p-4 rounded-2xl bg-white border border-[#E2EEEC] shadow-2xs">
-                  <span className="text-2xl font-bold text-[#050F2C] block">Recognized</span>
-                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Professional Certification</span>
+                  <span className="text-2xl font-bold text-[#050F2C] block">FDA-Registered</span>
+                  <span className="text-[10px] xl:text-xs font-semibold text-[#38838A] uppercase tracking-wide whitespace-nowrap">Clinical Equipment</span>
                 </div>
               </div>
             </div>
@@ -211,38 +210,39 @@ const Academy = () => {
                   </div>
 
                   <h3 className="text-2xl font-bold text-white leading-snug">
-                    The Colorado Colonics Certification Program
+                    Genesis Colon Hydrotherapy School
                   </h3>
 
                   <p className="text-white/80 text-sm leading-relaxed">
-                    Powered by the intuitive <strong>Athena LMS</strong> platform, our digitized professional certification program allows you to master theoretical foundations from anywhere, seamlessly bridging online learning with hands-on clinical practicum.
+                    GCHS students complete I-ACT’s required 200-hour online course curriculum, then continue with 65 hours of hands-on clinical training using FDA-registered equipment.
                   </p>
 
                   <div className="space-y-3 pt-2">
                     <div className="flex items-center gap-3 text-xs font-semibold text-white/90">
                       <CheckCircle2 className="w-4 h-4 text-[#D98E84] flex-shrink-0" />
-                      <span>Online Theoretical Modules via Athena LMS</span>
+                      <span>I-ACT 200-Hour Online Course Curriculum</span>
                     </div>
                     <div className="flex items-center gap-3 text-xs font-semibold text-white/90">
                       <CheckCircle2 className="w-4 h-4 text-[#D98E84] flex-shrink-0" />
-                      <span>Direct Mentorship by Certified Instructors</span>
+                      <span>65 Hours of Hands-On Clinical Training</span>
                     </div>
                     <div className="flex items-center gap-3 text-xs font-semibold text-white/90">
                       <CheckCircle2 className="w-4 h-4 text-[#D98E84] flex-shrink-0" />
-                      <span>FDA-Registered Equipment Clinical Mastery</span>
+                      <span>Training with FDA-Registered Equipment</span>
                     </div>
                   </div>
 
                   <div className="pt-4 border-t border-white/15">
                     <a
-                      href={siteContent.business.bookingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={CONTACT_INFO_HREF}
                       className="inline-flex items-center justify-center gap-2.5 w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#B36C63] to-[#D98E84] text-white font-bold text-sm shadow-lg hover:scale-[1.02] transition-transform duration-200"
                     >
-                      <span>Enroll in Upcoming Cohort</span>
+                      <span>Request More Information</span>
                       <ArrowRight className="w-4 h-4" />
                     </a>
+                    <p className="mt-3 text-[11px] leading-relaxed text-white/65 text-center">
+                      On the Contact form, use the Inquiry Subject field to request information about becoming a Colon Hydrotherapist.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -266,7 +266,7 @@ const Academy = () => {
             </h2>
             <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84] mx-auto" />
             <p className="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
-              Our rigorous curriculum covers every aspect of colon hydrotherapy, ensuring you graduate with absolute confidence in your clinical skills and practice management.
+              Students first complete I-ACT’s required 200-hour online course curriculum, then apply that foundation during 65 hours of hands-on clinical training. The topics below reflect the knowledge and skills developed across this pathway.
             </p>
           </div>
 
@@ -276,7 +276,6 @@ const Academy = () => {
             {/* Module Selector Buttons (Left Column) */}
             <div className="lg:col-span-5 space-y-3">
               {curriculumModules.map((mod, idx) => {
-                const Icon = mod.icon;
                 const isActive = activeModule === idx;
 
                 return (
@@ -352,15 +351,13 @@ const Academy = () => {
 
                     <div className="pt-6 border-t border-[#E2EEEC] flex flex-wrap items-center justify-between gap-4">
                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                        Athena LMS Module Integration
+                        I-ACT Curriculum + Clinical Training
                       </span>
                       <a
-                        href={siteContent.business.bookingUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={CONTACT_INFO_HREF}
                         className="inline-flex items-center gap-2 text-xs font-bold text-[#38838A] hover:text-[#050F2C] transition-colors"
                       >
-                        <span>View Full Syllabus</span>
+                        <span>Request More Information</span>
                         <ArrowRight className="w-4 h-4" />
                       </a>
                     </div>
@@ -379,10 +376,10 @@ const Academy = () => {
 
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-bold text-[#38838A] uppercase tracking-widest block mb-2">
-              The Academy Advantage
+              The GCHS Advantage
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#050F2C]">
-              Why Choose Our Academy?
+              Why Choose Genesis Colon Hydrotherapy School?
             </h2>
             <div className="mt-3 h-1 w-14 rounded-full bg-gradient-to-r from-[#B36C63] to-[#D98E84] mx-auto" />
           </div>
@@ -460,18 +457,16 @@ const Academy = () => {
             </h2>
 
             <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-              Step into a career that allows you to facilitate profound healing and detoxification. Spaces in our upcoming digital and clinical cohorts are limited to ensure personalized instruction and mentorship.
+              Request more information about becoming a Colon Hydrotherapist through Genesis Colon Hydrotherapy School. Prospective students can use the Inquiry Subject field on our Contact form to get started.
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
               <a
-                href={siteContent.business.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={CONTACT_INFO_HREF}
                 className="group flex items-center justify-center gap-3 text-white font-bold text-base px-9 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg bg-gradient-to-r from-[#B36C63] to-[#D98E84] w-full sm:w-auto"
               >
-                <span>Enroll Now</span>
+                <span>Request More Information</span>
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
 

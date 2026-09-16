@@ -86,7 +86,7 @@ const PrivacyPolicy = () => {
               </div>
               <div className="p-4 rounded-2xl bg-[#F9FAF6] border border-[#E2EEEC]">
                 <h4 className="font-bold text-[#050F2C] text-sm mb-1">Educational & Academy Services</h4>
-                <p className="text-slate-600 text-xs leading-relaxed">Managing course enrollments and Athena LMS student accounts for our professional certification program.</p>
+                <p className="text-slate-600 text-xs leading-relaxed">Responding to student inquiries and managing communications for Genesis Colon Hydrotherapy School (GCHS).</p>
               </div>
               <div className="p-4 rounded-2xl bg-[#F9FAF6] border border-[#E2EEEC]">
                 <h4 className="font-bold text-[#050F2C] text-sm mb-1">Legal & Regulatory Compliance</h4>

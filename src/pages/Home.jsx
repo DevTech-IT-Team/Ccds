@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Sparkles, Radio, Leaf, Star, MapPin, Phone } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
-import VideoThumbnailCard from '../components/ui/VideoThumbnailCard';
 import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
 import heroBgImg from '../assets/ccdcbg.webp';
@@ -164,7 +163,7 @@ const Home = () => {
         </div>
 
         {/* Right Side Logo */}
-        <div className="hidden lg:flex absolute right-[4%] top-1/2 -translate-y-1/2 w-[40%] max-w-[480px] items-center justify-center pointer-events-none z-10">
+        <div className="hidden lg:flex absolute -right-6 top-1/2 -translate-y-1/2 w-[54%] max-w-[680px] items-center justify-center pointer-events-none z-10">
           {/* Subtle Glow Behind Logo for Visibility */}
           <div className="absolute w-[90%] h-[90%] bg-white/50 blur-[80px] rounded-full" />
           <img src={ccdcLogo} alt="Colorado Colonics Logo" className="relative z-10 w-full h-auto object-contain drop-shadow-xl animate-fade-in-up" />
@@ -378,7 +377,7 @@ const Home = () => {
               </p>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://www.youtube.com/watch?v=CXFi6TEPplY"
+                  href="https://www.youtube.com/watch?v=AcG8mLoJhMk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-semibold text-[#B36C63] hover:text-[#050F2C] transition-colors"
@@ -389,7 +388,17 @@ const Home = () => {
             </div>
 
             <div className="lg:w-7/12 w-full">
-              <VideoThumbnailCard videoId="CXFi6TEPplY" title="YouTube video" />
+              <div className="relative aspect-video w-full overflow-hidden rounded-[24px] border border-[#E2EEEC] shadow-sm bg-slate-900">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/AcG8mLoJhMk?si=PgoeJ97z6Awv6bs1"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
             </div>
           </div>
         </div>

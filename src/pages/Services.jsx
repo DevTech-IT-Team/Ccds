@@ -48,8 +48,6 @@ const serviceImages = {
    1. COLON HYDROTHERAPY VIEW
 ───────────────────────────────────────── */
 const ColonHydrotherapyView = ({ services }) => {
-  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-
   const videos = [
     {
       title: 'Angel of Water - Open System',
@@ -63,98 +61,65 @@ const ColonHydrotherapyView = ({ services }) => {
     }
   ];
 
-  const handleNext = () => setActiveVideoIndex((prev) => (prev + 1) % videos.length);
-  const handlePrev = () => setActiveVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
-
   return (
     <div className="space-y-12 pb-16">
       
-      {/* 2-Column Hero & Slider */}
-      <div className="grid lg:grid-cols-2 gap-10 items-center pt-4">
-        <div>
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-[#E2EEEC]/50 border border-[#38838A]/20">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#38838A]">Core Service</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-[#050F2C] leading-tight mb-4 tracking-tight">
-            Colon Hydrotherapy
-          </h2>
-          
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-500 mb-2">
-            What's the most common reaction?
-          </h3>
-          <p className="text-3xl sm:text-4xl font-display italic bg-gradient-to-r from-[#B36C63] via-[#d68579] to-[#D98E84] bg-clip-text text-transparent font-bold tracking-wide drop-shadow-sm pb-6">
-            "I FEEL... LIGHTER!"
+      <div className="pt-4">
+        <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-[#E2EEEC]/50 border border-[#38838A]/20">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#38838A]">Core Service</span>
+        </div>
+        <h2 className="text-4xl sm:text-5xl lg:text-7xl font-display font-bold text-[#050F2C] leading-tight mb-4 tracking-tight">
+          Colon Hydrotherapy
+        </h2>
+        
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-500 mb-2">
+          What's the most common reaction?
+        </h3>
+        <p className="text-3xl sm:text-4xl font-display italic bg-gradient-to-r from-[#B36C63] via-[#d68579] to-[#D98E84] bg-clip-text text-transparent font-bold tracking-wide drop-shadow-sm pb-6">
+          "I FEEL... LIGHTER!"
+        </p>
+
+        <div className="text-[15px] sm:text-base text-[#050F2C]/80 leading-[1.8] font-medium space-y-4 max-w-4xl">
+          <p>
+            Colon hydrotherapy gently bathes the colon with filtered, body temperature water utilizes a safeguard principle of gentle infusion of water into the colon via the rectum with medical grade equipment. No chemicals or drugs are involved and the entire therapy session is both relaxing and effective. Sessions are typically 45 minutes to an hour.
           </p>
-
-          <div className="text-[15px] sm:text-base text-[#050F2C]/80 leading-[1.8] font-medium space-y-4">
-            <p>
-              Colon hydrotherapy gently bathes the colon with filtered, body temperature water utilizes a safeguard principle of gentle infusion of water into the colon via the rectum with medical grade equipment. No chemicals or drugs are involved and the entire therapy session is both relaxing and effective. Sessions are typically 45 minutes to an hour.
-            </p>
-            <p>
-              Common symptoms or conditions that Colon Hydrotherapy can help with include indigestion, insomnia, gastrointestinal upset, cramping, and gas. There are many other symptoms that Colon Hydrotherapy can help with.
-            </p>
-          </div>
+          <p>
+            Common symptoms or conditions that Colon Hydrotherapy can help with include indigestion, insomnia, gastrointestinal upset, cramping, and gas. There are many other symptoms that Colon Hydrotherapy can help with.
+          </p>
         </div>
+      </div>
 
-        {/* Video Slider Area */}
-        <div className="relative w-full rounded-[24px] overflow-hidden shadow-2xl bg-[#050F2C] border border-[#E2EEEC]/50 group">
-          <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold text-[#050F2C] shadow-sm tracking-wide">
-            {videos[activeVideoIndex].title}
-          </div>
-          
-          <div className="aspect-[16/9] w-full flex items-center justify-center relative">
-            {videos[activeVideoIndex].type === 'youtube' ? (
-              <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${videos[activeVideoIndex].videoId}`}
-                title={videos[activeVideoIndex].title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            ) : videos[activeVideoIndex].type === 'drive' ? (
-              <iframe
-                className="w-full h-full border-0"
-                src={videos[activeVideoIndex].src}
-                title={videos[activeVideoIndex].title}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-              ></iframe>
-            ) : (
-              <video 
-                src={videos[activeVideoIndex].src} 
-                controls
-                className="w-full h-full object-cover"
-                poster={videos[activeVideoIndex].poster}
-              />
-            )}
-          </div>
-
-          {/* Slider Controls */}
-          <button 
-            onClick={handlePrev} 
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-20 shadow-lg opacity-0 group-hover:opacity-100"
+      <div className="grid md:grid-cols-2 gap-6">
+        {videos.map((video) => (
+          <div
+            key={video.title}
+            className="relative w-full rounded-[24px] overflow-hidden shadow-2xl bg-[#050F2C] border border-[#E2EEEC]/50"
           >
-            <ChevronLeft className="w-5 h-5 text-[#050F2C]" />
-          </button>
-          <button 
-            onClick={handleNext} 
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:scale-110 transition-all z-20 shadow-lg opacity-0 group-hover:opacity-100"
-          >
-            <ChevronRight className="w-5 h-5 text-[#050F2C]" />
-          </button>
-          
-          {/* Dots Indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-            {videos.map((_, idx) => (
-              <button 
-                key={idx}
-                onClick={() => setActiveVideoIndex(idx)}
-                className={`h-2 rounded-full transition-all ${idx === activeVideoIndex ? 'w-6 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'}`}
-              />
-            ))}
+            <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold text-[#050F2C] shadow-sm tracking-wide">
+              {video.title}
+            </div>
+            <div className="aspect-video w-full">
+              {video.type === 'youtube' ? (
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${video.videoId}`}
+                  title={video.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <iframe
+                  className="w-full h-full border-0"
+                  src={video.src}
+                  title={video.title}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              )}
+            </div>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* Buttons */}

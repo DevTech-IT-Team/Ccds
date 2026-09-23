@@ -1,4 +1,4 @@
-import React from 'react';
+const DRIVE_PREVIEW_URL = 'https://drive.google.com/file/d/1H50AYixb1f48xFj615oAc_FpK6XOE2ai/preview';
 
 const OfficeTourVideo = () => {
   return (
@@ -12,13 +12,14 @@ const OfficeTourVideo = () => {
           <div className="h-1 w-12 rounded-full bg-[#B36C63] mx-auto" />
         </div>
 
-        <div className="relative rounded-[32px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(5,15,44,0.15)] bg-slate-900 border-[8px] border-white/50 ring-1 ring-[#E2EEEC] aspect-video group">
+        <div className="relative rounded-[32px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(5,15,44,0.15)] bg-slate-900 border-[8px] border-white/50 ring-1 ring-[#E2EEEC] aspect-video">
           <iframe
-            src="https://drive.google.com/file/d/1H50AYixb1f48xFj615oAc_FpK6XOE2ai/preview"
+            src={DRIVE_PREVIEW_URL}
             className="absolute top-0 left-0 w-full h-full border-0"
             allow="autoplay; fullscreen"
             allowFullScreen
-          ></iframe>
+            title="Colorado Colonics office tour"
+          />
         </div>
       </div>
     </section>

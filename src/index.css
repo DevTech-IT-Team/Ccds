@@ -97,6 +97,12 @@ h1 {
 }
 .animate-fade-in-up { animation: fadeInUp 0.7s ease both; }
 
+@keyframes kenBurns {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  100% { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+}
+.animate-kenburns { animation: kenBurns 20s ease-in-out infinite alternate; }
+
 /* ── Utility: blue glassmorphism card ── */
 .glass-card {
   background: rgba(13, 33, 103, 0.55);

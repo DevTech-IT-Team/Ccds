@@ -8,7 +8,7 @@ import PricingCards from '../components/ui/PricingCards';
 import colonImg from '../assets/service/colon/angel-of-water-treatment-room-2-1.jpg';
 import ionImg from '../assets/service/Ionfoot/foot.png';
 import bioImg from '../assets/service/Biocharger/bio.png';
-import peopleImg from '../assets/people.jpg';
+import peopleImg from '../assets/packagecouple.webp';
 
 const categories = [
   { id: 'colon-hydrotherapy', label: 'COLON HYDROTHERAPY', image: colonImg, data: pricingData.colonHydrotherapy },
@@ -146,9 +146,7 @@ const Pricing = () => {
           <div className="mt-8 transition-all duration-500 ease-in-out">
             <div className="animate-fade-in">
               {activeCategory === 'packages' ? (
-                <div className="mt-8 bg-white rounded-3xl sm:rounded-[3rem] shadow-lg border border-[#E2EEEC] overflow-hidden">
-                  <PricingCards />
-                </div>
+                <PricingCards />
               ) : (
                 <PricingList data={categories.find(c => c.id === activeCategory).data} />
               )}

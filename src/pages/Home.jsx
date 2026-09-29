@@ -1,14 +1,81 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Sparkles, Radio, Leaf, Star, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
 import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
 import heroBgImg from '../assets/ccdcbg.webp';
-import ccdcLogo from '../assets/logo/ccdclogo.png';
 import glassShapeImg from '../assets/hero.png';
 import lisa from '../assets/about/lisa.jpg';
 import kimberly from '../assets/kimberly.jpeg';
+import lobbyImg from '../assets/home/ccdshome.JPEG';
+import colonThumb from '../assets/service/colon/angel-of-water-treatment-room-2-1.jpg';
+import ionThumb from '../assets/service/Ionfoot/foot.png';
+import bioThumb from '../assets/service/Biocharger/bio.png';
+
+const mineralThumb = 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&auto=format&fit=crop';
+
+const ServiceTile = ({ title, blurb, link, image, imagePosition, imageScale, imageGap, badge, featured }) => (
+  <Link
+    to={link}
+    className={`group relative block overflow-hidden rounded-[28px] bg-[#1A2A3A] shadow-[0_20px_44px_-24px_rgba(5,15,44,0.35)] ${
+      featured ? 'aspect-[16/10] sm:aspect-[21/8]' : 'aspect-[4/5] sm:aspect-[5/4]'
+    }`}
+  >
+    <div className={`absolute overflow-hidden ${imageGap ? 'inset-3 rounded-2xl' : 'inset-0'}`}>
+      <img
+        src={image}
+        alt=""
+        className="w-full h-full object-cover"
+        style={{
+          objectPosition: imagePosition || 'center',
+          transform: imageScale ? `scale(${imageScale})` : undefined,
+          transformOrigin: 'right center',
+        }}
+      />
+    </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-[#050F2C] via-[#050F2C]/55 to-[#050F2C]/25" />
+    <div className="absolute inset-0 bg-[#050F2C]/0 group-hover:bg-[#050F2C]/15 transition-colors duration-300" />
+    <div className="relative z-10 h-full flex flex-col justify-between p-5 sm:p-6">
+      <div className="flex items-start justify-between gap-3">
+        {badge ? (
+          <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-white bg-[#B36C63] px-2.5 py-1 rounded-full">
+            ★ {badge}
+          </span>
+        ) : (
+          <span />
+        )}
+        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-white/20 backdrop-blur-md border border-white/30 px-2.5 py-1 rounded-full group-hover:bg-white group-hover:text-[#050F2C] transition-colors duration-200">
+          Explore <ArrowRight className="w-3 h-3" />
+        </span>
+      </div>
+      <div className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+        <h3 className={`font-display font-semibold text-white leading-tight ${
+          featured ? 'text-2xl sm:text-[1.85rem]' : 'text-xl sm:text-[1.35rem]'
+        }`}>
+          {title}
+        </h3>
+        <p className={`mt-2 text-white/90 leading-relaxed ${
+          featured ? 'text-sm max-w-xl line-clamp-2' : 'text-sm line-clamp-2'
+        }`}>
+          {blurb}
+        </p>
+      </div>
+    </div>
+  </Link>
+);
+
+const StudioPortrait = () => (
+  <div className="mx-auto w-full max-w-[720px] lg:max-w-none">
+    <div className="overflow-hidden rounded-[28px] sm:rounded-[36px] bg-[#F4EFE6] ring-1 ring-[#050F2C]/8 shadow-[0_48px_80px_-36px_rgba(5,15,44,0.38)]">
+      <img
+        src={lobbyImg}
+        alt="Colorado Colonics lobby with CCDC lettering"
+        className="block w-full h-auto"
+      />
+    </div>
+  </div>
+);
 
 const StepCard = ({ number, title, desc }) => (
   <div className="relative flex gap-5">
@@ -108,65 +175,55 @@ const Home = () => {
     <div>
       {/* ── HERO SECTION ── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Clean, modern light background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F4F9F8] via-[#E2EEEC] to-[#F9FAF6]" aria-hidden="true" />
-
-        {/* Subtle, crisp decorative glows */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F4F9F8] via-[#E8F3F1] to-[#F9FAF6]" aria-hidden="true" />
         <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-gradient-to-br from-[#38838A]/10 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
-        <div className="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] rounded-full bg-gradient-to-tl from-[#B36C63]/10 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
+        <div className="absolute -bottom-[10%] right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-tl from-[#B36C63]/12 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
 
-        {/* Clean dot pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.4]"
-          style={{
-            backgroundImage: 'radial-gradient(#CBD5E1 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-          }}
-          aria-hidden="true"
-        />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 w-full">
-          <div className="max-w-2xl">
-
-
-            <h1 className="text-[#050F2C] mb-6 text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
-              <span className="bg-gradient-to-r from-[#B36C63] via-[#D98E84] to-[#38838A] bg-clip-text text-transparent drop-shadow-sm">
-                Revitalize Your Life.
-              </span>{' '}
-              Master the Practice at Our Academy.
-            </h1>
-
-            <p className="text-[#050F2C]/80 text-lg leading-relaxed mb-9 max-w-lg font-medium">
-              {siteContent.home.hero.subhead}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href={siteContent.business.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white font-bold text-base hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg btn-primary-new"
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full">
+          <div className="grid lg:grid-cols-12 gap-10 xl:gap-14 items-center">
+            <div className="lg:col-span-5">
+              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#38838A]">
+                Colorado Colonics · Englewood
+              </p>
+              <h1
+                className="text-[#050F2C] mb-6 font-display font-bold leading-[1.08] tracking-tight"
+                style={{ fontSize: 'clamp(2.15rem, 4.2vw, 3.35rem)' }}
               >
-                {siteContent.home.hero.ctaPrimary}
-                <span className="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </a>
-              <a
-                href={siteContent.business.phoneLink}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base transition-all duration-200 shadow-md hover:scale-105 btn-secondary-new"
-              >
-                {siteContent.home.hero.ctaSecondary}
-              </a>
+                <span className="bg-gradient-to-r from-[#B36C63] via-[#D98E84] to-[#38838A] bg-clip-text text-transparent">
+                  Revitalize Your Life.
+                </span>{' '}
+                Master the Practice at Our Academy.
+              </h1>
+
+              <p className="text-[#050F2C]/75 text-lg leading-relaxed mb-9 max-w-lg">
+                {siteContent.home.hero.subhead}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href={siteContent.business.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white font-bold text-base hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg btn-primary-new"
+                >
+                  {siteContent.home.hero.ctaPrimary}
+                  <span className="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </a>
+                <a
+                  href={siteContent.business.phoneLink}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base transition-all duration-200 shadow-md hover:scale-105 btn-secondary-new"
+                >
+                  {siteContent.home.hero.ctaSecondary}
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <StudioPortrait />
             </div>
           </div>
-        </div>
-
-        {/* Right Side Logo */}
-        <div className="hidden lg:flex absolute -right-6 top-1/2 -translate-y-1/2 w-[54%] max-w-[680px] items-center justify-center pointer-events-none z-10">
-          {/* Subtle Glow Behind Logo for Visibility */}
-          <div className="absolute w-[90%] h-[90%] bg-white/50 blur-[80px] rounded-full" />
-          <img src={ccdcLogo} alt="Colorado Colonics Logo" className="relative z-10 w-full h-auto object-contain drop-shadow-xl animate-fade-in-up" />
         </div>
 
         {/* <div className="absolute bottom-8 right-4 sm:right-8 lg:right-12 max-w-sm w-full hidden md:block">
@@ -211,7 +268,7 @@ const Home = () => {
       <OfficeTourVideo />
 
       {/* ── SERVICES ── */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section id="what-we-offer" className="py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 60% 40% at 80% 50%, rgba(219,234,254,0.5) 0%, transparent 70%)' }} />
 
@@ -232,81 +289,40 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {[
-              {
-                icon: Droplet,
-                num: '01',
-                title: 'Colon Hydrotherapy',
-                blurb: 'Gentle, filtered water cleansing with FDA-registered equipment. 45–60 min sessions, no chemicals.',
-                link: '/services/colon-hydrotherapy',
-                badge: 'Most Popular',
-              },
-              {
-                icon: Zap,
-                num: '02',
-                title: 'Ion Foot Detox',
-                blurb: 'Low-level ionic cleanse supporting your body\'s natural detox pathways. For ages 18+.',
-                link: '/services/ion-foot-detox',
-              },
-              {
-                icon: Radio,
-                num: '03',
-                title: 'BioCharger',
-                blurb: 'Light & frequency therapy targeting natural energy systems with customizable programs.',
-                link: '/services/biocharger',
-              },
-              // {
-              //   icon: Leaf,
-              //   num: '04',
-              //   title: 'Liver Cleanse',
-              //   blurb: '9-day Medical Medium 3•6•9 protocol — 1 consultation, 3 colonics & 3 foot detoxes.',
-              //   link: '/services/liver-cleanse',
-              // },
-              {
-                icon: Sparkles,
-                num: '05',
-                title: 'Mineralizing Foot Soak',
-                blurb: 'Replenishing 30-min mineral soak. Take it standalone or stack with detox sessions.',
-                link: '/services/mineralizing-soak',
-              },
-            ].map(({ icon: Icon, num, title, blurb, link, badge }) => (
-              <Link
-                key={title}
-                to={link}
-                className="group relative bg-white p-7 flex flex-col hover:bg-blue-faint transition-colors duration-300"
-              >
-                <div className="flex items-start justify-between h-11 mb-5">
-                  <span className="text-3xl font-display font-bold text-blue-pale leading-none select-none">
-                    {num}
-                  </span>
-                  <div className="w-11 h-11 rounded-xl bg-blue-faint border border-blue-pale flex items-center justify-center group-hover:bg-blue-pale group-hover:scale-110 transition-all duration-300 flex-shrink-0">
-                    <Icon className="w-5 h-5 text-blue" />
-                  </div>
-                </div>
-
-                <div className="h-5 mb-1.5">
-                  {badge && (
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-blue">
-                      ★ {badge}
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="font-bold text-navy-mid text-base leading-snug mb-3 group-hover:text-blue transition-colors duration-200">
-                  {title}
-                </h3>
-
-                <p className="text-ink-soft text-sm leading-relaxed flex-1">
-                  {blurb}
-                </p>
-
-                <div className="flex items-center gap-1.5 text-sm font-semibold text-blue mt-5 pt-4 border-t border-blue-pale group-hover:gap-3 transition-all duration-200">
-                  Explore <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
-            ))}
-            <div className="hidden sm:block bg-white" />
+          <div className="grid gap-4 lg:gap-5">
+            <ServiceTile
+              featured
+              title="Colon Hydrotherapy"
+              blurb="Gentle, filtered water cleansing with FDA-registered equipment. 45–60 min sessions, no chemicals."
+              link="/services/colon-hydrotherapy"
+              badge="Most Popular"
+              image={colonThumb}
+              imagePosition="center 40%"
+            />
+            <div className="grid sm:grid-cols-3 gap-4 lg:gap-5">
+              <ServiceTile
+                title="Ion Foot Detox"
+                blurb="Low-level ionic cleanse supporting your body's natural detox pathways. For ages 18+."
+                link="/services/ion-foot-detox"
+                image={ionThumb}
+                imagePosition="left top"
+              />
+              <ServiceTile
+                title="BioCharger"
+                blurb="Light & frequency therapy targeting natural energy systems with customizable programs."
+                link="/services/biocharger"
+                image={bioThumb}
+                imagePosition="right center"
+                imageScale={1.55}
+                imageGap
+              />
+              <ServiceTile
+                title="Mineralizing Foot Soak"
+                blurb="Replenishing 30-min mineral soak. Take it standalone or stack with detox sessions."
+                link="/services/mineralizing-soak"
+                image={mineralThumb}
+              />
+            </div>
           </div>
         </div>
       </section>

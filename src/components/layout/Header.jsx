@@ -42,12 +42,12 @@ const Header = () => {
           {/* ── Logo ── */}
           <Link 
             to="/" 
-            className={`flex items-center flex-shrink-0 group transition-all duration-500 ${!isScrolled && location.pathname === '/' ? 'opacity-0 invisible pointer-events-none' : 'opacity-100 visible'}`}
+            className="flex items-center flex-shrink-0 group transition-all duration-500 opacity-100 visible"
           >
             <img
               src={logo}
               alt="Colorado Colonics Detox Center"
-              className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 

@@ -32,30 +32,30 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-[#F9FAF6]/95 backdrop-blur-xl shadow-md border-b border-[#E2EEEC]'
-          : 'bg-transparent'
+        ? 'bg-[#F9FAF6]/95 backdrop-blur-xl shadow-md border-b border-[#E2EEEC]'
+        : 'bg-transparent'
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4">
 
           {/* ── Logo ── */}
-          <Link 
-            to="/" 
-            className="flex items-center flex-shrink-0 group transition-all duration-500 opacity-100 visible"
+          <Link
+            to="/"
+            className="flex items-center flex-shrink-0 transition-all duration-500 opacity-100 visible -ml-2 md:-ml-8"
           >
             <img
               src={logo}
-              alt="Colorado Colonics Detox Center"
-              className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              alt="Colorado Colonics"
+              className="h-14 md:h-16 w-auto object-contain transform scale-125 md:scale-[1.6] origin-left"
             />
           </Link>
 
           {/* ── Desktop nav — pill container like Healora reference ── */}
           <nav
             className={`hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300 ${isScrolled
-                ? 'bg-white/5 border border-white/10'
-                : 'bg-black/5 backdrop-blur-sm border border-black/10'
+              ? 'bg-white/5 border border-white/10'
+              : 'bg-black/5 backdrop-blur-sm border border-black/10'
               }`}
             role="navigation"
           >
@@ -64,8 +64,8 @@ const Header = () => {
                 key={link.path}
                 to={link.path}
                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive(link.path)
-                    ? 'bg-white text-[#050F2C] font-bold shadow-sm'
-                    : 'text-[#050F2C]/70 hover:text-[#050F2C] hover:bg-black/5'
+                  ? 'bg-white text-[#050F2C] font-bold shadow-sm'
+                  : 'text-[#050F2C]/70 hover:text-[#050F2C] hover:bg-black/5'
                   }`}
               >
                 {isActive(link.path) && (
@@ -125,8 +125,8 @@ const Header = () => {
               to={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
               className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive(link.path)
-                  ? 'text-[#050F2C] bg-black/5 font-semibold'
-                  : 'text-[#050F2C]/70 hover:text-[#050F2C] hover:bg-black/5'
+                ? 'text-[#050F2C] bg-black/5 font-semibold'
+                : 'text-[#050F2C]/70 hover:text-[#050F2C] hover:bg-black/5'
                 }`}
             >
               {link.label}

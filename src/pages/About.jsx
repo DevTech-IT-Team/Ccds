@@ -11,7 +11,7 @@ import {
   Quote,
   CheckCircle2,
 } from 'lucide-react';
-import lisa from '../assets/about/lisa.jpg';
+import lisa from '../assets/Lisamain.png';
 import kimberly from '../assets/kimberly.jpeg';
 import aboutHeroLogo from '../assets/logo/ccdclogo.png';
 import iactLogo from '../assets/about/iact-logo.jpg';
@@ -175,7 +175,7 @@ const About = () => {
                         alt={member.name}
                         className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
                           member.id === 'lisa-smith'
-                            ? 'object-[center_35%] scale-[1.12]'
+                            ? 'object-[center_15%] scale-[1.12]'
                             : 'object-top'
                         }`}
                       />

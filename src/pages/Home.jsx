@@ -6,7 +6,7 @@ import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
 import heroBgImg from '../assets/ccdcbg.webp';
 import glassShapeImg from '../assets/hero.png';
-import lisa from '../assets/about/lisa.jpg';
+import lisa from '../assets/Lisamain.png';
 import kimberly from '../assets/kimberly.jpeg';
 import lobbyImg from '../assets/home/ccdshome.JPEG';
 import colonThumb from '../assets/service/colon/angel-of-water-treatment-room-2-1.jpg';
@@ -155,7 +155,7 @@ const Home = () => {
       role: "Certified Colon Hydrotherapist",
       titleBadge: "Founder",
       imageSrc: lisa,
-      imagePosition: "center 60%",
+      imagePosition: "center 15%",
       imageScale: 1.0,
       bio: "Lisa Smith is a certified Colon Hydrotherapist dedicated to providing professional, individualized care in a comfortable and welcoming environment. She brings compassion, enthusiasm, and a strong commitment to helping every client feel respected and supported.",
       certifications: ["Foundation (2015)", "Intermediate (2019)", "Advanced (2020)", "Angel of Water (2019)"]

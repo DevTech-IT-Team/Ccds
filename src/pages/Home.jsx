@@ -1,26 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
 import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
-import heroBgImg from '../assets/ccdcbg.webp';
-import glassShapeImg from '../assets/hero.png';
 import lisa from '../assets/Lisamain.png';
 import kimberly from '../assets/kimberly.jpeg';
 import lobbyImg from '../assets/home/ccdshome.JPEG';
 import colonThumb from '../assets/service/colon/angel-of-water-treatment-room-2-1.jpg';
 import ionThumb from '../assets/service/Ionfoot/foot.png';
 import bioThumb from '../assets/service/Biocharger/bio.png';
+import ccdcLogo from '../assets/logo/ccdclogo.png';
 
 const mineralThumb = 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&auto=format&fit=crop';
 
 const ServiceTile = ({ title, blurb, link, image, imagePosition, imageScale, imageGap, badge, featured }) => (
   <Link
     to={link}
-    className={`group relative block overflow-hidden rounded-[28px] bg-[#1A2A3A] shadow-[0_20px_44px_-24px_rgba(5,15,44,0.35)] ${
-      featured ? 'aspect-[16/10] sm:aspect-[21/8]' : 'aspect-[4/5] sm:aspect-[5/4]'
-    }`}
+    className={`group relative block overflow-hidden rounded-[28px] bg-[#1A2A3A] shadow-[0_20px_44px_-24px_rgba(5,15,44,0.35)] ${featured ? 'aspect-[16/10] sm:aspect-[21/8]' : 'aspect-[4/5] sm:aspect-[5/4]'
+      }`}
   >
     <div className={`absolute overflow-hidden ${imageGap ? 'inset-3 rounded-2xl' : 'inset-0'}`}>
       <img
@@ -50,14 +47,12 @@ const ServiceTile = ({ title, blurb, link, image, imagePosition, imageScale, ima
         </span>
       </div>
       <div className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
-        <h3 className={`font-display font-semibold text-white leading-tight ${
-          featured ? 'text-2xl sm:text-[1.85rem]' : 'text-xl sm:text-[1.35rem]'
-        }`}>
+        <h3 className={`font-display font-semibold text-white leading-tight ${featured ? 'text-2xl sm:text-[1.85rem]' : 'text-xl sm:text-[1.35rem]'
+          }`}>
           {title}
         </h3>
-        <p className={`mt-2 text-white/90 leading-relaxed ${
-          featured ? 'text-sm max-w-xl line-clamp-2' : 'text-sm line-clamp-2'
-        }`}>
+        <p className={`mt-2 text-white/90 leading-relaxed ${featured ? 'text-sm max-w-xl line-clamp-2' : 'text-sm line-clamp-2'
+          }`}>
           {blurb}
         </p>
       </div>
@@ -179,12 +174,27 @@ const Home = () => {
         <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-gradient-to-br from-[#38838A]/10 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
         <div className="absolute -bottom-[10%] right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-tl from-[#B36C63]/12 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full">
+        {/* ── Top-Left Logo on Hero Section (Desktop only to prevent header overlap on mobile) ── */}
+        <div className="hidden md:block absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 z-30">
+          <Link
+            to="/"
+            className="inline-flex items-center group transition-all duration-300 hover:scale-[1.03] origin-left -ml-8 sm:-ml-12 md:-ml-14 lg:-ml-16"
+            aria-label="Colorado Colonics Home"
+          >
+            <img
+              src={ccdcLogo}
+              alt="Colorado Colonics Detox Center"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain transform scale-110 sm:scale-125 origin-left drop-shadow-sm transition-all duration-300 group-hover:brightness-105"
+            />
+          </Link>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-32 pb-16 w-full">
           <div className="grid lg:grid-cols-12 gap-10 xl:gap-14 items-center">
             <div className="lg:col-span-5">
-              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#38838A]">
+              {/* <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#38838A]">
                 Colorado Colonics · Englewood
-              </p>
+              </p> */}
               <h1
                 className="text-[#050F2C] mb-6 font-display font-bold leading-[1.08] tracking-tight"
                 style={{ fontSize: 'clamp(2.15rem, 4.2vw, 3.35rem)' }}
@@ -449,7 +459,7 @@ const Home = () => {
         {/* Heading */}
         <div className="flex flex-col items-center mb-16 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <svg viewBox="0 0 24 24" className="w-6 h-6" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/><path d="M1 1h22v22H1z" fill="none"/></svg>
+            <svg viewBox="0 0 24 24" className="w-6 h-6" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /><path d="M1 1h22v22H1z" fill="none" /></svg>
             <span className="text-sm font-bold tracking-widest text-[#050F2C] uppercase">Google Reviews</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-serif font-semibold text-[#050F2C] tracking-tight mb-3">
@@ -475,7 +485,7 @@ const Home = () => {
                       <Star key={i} className="w-5 h-5 fill-current text-[#CBB06B]" />
                     ))}
                   </div>
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-70" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/><path d="M1 1h22v22H1z" fill="none"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-70" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /><path d="M1 1h22v22H1z" fill="none" /></svg>
                 </div>
                 <blockquote className="text-[#050F2C]/90 text-sm md:text-base italic leading-relaxed font-medium">
                   "Lisa is absolutely amazing! Her knowledge of colon hydrotherapy is incredible and the environment is so peaceful."
@@ -501,7 +511,7 @@ const Home = () => {
                       <Star key={i} className="w-5 h-5 fill-current text-[#CBB06B]" />
                     ))}
                   </div>
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-70" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/><path d="M1 1h22v22H1z" fill="none"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-70" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /><path d="M1 1h22v22H1z" fill="none" /></svg>
                 </div>
                 <blockquote className="text-[#050F2C]/90 text-sm md:text-base italic leading-relaxed font-medium">
                   "The clinical excellence here is unmatched. I felt completely supported throughout my entire wellness journey."
@@ -527,7 +537,7 @@ const Home = () => {
                       <Star key={i} className="w-5 h-5 fill-current text-[#CBB06B]" />
                     ))}
                   </div>
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-70" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/><path d="M1 1h22v22H1z" fill="none"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-70" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /><path d="M1 1h22v22H1z" fill="none" /></svg>
                 </div>
                 <blockquote className="text-[#050F2C]/90 text-sm md:text-base italic leading-relaxed font-medium">
                   "A truly transformative experience. The staff is professional, empathetic, and highly skilled."
@@ -555,7 +565,7 @@ const Home = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-8 py-4 border-2 border-[#E2EEEC] bg-white rounded-full font-bold text-sm text-[#050F2C] hover:border-[#38838A] shadow-sm hover:shadow-md transition-all duration-300 group"
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/><path d="M1 1h22v22H1z" fill="none"/></svg>
+            <svg viewBox="0 0 24 24" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /><path d="M1 1h22v22H1z" fill="none" /></svg>
             Read more on Google
             <ArrowRight className="w-4 h-4 text-[#38838A] group-hover:translate-x-1 transition-transform" />
           </a>

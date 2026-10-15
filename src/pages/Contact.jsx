@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
 import { siteContent } from '../data/content';
-import { MapPin, Phone, Mail, Clock, CheckCircle2, AlertTriangle, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle2, AlertTriangle, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 
 const inputClass =
   'w-full px-4 py-3 rounded-xl border border-[#E2EEEC] bg-slate-50/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#38838A]/30 focus:border-[#38838A] text-[#050F2C] placeholder-slate-400 text-sm transition';
@@ -34,6 +34,8 @@ const Contact = () => {
     comment: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (inquirySubjects.includes(subjectFromUrl)) {
@@ -52,24 +54,59 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await fetch(siteContent.contact.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-    } catch {
-      /* show success regardless */
+    setErrorMessage('');
+    setIsSubmitting(true);
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey || accessKey === 'your_access_key_here') {
+      setErrorMessage(
+        'Web3Forms access key is not configured. Please add your key to VITE_WEB3FORMS_ACCESS_KEY in the .env file.'
+      );
+      setIsSubmitting(false);
+      return;
     }
-    setSubmitted(true);
-    setForm({
-      name: '',
-      phone: '',
-      email: '',
-      preferredMethod: 'Text',
-      subject: 'Colon Hydrotherapy',
-      comment: '',
-    });
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          preferred_contact_method: form.preferredMethod,
+          inquiry_subject: form.subject,
+          message: form.comment,
+          from_name: 'Colorado Colonics Contact Form',
+          subject: `New Inquiry: ${form.subject} from ${form.name}`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setForm({
+          name: '',
+          phone: '',
+          email: '',
+          preferredMethod: 'Text',
+          subject: 'Colon Hydrotherapy',
+          comment: '',
+        });
+      } else {
+        setErrorMessage(data.message || 'Something went wrong while sending your message. Please try again.');
+      }
+    } catch {
+      setErrorMessage('Unable to connect to the server. Please check your internet connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const hours = siteContent.hours;
@@ -127,7 +164,10 @@ const Contact = () => {
                       Thank you for contacting Colorado Colonics. We will review your message and reach out via your preferred method shortly.
                     </p>
                     <button
-                      onClick={() => setSubmitted(false)}
+                      onClick={() => {
+                        setSubmitted(false);
+                        setErrorMessage('');
+                      }}
                       className="mt-4 px-6 py-2 rounded-full bg-[#38838A] text-white font-medium text-sm hover:bg-[#2A656B] transition-colors"
                     >
                       Send Another Message
@@ -256,12 +296,30 @@ const Contact = () => {
                       />
                     </div>
 
+                    {/* Error Notice */}
+                    {errorMessage && (
+                      <div className="p-4 rounded-2xl bg-red-50 border border-red-200 flex items-start gap-3">
+                        <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-xs sm:text-sm text-red-700 font-medium leading-relaxed">
+                          {errorMessage}
+                        </p>
+                      </div>
+                    )}
+
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-full bg-[#38838A] hover:bg-[#2A656B] text-white font-medium text-base shadow-sm hover:shadow transition-all duration-200"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 rounded-full bg-[#38838A] hover:bg-[#2A656B] disabled:opacity-70 disabled:cursor-not-allowed text-white font-medium text-base shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2"
                     >
-                      Submit
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        'Submit'
+                      )}
                     </button>
                   </form>
                 )}

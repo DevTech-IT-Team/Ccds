@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone, Sparkles, GraduationCap } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
 import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
@@ -61,14 +61,17 @@ const ServiceTile = ({ title, blurb, link, image, imagePosition, imageScale, ima
 );
 
 const StudioPortrait = () => (
-  <div className="mx-auto w-full max-w-[720px] lg:max-w-none">
-    <div className="overflow-hidden rounded-[28px] sm:rounded-[36px] bg-[#F4EFE6] ring-1 ring-[#050F2C]/8 shadow-[0_48px_80px_-36px_rgba(5,15,44,0.38)]">
+  <div className="mx-auto w-full max-w-[680px] lg:max-w-none">
+    <div className="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#F4EFE6] ring-1 ring-[#050F2C]/8 shadow-sm">
       <img
         src={lobbyImg}
         alt="Colorado Colonics lobby with CCDC lettering"
-        className="block w-full h-auto"
+        className="block w-full h-auto object-cover"
       />
     </div>
+    {/* <p className="mt-3 text-xs text-[#050F2C]/50 text-center sm:text-left font-medium">
+      Colorado Colonics Detox Center · 3597 S Pearl St, Suite 101, Englewood, CO
+    </p> */}
   </div>
 );
 
@@ -168,65 +171,50 @@ const Home = () => {
 
   return (
     <div>
-      {/* ── HERO SECTION ── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F4F9F8] via-[#E8F3F1] to-[#F9FAF6]" aria-hidden="true" />
-        <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-gradient-to-br from-[#38838A]/10 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
-        <div className="absolute -bottom-[10%] right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-tl from-[#B36C63]/12 to-transparent blur-[100px] pointer-events-none" aria-hidden="true" />
+      {/* ── SECTION 1: ENTRY HERO & VIRTUAL OFFICE TOUR ── */}
+      <OfficeTourVideo />
 
-        {/* ── Top-Left Logo on Hero Section (Desktop only to prevent header overlap on mobile) ── */}
-        <div className="hidden md:block absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 z-30">
-          <Link
-            to="/"
-            className="inline-flex items-center group transition-all duration-300 hover:scale-[1.03] origin-left -ml-8 sm:-ml-12 md:-ml-14 lg:-ml-16"
-            aria-label="Colorado Colonics Home"
-          >
-            <img
-              src={ccdcLogo}
-              alt="Colorado Colonics Detox Center"
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain transform scale-110 sm:scale-125 origin-left drop-shadow-sm transition-all duration-300 group-hover:brightness-105"
-            />
-          </Link>
-        </div>
+      {/* ── SECTION 2: STUDIO & ACADEMY SHOWCASE ── */}
+      <section className="py-20 lg:py-24 bg-white relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-5 text-left">
+              <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-[#38838A] mb-3">
+                Restorative Wellness & Academy
+              </p>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 lg:pt-32 pb-16 w-full">
-          <div className="grid lg:grid-cols-12 gap-10 xl:gap-14 items-center">
-            <div className="lg:col-span-5">
-              {/* <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#38838A]">
-                Colorado Colonics · Englewood
-              </p> */}
-              <h1
-                className="text-[#050F2C] mb-6 font-display font-bold leading-[1.08] tracking-tight"
-                style={{ fontSize: 'clamp(2.15rem, 4.2vw, 3.35rem)' }}
-              >
-                <span className="bg-gradient-to-r from-[#B36C63] via-[#D98E84] to-[#38838A] bg-clip-text text-transparent">
-                  Revitalize Your Life.
-                </span>{' '}
-                Master the Practice at Our Academy.
-              </h1>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-display font-medium text-[#050F2C] leading-tight tracking-tight mb-4">
+                Revitalize Your Life. <br className="hidden sm:inline" />
+                <span className="font-serif italic font-normal text-[#B36C63]">Master the Practice at Our Academy.</span>
+              </h2>
 
-              <p className="text-[#050F2C]/75 text-lg leading-relaxed mb-9 max-w-lg">
+              <p className="text-[#050F2C]/70 text-base leading-relaxed mb-8 max-w-lg">
                 {siteContent.home.hero.subhead}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-wrap items-center gap-3.5 mb-8">
                 <a
                   href={siteContent.business.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-white font-bold text-base hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg btn-primary-new"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#B36C63] text-white text-sm font-semibold hover:bg-[#9E5A52] transition-colors shadow-xs"
                 >
                   {siteContent.home.hero.ctaPrimary}
-                  <span className="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
+                  <ArrowRight className="w-4 h-4" />
                 </a>
-                <a
-                  href={siteContent.business.phoneLink}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base transition-all duration-200 shadow-md hover:scale-105 btn-secondary-new"
+                {/* <Link
+                  to="/academy"
+                  className="inline-flex items-center gap-1.5 px-6 py-3.5 rounded-full text-[#050F2C] bg-black/5 hover:bg-black/10 text-sm font-semibold transition-colors"
                 >
-                  {siteContent.home.hero.ctaSecondary}
-                </a>
+                  Explore Academy
+                  <ChevronRight className="w-4 h-4" />
+                </Link> */}
+              </div>
+
+              <div className="border-l-2 border-[#38838A]/40 pl-4 py-1">
+                <p className="text-xs sm:text-sm text-[#050F2C]/70 leading-relaxed font-normal">
+                  Personalized care tailored to your digestive wellness, guided by certified I-ACT practitioners in a judgment-free environment.
+                </p>
               </div>
             </div>
 
@@ -235,47 +223,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="absolute bottom-8 right-4 sm:right-8 lg:right-12 max-w-sm w-full hidden md:block">
-          <div className="flex flex-col gap-1.5 mb-4">
-            <div className="flex gap-1.5">
-              {['Colon Hydrotherapy', 'Ion Foot Detox'].map((s) => (
-                <span
-                  key={s}
-                  className="px-2.5 py-1 rounded-full text-[11px] font-medium text-white whitespace-nowrap border border-white/20 transition-all duration-200 hover:border-blue-btn/60 hover:bg-blue/20"
-                  style={{ background: 'rgba(10,25,80,0.50)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-1.5">
-              {['BioCharger', 'Liver Cleanse', 'Mineralizing Soak'].map((s) => (
-                <span
-                  key={s}
-                  className="px-2.5 py-1 rounded-full text-[11px] font-medium text-white whitespace-nowrap border border-white/20 transition-all duration-200 hover:border-blue-btn/60 hover:bg-blue/20"
-                  style={{ background: 'rgba(10,25,80,0.50)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          <div
-            className="rounded-2xl p-4 border border-white/10"
-            style={{ background: 'rgba(5,15,44,0.60)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
-          >
-            <p className="text-white font-bold text-sm mb-1.5">Expert-led care for all ages</p>
-            <p className="text-white/55 text-xs leading-relaxed">
-              Our certified therapists provide personalized wellness support, helping clients find balance, cleansing, and renewed vitality.
-            </p>
-          </div> 
-        </div> */}
       </section>
-
-      {/* ── OFFICE TOUR ── */}
-      <OfficeTourVideo />
 
       {/* ── SERVICES ── */}
       <section id="what-we-offer" className="py-24 bg-white relative overflow-hidden">

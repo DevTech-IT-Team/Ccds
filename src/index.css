@@ -155,5 +155,32 @@ h1 {
     mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 85%);
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 85%);
   }
+
+  /* ── Interactive glow utilities ── */
+  .glow-teal-hover {
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+  }
+  .glow-teal-hover:hover {
+    box-shadow: 0 20px 50px -12px rgba(56, 131, 138, 0.35);
+  }
+
+  .glow-rose-hover {
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+  }
+  .glow-rose-hover:hover {
+    box-shadow: 0 20px 50px -12px rgba(179, 108, 99, 0.35);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(56, 131, 138, 0.20), 0 0 45px rgba(179, 108, 99, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(56, 131, 138, 0.35), 0 0 65px rgba(179, 108, 99, 0.22);
+  }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 

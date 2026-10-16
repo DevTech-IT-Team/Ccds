@@ -61,13 +61,13 @@ const OfficeTourVideo = () => {
       <div className="hidden md:block absolute top-6 sm:top-7 md:top-8 lg:top-9 left-2 sm:left-3 md:left-4 z-30">
         <Link
           to="/"
-          className="inline-flex items-center group transition-all duration-300 hover:scale-[1.03] origin-left -ml-8 sm:-ml-12 md:-ml-14 lg:-ml-16"
+          className="inline-flex items-center origin-left -ml-8 sm:-ml-12 md:-ml-14 lg:-ml-16"
           aria-label="Colorado Colonics Home"
         >
           <img
             src={ccdcLogo}
             alt="Colorado Colonics Detox Center"
-            className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain transform scale-125 sm:scale-135 md:scale-145 origin-left drop-shadow-sm transition-all duration-300 group-hover:brightness-105"
+            className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain transform scale-125 sm:scale-135 md:scale-145 origin-left drop-shadow-sm"
           />
         </Link>
       </div>

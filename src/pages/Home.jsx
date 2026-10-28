@@ -10,6 +10,7 @@ import colonThumb from '../assets/service/colon/angel-of-water-treatment-room-2-
 import ionThumb from '../assets/service/Ionfoot/foot.png';
 import bioThumb from '../assets/service/Biocharger/bio.png';
 import ccdcLogo from '../assets/logo/ccdclogo.png';
+import academyLogo from '../assets/academy/Colonic_Academy_Logo.png';
 
 const mineralThumb = 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&auto=format&fit=crop';
 
@@ -64,7 +65,7 @@ const StudioPortrait = () => (
   <div className="mx-auto w-full max-w-[680px] lg:max-w-none">
     <div className="overflow-hidden rounded-2xl sm:rounded-3xl bg-[#F4EFE6] ring-1 ring-[#050F2C]/8 shadow-sm">
       <img
-        src={lobbyImg}
+        src={academyLogo}
         alt="Colorado Colonics lobby with CCDC lettering"
         className="block w-full h-auto object-cover"
       />

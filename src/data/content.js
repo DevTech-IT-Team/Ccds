@@ -21,13 +21,14 @@ export const siteContent = {
     wednesday: '11–7',
     thursday: '9–7',
     friday: '9–5',
-    saturday: '8–5',
+    saturday: '9–5',
   },
 
   // Navigation
   nav: {
     home: 'Home',
     services: 'Services',
+    membership: 'Membership',
     pricing: 'Pricing',
     about: 'About',
     contact: 'Contact',

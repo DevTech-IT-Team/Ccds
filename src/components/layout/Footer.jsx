@@ -18,6 +18,7 @@ const Footer = () => {
   const navLinks = [
     { path: '/', label: siteContent.nav.home },
     { path: '/services', label: siteContent.nav.services },
+    { path: '/membership', label: siteContent.nav.membership },
     { path: '/pricing', label: siteContent.nav.pricing },
     { path: '/about', label: siteContent.nav.about },
     { path: '/resources', label: siteContent.nav.resources },

@@ -24,8 +24,8 @@ const TOUR_VIDEOS = [
   {
     id: 2,
     suiteNum: 'Suite 02',
-    tag: 'Open System Suite',
-    title: 'Angel of Water Suite',
+    tag: 'Angel of Water Suite',
+    title: 'Open System Suite.',
     subtitle: 'Private open-system hydrotherapy in a serene sanctuary',
     videoSrc: angelOfWaterVideo,
     driveUrl: 'https://drive.google.com/file/d/1XfYXvxPLcaKSa-oTEAi43H7AekZcN-qo/view',
@@ -35,7 +35,7 @@ const TOUR_VIDEOS = [
     id: 3,
     suiteNum: 'Suite 03',
     tag: 'Closed System Suite',
-    title: 'Colonic Hydrotherapy Suite',
+    title: 'Aqua Cleanse Suite.',
     subtitle: 'Hospital-grade sanitized clinical treatment space',
     videoSrc: openSystemVideo,
     driveUrl: 'https://drive.google.com/file/d/1_QUXRDF6QBQ8KVnTwZAW2bOP0ybIBfwo/view',
@@ -86,9 +86,9 @@ const OfficeTourVideo = () => {
           </div>
 
           {/* Big Bold Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-display font-extrabold text-[#050F2C] tracking-tight leading-[1.08] mb-5">
-            Welcome to{' '}
-            <span className="bg-gradient-to-r from-[#38838A] via-[#2C7379] to-[#38838A] bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-[#050F2C] tracking-tight leading-[1.15] mb-5">
+            Welcome to <br />
+            <span className="inline-block whitespace-nowrap bg-gradient-to-r from-[#38838A] via-[#2C7379] to-[#38838A] bg-clip-text text-transparent">
               Colorado Colonics
             </span>
           </h1>
@@ -98,7 +98,7 @@ const OfficeTourVideo = () => {
 
           {/* Engaging Welcome Message */}
           <p className="text-[#050F2C]/75 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto font-normal mb-8">
-            Denver & Englewood’s trusted sanctuary for gentle colon hydrotherapy and full-body renewal. Experience clinical-grade care, soothing private suites, and accredited therapist guidance.
+            The Trusted sanctuary for gentle colon hydrotherapy and full-body renewal. Experience clinical-grade care, soothing private suites, and accredited therapist guidance.
           </p>
 
           {/* Side-by-Side Action Buttons: Book an Appointment & Join the Academy */}

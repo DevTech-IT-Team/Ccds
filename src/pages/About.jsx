@@ -14,7 +14,7 @@ import {
 import lisa from '../assets/Lisamain.png';
 import kimberly from '../assets/kimberly.jpeg';
 import aboutHeroLogo from '../assets/logo/ccdclogo.png';
-import iactLogo from '../assets/about/iact-logo.jpg';
+import iactLogo from '../assets/about/icact_logo.png';
 
 /* ─────────────────────────────────────────
    Team Data Structures
@@ -160,62 +160,61 @@ const About = () => {
 
                 <div className="relative z-10 space-y-12">
                   <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-                  
-                  {/* Visual Side Column (Photo Frame) */}
-                  <div
-                    className={`lg:col-span-5 w-full relative lg:sticky lg:top-32 ${!isEven ? 'lg:order-last' : ''}`}
-                  >
-                    {/* Decorative elegant frames behind image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#38838A]/20 to-[#B36C63]/20 rounded-[2rem] transform rotate-3 scale-[1.02] transition-transform duration-700 group-hover:rotate-6"></div>
-                    <div className="absolute inset-0 bg-[#F4F9F8] rounded-[2rem] transform -rotate-2 scale-[1.02] transition-transform duration-700 group-hover:-rotate-4 border border-[#E2EEEC]"></div>
-                    
-                    <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg border border-white/50 bg-white">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
-                          member.id === 'lisa-smith'
+
+                    {/* Visual Side Column (Photo Frame) */}
+                    <div
+                      className={`lg:col-span-5 w-full relative lg:sticky lg:top-32 ${!isEven ? 'lg:order-last' : ''}`}
+                    >
+                      {/* Decorative elegant frames behind image */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#38838A]/20 to-[#B36C63]/20 rounded-[2rem] transform rotate-3 scale-[1.02] transition-transform duration-700 group-hover:rotate-6"></div>
+                      <div className="absolute inset-0 bg-[#F4F9F8] rounded-[2rem] transform -rotate-2 scale-[1.02] transition-transform duration-700 group-hover:-rotate-4 border border-[#E2EEEC]"></div>
+
+                      <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg border border-white/50 bg-white">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${member.id === 'lisa-smith'
                             ? 'object-[center_15%] scale-[1.12]'
                             : 'object-top'
-                        }`}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Main Editorial Copy Column */}
-                  <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
-
-                    {/* Header Title Block */}
-                    <div>
-                      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-[#F4F9F8] to-white border border-[#E2EEEC] text-xs font-bold uppercase tracking-widest text-[#38838A] rounded-full mb-4 shadow-sm">
-                        <Sparkles className="w-3.5 h-3.5 text-[#B36C63]" />
-                        Practitioner Profile
+                            }`}
+                        />
                       </div>
-                      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#050F2C] leading-tight mb-2 tracking-tight">
-                        {member.name}
-                      </h2>
-                      <p className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-[#38838A] to-[#2C6A70] bg-clip-text text-transparent">
-                        {member.role}
-                      </p>
                     </div>
 
-                    {/* Highlight Quote Box */}
-                    <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#F9FAF6] to-white border border-[#E2EEEC] shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                      <Quote className="absolute top-4 left-4 w-12 h-12 text-[#B36C63]/10" />
-                      <div className="relative z-10 flex gap-4 items-stretch">
-                        <div className="w-1.5 flex-shrink-0 bg-gradient-to-b from-[#B36C63] to-[#D98E84] rounded-full" />
-                        <p className="text-lg sm:text-xl italic text-[#050F2C] font-serif font-medium leading-relaxed">
-                          "{member.quote}"
+                    {/* Main Editorial Copy Column */}
+                    <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
+
+                      {/* Header Title Block */}
+                      <div>
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-[#F4F9F8] to-white border border-[#E2EEEC] text-xs font-bold uppercase tracking-widest text-[#38838A] rounded-full mb-4 shadow-sm">
+                          <Sparkles className="w-3.5 h-3.5 text-[#B36C63]" />
+                          Practitioner Profile
+                        </div>
+                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-[#050F2C] leading-tight mb-2 tracking-tight">
+                          {member.name}
+                        </h2>
+                        <p className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-[#38838A] to-[#2C6A70] bg-clip-text text-transparent">
+                          {member.role}
                         </p>
                       </div>
-                    </div>
 
-                    {/* Complete Bio Paragraphs */}
-                    <div className="space-y-4 text-slate-600 leading-relaxed text-base sm:text-lg font-medium">
-                      {member.bio.map((paragraph, pIdx) => (
-                        <p key={pIdx}>{paragraph}</p>
-                      ))}
-                    </div>
+                      {/* Highlight Quote Box */}
+                      <div className="relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#F9FAF6] to-white border border-[#E2EEEC] shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                        <Quote className="absolute top-4 left-4 w-12 h-12 text-[#B36C63]/10" />
+                        <div className="relative z-10 flex gap-4 items-stretch">
+                          <div className="w-1.5 flex-shrink-0 bg-gradient-to-b from-[#B36C63] to-[#D98E84] rounded-full" />
+                          <p className="text-lg sm:text-xl italic text-[#050F2C] font-serif font-medium leading-relaxed">
+                            "{member.quote}"
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Complete Bio Paragraphs */}
+                      <div className="space-y-4 text-slate-600 leading-relaxed text-base sm:text-lg font-medium">
+                        {member.bio.map((paragraph, pIdx) => (
+                          <p key={pIdx}>{paragraph}</p>
+                        ))}
+                      </div>
 
                     </div>
                   </div>
@@ -225,7 +224,7 @@ const About = () => {
                     <div className="pt-10 border-t border-[#E2EEEC]/80">
                       <div className="grid lg:grid-cols-12 gap-10">
                         <div className="lg:col-span-12 space-y-8">
-                          
+
                           {/* Certifications Block */}
                           {member.certifications && (
                             <div className="flex flex-col sm:flex-row items-start gap-8">

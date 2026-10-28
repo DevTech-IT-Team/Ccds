@@ -7,6 +7,7 @@ import ScrollToTop from './components/layout/ScrollToTop';
 import BackToTop from './components/layout/BackToTop';
 import Home from './pages/Home';
 import Services from './pages/Services';
+import Membership from './pages/Membership';
 import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -38,6 +39,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:category" element={<Services />} />
             <Route path="/contraindications/:service" element={<ContraindicationsPage />} />
+            <Route path="/membership" element={<Membership />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

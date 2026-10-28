@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import MembershipTopBanner from '../components/membership/MembershipTopBanner';
 import MembershipHero from '../components/membership/MembershipHero';
 import MembershipPlans from '../components/membership/MembershipPlans';
 import MembershipSessionLength from '../components/membership/MembershipSessionLength';
@@ -16,6 +17,9 @@ const Membership = () => {
 
   return (
     <div className="bg-[#FAF8F5]">
+      {/* ── Top Announcement Strip (Directly below header) ── */}
+      <MembershipTopBanner />
+
       {/* ── 1. Hero Section ── */}
       <MembershipHero />
 

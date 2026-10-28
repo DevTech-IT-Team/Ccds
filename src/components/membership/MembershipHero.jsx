@@ -3,19 +3,13 @@ import { siteContent } from '../../data/content';
 
 const MembershipHero = () => {
   return (
-    <section className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-20 lg:pb-24 bg-gradient-to-br from-[#E6F3F4] via-[#FAF7F1] to-[#F4E6E0]">
+    <section className="relative overflow-hidden pt-6 sm:pt-8 lg:pt-10 pb-20 lg:pb-24 bg-gradient-to-br from-[#E6F3F4] via-[#FAF7F1] to-[#F4E6E0]">
       {/* Decorative ambient background accents */}
       <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-[#38838A]/20 pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full border border-[#B36C63]/20 pointer-events-none" />
       <div className="absolute top-1/4 left-1/3 w-72 h-72 rounded-full bg-[#38838A]/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Top Announcement Banner */}
-        <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-[#38838A]/25 shadow-xs text-[#050F2C] text-xs sm:text-sm font-semibold backdrop-blur-sm">
-          <span className="w-2 h-2 rounded-full bg-[#38838A] animate-pulse" />
-          <span>Membership is available to established Colorado Colonics clients.</span>
-        </div>
 
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Heading and Value Proposition */}

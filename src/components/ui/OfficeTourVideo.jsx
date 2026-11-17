@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, ArrowRight, GraduationCap, X, ExternalLink } from 'lucide-react';
 import lobbyImg from '../../assets/home/ccdshome.JPEG';
@@ -44,16 +44,33 @@ const TOUR_VIDEOS = [
 ];
 
 const OfficeTourVideo = () => {
-  const [playingIndex, setPlayingIndex] = useState(null);
+  const [activeTourIndex, setActiveTourIndex] = useState(null);
+  const videoRef = useRef(null);
 
-  const handlePlay = (index) => {
-    setPlayingIndex(index);
-  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveTourIndex(null);
+    };
+    if (activeTourIndex !== null) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeTourIndex]);
 
-  const handleClose = (e) => {
-    e.stopPropagation();
-    setPlayingIndex(null);
-  };
+  useEffect(() => {
+    if (activeTourIndex !== null && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [activeTourIndex]);
+
+  const activeVideo = activeTourIndex !== null ? TOUR_VIDEOS[activeTourIndex] : null;
 
   return (
     <section className="relative overflow-hidden pt-32 sm:pt-36 lg:pt-38 pb-20 sm:pb-24 bg-gradient-to-b from-[#F5F9F8] via-[#FAF9F5] to-white border-b border-[#050F2C]/6">
@@ -131,75 +148,38 @@ const OfficeTourVideo = () => {
         {/* ── 3 Tour Video Cards (Clean & Refined Showcase) ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 lg:gap-8">
           {TOUR_VIDEOS.map((video, index) => {
-            const isPlaying = playingIndex === index;
-
             return (
               <div key={video.id} className="group flex flex-col">
                 {/* Media Container */}
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border border-[#050F2C]/8 shadow-[0_12px_32px_-12px_rgba(5,15,44,0.12)] group-hover:shadow-[0_20px_45px_-12px_rgba(56,131,138,0.22)] group-hover:-translate-y-1 transition-all duration-300">
-                  {!isPlaying ? (
-                    <div
-                      className="absolute inset-0 cursor-pointer flex items-center justify-center"
-                      onClick={() => handlePlay(index)}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Play ${video.title}`}
-                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handlePlay(index)}
-                    >
-                      {/* Image properly fills background */}
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
-                      />
+                <div
+                  className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border border-[#050F2C]/8 shadow-[0_12px_32px_-12px_rgba(5,15,44,0.12)] group-hover:shadow-[0_20px_45px_-12px_rgba(56,131,138,0.22)] group-hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                  onClick={() => setActiveTourIndex(index)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Watch ${video.title} tour`}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setActiveTourIndex(index)}
+                >
+                  {/* Image properly fills background */}
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-out"
+                  />
 
-                      {/* Subtle Dark Vignette for Contrast */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent group-hover:from-black/70 transition-colors" />
+                  {/* Subtle Dark Vignette for Contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent group-hover:from-black/70 transition-colors" />
 
-                      {/* Perfectly Centered Clean Play Icon Button */}
-                      <div className="relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#050F2C] group-hover:bg-[#38838A] group-hover:text-white transition-all duration-300 shadow-xl group-hover:scale-110">
-                        <Play className="w-6 h-6 ml-0.5 fill-current" />
-                      </div>
+                  {/* Perfectly Centered Clean Play Icon Button */}
+                  <div className="relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#050F2C] group-hover:bg-[#38838A] group-hover:text-white transition-all duration-300 shadow-xl group-hover:scale-110">
+                    <Play className="w-6 h-6 ml-0.5 fill-current" />
+                  </div>
 
-                      {/* Clean Tag Badge at Bottom-Left */}
-                      <div className="absolute bottom-3.5 left-3.5 z-10 pointer-events-none">
-                        <span className="text-[11px] font-bold text-white bg-[#050F2C]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm">
-                          {video.tag}
-                        </span>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="relative w-full h-full bg-black flex items-center justify-center">
-                      <video
-                        src={video.videoSrc}
-                        controls
-                        autoPlay
-                        playsInline
-                        className="w-full h-full object-contain"
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-
-                      {/* Clean Close & External Backup */}
-                      <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5">
-                        <button
-                          onClick={handleClose}
-                          className="px-2.5 py-1 rounded-md text-xs font-medium text-white bg-black/75 hover:bg-black transition-colors cursor-pointer inline-flex items-center gap-1 shadow-sm"
-                        >
-                          <X className="w-3.5 h-3.5" /> Close
-                        </button>
-                        <a
-                          href={video.driveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-1 rounded-md text-white/80 hover:text-white bg-black/75 transition-colors"
-                          title={video.driveUrl.includes('1drv.ms') || video.driveUrl.includes('onedrive') ? "Open on OneDrive" : "Open on Google Drive"}
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    </div>
-                  )}
+                  {/* Clean Tag Badge at Bottom-Left */}
+                  <div className="absolute bottom-3.5 left-3.5 z-10 pointer-events-none">
+                    <span className="text-[11px] font-bold text-white bg-[#050F2C]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm">
+                      {video.tag}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Clean Editorial Caption Below Media */}
@@ -219,6 +199,93 @@ const OfficeTourVideo = () => {
           })}
         </div>
       </div>
+
+      {/* ── INTERACTIVE TOUR LIGHTBOX MODAL ── */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md animate-fadeIn"
+          onClick={() => setActiveTourIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeVideo.title}
+        >
+          <div
+            className="relative w-full max-w-4xl bg-slate-950 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/15 flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10 bg-slate-900/90">
+              <div className="text-left">
+                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#38838A] block">
+                  {activeVideo.suiteNum} · {activeVideo.tag}
+                </span>
+                <h3 className="font-display font-bold text-sm sm:text-lg text-white">
+                  {activeVideo.title}
+                </h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={activeVideo.driveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-colors"
+                  title="Open video in new tab"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActiveTourIndex(null)}
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                  aria-label="Close video modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Video Player */}
+            <div className="relative aspect-video w-full bg-black flex items-center justify-center">
+              <video
+                key={activeVideo.id}
+                ref={videoRef}
+                src={activeVideo.videoSrc}
+                poster={activeVideo.thumbnail}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            {/* Modal Footer with Suite Switcher */}
+            <div className="px-4 sm:px-6 py-3 bg-slate-900/90 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-white/75">
+              <div className="flex items-center gap-2">
+                {TOUR_VIDEOS.map((v, i) => (
+                  <button
+                    key={v.id}
+                    type="button"
+                    onClick={() => setActiveTourIndex(i)}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                      activeTourIndex === i
+                        ? 'bg-[#38838A] text-white shadow-sm'
+                        : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+                    }`}
+                  >
+                    {v.suiteNum}
+                  </button>
+                ))}
+              </div>
+
+              <span className="text-[11px] text-white/60 hidden sm:inline">
+                {activeVideo.subtitle}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

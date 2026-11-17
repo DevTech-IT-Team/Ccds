@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone, Sparkles, GraduationCap, ExternalLink, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone, Sparkles, GraduationCap, ExternalLink, Play, X } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
 import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
@@ -11,6 +12,7 @@ import ionThumb from '../assets/service/Ionfoot/foot.png';
 import bioThumb from '../assets/service/Biocharger/bio.png';
 import ccdcLogo from '../assets/logo/ccdclogo.png';
 import academyLogo from '../assets/academy/Colonic_Academy_Logo.png';
+import updatedFacilityTour from '../assets/video/updated_facility_tour.mp4';
 
 const mineralThumb = 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&auto=format&fit=crop';
 
@@ -147,6 +149,26 @@ const TeamMemberCard = ({ name, role, bio, titleBadge, imageSrc, certifications,
 );
 
 const Home = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsVideoModalOpen(false);
+      }
+    };
+    if (isVideoModalOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isVideoModalOpen]);
+
   // Updated Cards Data
   const teamMembers = [
     {
@@ -366,25 +388,34 @@ const Home = () => {
                 </li>
               </ul>
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#050F2C] text-white text-sm font-bold hover:bg-[#38838A] transition-all duration-200 shadow-md hover:scale-[1.02] cursor-pointer"
+                >
+                  <Play className="w-4 h-4 fill-current ml-0.5" />
+                  Watch Facility Tour
+                </button>
                 <a
                   href="https://1drv.ms/v/c/3fbaa8c1bc977ca3/IQB-tJw5YzInSIyR9_x68rmPAYJNOanH6a8wpc288QldjYg?e=71AbPJ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold text-[#B36C63] hover:text-[#050F2C] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#050F2C]/70 hover:text-[#38838A] transition-colors"
                 >
-                  Watch on OneDrive <ExternalLink className="w-4 h-4" />
+                  Open on OneDrive <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>
 
             <div className="lg:w-7/12 w-full">
-              <a
-                href="https://1drv.ms/v/c/3fbaa8c1bc977ca3/IQB-tJw5YzInSIyR9_x68rmPAYJNOanH6a8wpc288QldjYg?e=71AbPJ"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative aspect-video w-full overflow-hidden rounded-[24px] border border-[#E2EEEC] shadow-lg bg-slate-900 block hover:shadow-2xl transition-all duration-300"
-                aria-label="Play Updated Facility & Suites Tour on OneDrive"
+              <div
+                onClick={() => setIsVideoModalOpen(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setIsVideoModalOpen(true)}
+                className="group relative aspect-video w-full overflow-hidden rounded-[24px] border border-[#E2EEEC] shadow-lg bg-slate-900 block hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                aria-label="Open Updated Facility & Suites Tour Modal"
               >
                 {/* Room thumbnail */}
                 <img
@@ -402,7 +433,7 @@ const Home = () => {
                     Updated Facility Tour · 2:21
                   </span>
                   <span className="text-xs font-semibold text-white/90 bg-[#38838A]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-sm inline-flex items-center gap-1.5">
-                    OneDrive <ExternalLink className="w-3.5 h-3.5" />
+                    Click to Play
                   </span>
                 </div>
 
@@ -422,11 +453,73 @@ const Home = () => {
                     Main Facility Tour · Open System Suite · Aqua Cleanse Suite
                   </p>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ── VIDEO TOUR MODAL POPUP ── */}
+      {isVideoModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md"
+          onClick={() => setIsVideoModalOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Colorado Colonics Facility Tour Video"
+        >
+          <div
+            className="relative w-full max-w-4xl bg-slate-950 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/15 flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-white/10 bg-slate-900/90">
+              <div>
+                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#38838A] block">
+                  Colorado Colonics · Virtual Tour
+                </span>
+                <h3 className="font-display font-bold text-sm sm:text-lg text-white">
+                  Updated Facility & Treatment Suites Tour
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsVideoModalOpen(false)}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                aria-label="Close video modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Video Player */}
+            <div className="relative aspect-video w-full bg-black flex items-center justify-center">
+              <video
+                src={updatedFacilityTour}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-4 sm:px-6 py-3 bg-slate-900/90 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-white/75">
+              <span>Main Facility · Open System Suite · Aqua Cleanse Suite (2:21)</span>
+              <a
+                href="https://1drv.ms/v/c/3fbaa8c1bc977ca3/IQB-tJw5YzInSIyR9_x68rmPAYJNOanH6a8wpc288QldjYg?e=71AbPJ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[#38838A] hover:text-white font-semibold transition-colors"
+              >
+                Open on OneDrive <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── UPDATED TEAM CARDS SECTION ── */}
       <section className="py-24 bg-sky-100">

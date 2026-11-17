@@ -100,7 +100,7 @@ const PricingCards = () => {
                 Most Comprehensive
               </span>
               <h3 className="text-xl font-display font-semibold text-[#050F2C]">
-                Unlimited Wellness Plan
+                VIP Wellness Plan
               </h3>
               <div className="mt-3 mb-1">
                 <span className="text-4xl font-display font-semibold text-[#050F2C]">$299</span>
@@ -115,9 +115,9 @@ const PricingCards = () => {
 
             <div className="space-y-4 flex-1 mb-8">
               {[
-                'Unlimited 30-Minute Colonics',
-                'Unlimited 10-Minute BioCharger Sessions',
-                'Unlimited 10-Minute Foot Detox Sessions',
+                'Daily 30-Minute Colonics (Up to 1/day)',
+                'Included 10-Minute BioCharger Sessions',
+                'Included 10-Minute Foot Detox Sessions',
                 'One Free Consultation (Initial Session)',
                 '15-Minute Follow-Up Consultation (After 3 Sessions/3 Months)',
                 'Full Access: Colonic Academy Training & Certification Program'
@@ -168,8 +168,8 @@ const PricingCards = () => {
             <div className="space-y-4 flex-1 mb-8">
               {[
                 '1 Colonic Session Per Month',
-                'Unlimited 10-Minute BioCharger Sessions',
-                'Unlimited 10-Minute Foot Detox Sessions',
+                'Included 10-Minute BioCharger Sessions',
+                'Included 10-Minute Foot Detox Sessions',
                 'One Free Consultation (Initial Session)',
                 'Membership to Colonic Academy'
               ].map((feature, i) => (

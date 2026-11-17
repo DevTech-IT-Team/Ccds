@@ -24,7 +24,7 @@ const teamMembers = [
     id: 'lisa-smith',
     name: 'Lisa Smith',
     image: lisa,
-    role: 'Certified Colon Hydrotherapist',
+    role: 'Credentialed Certified Instructor',
     experience: '20+ Years Experience',
     badge: 'CCDC Founder',
     quote: 'My energy, passion, and enthusiasm to help others are gifts I love to share.',

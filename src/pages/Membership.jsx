@@ -23,7 +23,7 @@ const Membership = () => {
       {/* ── 1. Hero Section ── */}
       <MembershipHero />
 
-      {/* ── 2. Membership Plans (Essential & Unlimited) ── */}
+      {/* ── 2. Membership Plans (Essential & VIP) ── */}
       <MembershipPlans />
 
       {/* ── 3. Session Length Comparison (30m vs 50m) ── */}

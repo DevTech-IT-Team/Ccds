@@ -3,7 +3,7 @@ const MembershipSteps = () => {
     {
       step: '01',
       title: 'Choose your membership',
-      desc: 'Select Essential or Unlimited based on your preferred level of flexibility.',
+      desc: 'Select Essential or VIP based on your preferred level of flexibility.',
     },
     {
       step: '02',

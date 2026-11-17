@@ -139,7 +139,7 @@ const MembershipPlans = () => {
             </div>
           </div>
 
-          {/* Plan 2: Unlimited Membership (Featured) */}
+          {/* Plan 2: VIP Membership (Featured) */}
           <div className="relative flex flex-col p-8 sm:p-10 rounded-3xl bg-white border-2 border-[#38838A] shadow-xl hover:shadow-2xl transition-all duration-300 md:-translate-y-2">
             
             {/* Top Ribbon */}
@@ -149,7 +149,7 @@ const MembershipPlans = () => {
 
             <div>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#050F2C] mb-2">
-                Unlimited Membership
+                VIP Membership
               </h3>
 
               <div className="flex items-baseline gap-2 mb-2">
@@ -251,11 +251,11 @@ const MembershipPlans = () => {
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#B36C63] hover:bg-[#9E5A52] text-white text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg"
               >
-                Choose Unlimited
+                Choose VIP
                 <ArrowRight className="w-4 h-4" />
               </a>
               <p className="text-[11px] text-[#050F2C]/60 text-center leading-relaxed">
-                “Unlimited” does not guarantee daily appointments or override practitioner recommendations.
+                VIP Membership does not guarantee daily appointments or override practitioner recommendations.
               </p>
             </div>
           </div>

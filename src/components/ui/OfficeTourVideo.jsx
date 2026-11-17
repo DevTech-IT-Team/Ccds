@@ -5,7 +5,6 @@ import lobbyImg from '../../assets/home/ccdshome.JPEG';
 import roomImg1 from '../../assets/service/colon/angel-of-water-treatment-room-2-1.jpg';
 import roomImg2 from '../../assets/service/colon/closed-system-1.jpg';
 import facilityTourVideo from '../../assets/video/ccdc_walk_through_816.mp4';
-import angelOfWaterVideo from '../../assets/video/aofw_628.mp4';
 import openSystemVideo from '../../assets/video/open_system.mp4';
 import ccdcLogo from '../../assets/logo/ccdclogo.png';
 import { siteContent } from '../../data/content';
@@ -27,8 +26,8 @@ const TOUR_VIDEOS = [
     tag: 'Angel of Water Suite',
     title: 'Open System Suite.',
     subtitle: 'Private open-system hydrotherapy in a serene sanctuary',
-    videoSrc: angelOfWaterVideo,
-    driveUrl: 'https://drive.google.com/file/d/1XfYXvxPLcaKSa-oTEAi43H7AekZcN-qo/view',
+    videoSrc: null,
+    driveUrl: 'https://1drv.ms/v/c/3fbaa8c1bc977ca3/IQB-tJw5YzInSIyR9_x68rmPAYJNOanH6a8wpc288QldjYg?e=71AbPJ',
     thumbnail: roomImg1,
   },
   {
@@ -47,6 +46,11 @@ const OfficeTourVideo = () => {
   const [playingIndex, setPlayingIndex] = useState(null);
 
   const handlePlay = (index) => {
+    const video = TOUR_VIDEOS[index];
+    if (!video.videoSrc && video.driveUrl) {
+      window.open(video.driveUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
     setPlayingIndex(index);
   };
 
@@ -158,14 +162,23 @@ const OfficeTourVideo = () => {
 
                       {/* Perfectly Centered Clean Play Icon Button */}
                       <div className="relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#050F2C] group-hover:bg-[#38838A] group-hover:text-white transition-all duration-300 shadow-xl group-hover:scale-110">
-                        <Play className="w-6 h-6 ml-0.5 fill-current" />
+                        {video.videoSrc ? (
+                          <Play className="w-6 h-6 ml-0.5 fill-current" />
+                        ) : (
+                          <ExternalLink className="w-6 h-6" />
+                        )}
                       </div>
 
                       {/* Clean Tag Badge at Bottom-Left */}
-                      <div className="absolute bottom-3.5 left-3.5 z-10 pointer-events-none">
+                      <div className="absolute bottom-3.5 left-3.5 z-10 pointer-events-none flex items-center gap-1.5">
                         <span className="text-[11px] font-bold text-white bg-[#050F2C]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm">
                           {video.tag}
                         </span>
+                        {!video.videoSrc && (
+                          <span className="text-[10px] font-bold text-white bg-[#38838A]/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/20 shadow-sm flex items-center gap-1">
+                            OneDrive ↗
+                          </span>
+                        )}
                       </div>
                     </div>
                   ) : (
@@ -193,7 +206,7 @@ const OfficeTourVideo = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-1 rounded-md text-white/80 hover:text-white bg-black/75 transition-colors"
-                          title="Open on Google Drive"
+                          title={video.driveUrl.includes('1drv.ms') || video.driveUrl.includes('onedrive') ? "Open on OneDrive" : "Open on Google Drive"}
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>

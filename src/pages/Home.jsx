@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone, Sparkles, GraduationCap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Droplet, Zap, Users, ChevronRight, Star, MapPin, Phone, Sparkles, GraduationCap, ExternalLink, Play } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
 import OfficeTourVideo from '../components/ui/OfficeTourVideo';
 import { siteContent } from '../data/content';
@@ -151,7 +151,7 @@ const Home = () => {
   const teamMembers = [
     {
       name: "Lisa Smith, I-ACT",
-      role: "Certified Colon Hydrotherapist",
+      role: "Credentialed Certified Instructor",
       titleBadge: "Founder",
       imageSrc: lisa,
       imagePosition: "center 15%",
@@ -335,7 +335,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── VIDEO PROMO SECTION ── */}
+      {/* ── VIDEO PROMO SECTION (UPDATED FACILITY & SUITES TOUR) ── */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -344,36 +344,85 @@ const Home = () => {
                 Watch & Learn
               </span>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-[#050F2C] mb-6 leading-tight">
-                Discover the Benefits of Colon Hydrotherapy
+                Explore Our Facility & Treatment Suites
               </h2>
               <div className="h-1 w-16 rounded-full bg-[#B36C63] mb-6" />
-              <p className="text-[#050F2C]/80 text-lg leading-relaxed font-medium mb-8">
-                Curious about what a session looks like? Watch this informative guide on the process, benefits, and why so many people are turning to hydro colonics for digestive wellness and renewed energy.
+              <p className="text-[#050F2C]/80 text-lg leading-relaxed font-medium mb-6">
+                Take an updated virtual tour inside Colorado Colonics. Explore our welcoming sanctuary and discover our clinical-grade hydrotherapy suites designed for your comfort, privacy, and gentle rejuvenation:
               </p>
+
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-3 text-sm font-semibold text-[#050F2C]">
+                  <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0" />
+                  <span>Main Facility Tour</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm font-semibold text-[#050F2C]">
+                  <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0" />
+                  <span>Open System Suite (Angel of Water)</span>
+                </li>
+                <li className="flex items-center gap-3 text-sm font-semibold text-[#050F2C]">
+                  <CheckCircle2 className="w-5 h-5 text-[#38838A] flex-shrink-0" />
+                  <span>Aqua Cleanse Suite (Closed System)</span>
+                </li>
+              </ul>
+
               <div className="flex items-center gap-4">
                 <a
-                  href="https://www.youtube.com/watch?v=AcG8mLoJhMk"
+                  href="https://1drv.ms/v/c/3fbaa8c1bc977ca3/IQB-tJw5YzInSIyR9_x68rmPAYJNOanH6a8wpc288QldjYg?e=71AbPJ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-semibold text-[#B36C63] hover:text-[#050F2C] transition-colors"
                 >
-                  Watch on YouTube <ArrowRight className="w-4 h-4" />
+                  Watch on OneDrive <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </div>
 
             <div className="lg:w-7/12 w-full">
-              <div className="relative aspect-video w-full overflow-hidden rounded-[24px] border border-[#E2EEEC] shadow-sm bg-slate-900">
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/AcG8mLoJhMk?si=PgoeJ97z6Awv6bs1"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
+              <a
+                href="https://1drv.ms/v/c/3fbaa8c1bc977ca3/IQB-tJw5YzInSIyR9_x68rmPAYJNOanH6a8wpc288QldjYg?e=71AbPJ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative aspect-video w-full overflow-hidden rounded-[24px] border border-[#E2EEEC] shadow-lg bg-slate-900 block hover:shadow-2xl transition-all duration-300"
+                aria-label="Play Updated Facility & Suites Tour on OneDrive"
+              >
+                {/* Room thumbnail */}
+                <img
+                  src={colonThumb}
+                  alt="Colorado Colonics Facility Tour"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-              </div>
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050F2C]/85 via-[#050F2C]/40 to-[#050F2C]/20 group-hover:via-[#050F2C]/30 transition-colors" />
+
+                {/* Top badges */}
+                <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
+                  <span className="text-xs font-bold text-white bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-sm">
+                    Updated Facility Tour · 2:21
+                  </span>
+                  <span className="text-xs font-semibold text-white/90 bg-[#38838A]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-sm inline-flex items-center gap-1.5">
+                    OneDrive <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+
+                {/* Center Play Button */}
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3">
+                  <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#050F2C] group-hover:bg-[#38838A] group-hover:text-white transition-all duration-300 shadow-2xl group-hover:scale-110">
+                    <Play className="w-7 h-7 ml-1 fill-current" />
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-white drop-shadow-md bg-black/40 backdrop-blur-sm px-4 py-1 rounded-full border border-white/10 group-hover:bg-[#38838A]/90 transition-colors">
+                    Click to Watch Tour
+                  </span>
+                </div>
+
+                {/* Bottom caption */}
+                <div className="absolute bottom-4 left-4 right-4 z-10 pointer-events-none text-left">
+                  <p className="text-xs sm:text-sm font-medium text-white/90 drop-shadow-sm">
+                    Main Facility Tour · Open System Suite · Aqua Cleanse Suite
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </div>

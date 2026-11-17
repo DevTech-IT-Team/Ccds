@@ -170,8 +170,10 @@ const OfficeTourVideo = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent group-hover:from-black/70 transition-colors" />
 
                   {/* Perfectly Centered Clean Play Icon Button */}
-                  <div className="relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#050F2C] group-hover:bg-[#38838A] group-hover:text-white transition-all duration-300 shadow-xl group-hover:scale-110">
-                    <Play className="w-6 h-6 ml-0.5 fill-current" />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                    <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-[#050F2C] group-hover:bg-[#38838A] group-hover:text-white transition-all duration-300 shadow-xl group-hover:scale-110">
+                      <Play className="w-6 h-6 ml-0.5 fill-current" />
+                    </div>
                   </div>
 
                   {/* Clean Tag Badge at Bottom-Left */}

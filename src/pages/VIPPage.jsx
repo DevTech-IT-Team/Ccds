@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-// Reusable component for displaying bullet lists
+// Reusable component for bullet lists
 const List = ({ items }) => (
   <ul className="vip-list">
     {items.map((item, index) => (
@@ -9,24 +9,17 @@ const List = ({ items }) => (
   </ul>
 );
 
-// Reusable expandable section component
+// Reusable section component (always visible)
 const Section = ({ title, children, id }) => (
-  <details className="vip-section" id={id}>
-    <summary className="vip-section-title">
-      <span>{title}</span>
-      <span className="vip-toggle-icon"></span>
-    </summary>
-
-    <div className="vip-section-content">
-      {children}
-    </div>
-  </details>
+  <section className="vip-section" id={id}>
+    <h2 className="vip-section-title">{title}</h2>
+    <div className="vip-section-content">{children}</div>
+  </section>
 );
 
 // Main VIP Page Component
 export default function VIPPage() {
-
-  // Set page title and noindex metadata
+  // Page title and SEO metadata
   useEffect(() => {
     document.title = "CCDC VIP | Colorado Colonics";
 
@@ -40,7 +33,6 @@ export default function VIPPage() {
     }
 
     const previous = robots.content;
-
     robots.content = "noindex, nofollow";
 
     return () => {
@@ -52,37 +44,28 @@ export default function VIPPage() {
     };
   }, []);
 
-  // Expand all sections
-  const expandAll = () => {
-    document.querySelectorAll(".vip-section").forEach((section) => {
-      section.open = true;
-    });
-  };
-
-  // Collapse all sections
-  const collapseAll = () => {
-    document.querySelectorAll(".vip-section").forEach((section) => {
-      section.open = false;
-    });
-  };
-
   return (
     <main className="vip-page">
-
       <style>{`
 
         /* ==============================
-           MAIN VIP PAGE
+           COLOR PALETTE
         ============================== */
 
         .vip-page {
+          --vip-primary: #254f9d;
+          --vip-primary-dark: #183a78;
+          --vip-primary-light: #eaf1fb;
+          --vip-text: #263445;
+          --vip-muted: #627184;
+          --vip-border: #d5dfeb;
+          --vip-background: #f7f9fc;
+
           width: 100%;
           min-height: 100vh;
-          position: relative;
-          margin: 0;
-          padding: clamp(115px, 12vw, 155px) 0 70px;
-          background: linear-gradient(180deg, #f7f9fc, #eef3f8);
-          color: #182532;
+          padding: clamp(110px, 12vw, 150px) 0 70px;
+          background: var(--vip-background);
+          color: var(--vip-text);
           font-family: Georgia, serif;
           overflow-x: hidden;
         }
@@ -91,16 +74,18 @@ export default function VIPPage() {
           box-sizing: border-box;
         }
 
+        /* ==============================
+           MAIN CONTAINER
+        ============================== */
+
         .vip-container {
           width: 100%;
-          max-width: none;
           margin: 0;
-          padding: 0 clamp(14px, 4vw, 72px);
+          padding: 0 clamp(16px, 5vw, 80px);
         }
 
-
         /* ==============================
-           VIP HEADER
+           HEADER
         ============================== */
 
         .vip-heading {
@@ -109,16 +94,16 @@ export default function VIPPage() {
         }
 
         .vip-heading h1 {
-          color: #254f9d;
+          color: var(--vip-primary);
           font-size: clamp(40px, 6vw, 76px);
           line-height: 1.1;
           margin: 0 0 18px;
           letter-spacing: .04em;
-          text-shadow: 0 2px 0 #ffffff;
+          font-weight: normal;
         }
 
         .vip-heading h2 {
-          color: #345eaa;
+          color: var(--vip-primary);
           font-size: clamp(22px, 3vw, 40px);
           font-weight: normal;
           line-height: 1.3;
@@ -129,284 +114,192 @@ export default function VIPPage() {
           font-size: clamp(17px, 2vw, 24px);
           line-height: 1.7;
           margin: 0;
-          color: #526170;
+          color: var(--vip-muted);
         }
 
         .vip-divider {
           border: 0;
-          border-top: 1px solid #c8d4e3;
+          border-top: 1px solid var(--vip-border);
           width: 100%;
           margin: 32px auto;
         }
 
-
         /* ==============================
-           EXPAND / COLLAPSE BUTTONS
-        ============================== */
-
-        .vip-toolbar {
-          display: flex;
-          justify-content: center;
-          gap: 14px;
-          flex-wrap: wrap;
-          margin: 0 auto 35px;
-        }
-
-        .vip-toolbar button {
-          border: 1px solid #254f9d;
-          background: #ffffff;
-          color: #254f9d;
-          padding: 13px 25px;
-          border-radius: 50px;
-          font-size: 15px;
-          font-family: inherit;
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(37,79,157,.08);
-          transition: all .3s ease;
-        }
-
-        .vip-toolbar button:hover {
-          background: #254f9d;
-          color: #ffffff;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 18px rgba(37,79,157,.2);
-        }
-
-
-        /* ==============================
-           INTERACTIVE SECTIONS
+           SECTION HEADINGS
         ============================== */
 
         .vip-section {
           width: 100%;
-          margin: 0 auto 26px;
+          margin: 0 auto;
           padding: 0;
-          background: rgba(255,255,255,.95);
-          border: 1px solid #dce5ef;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 12px 30px rgba(31,55,87,.08);
-          transition: box-shadow .3s ease, transform .3s ease;
-        }
-
-        .vip-section:hover {
-          box-shadow: 0 18px 38px rgba(31,55,87,.13);
-          transform: translateY(-2px);
+          border-bottom: 1px solid var(--vip-border);
         }
 
         .vip-section-title {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          cursor: pointer;
-          list-style: none;
-          text-align: left;
-          padding: 25px clamp(18px, 3vw, 44px);
-          font-size: clamp(22px, 2.8vw, 35px);
-          color: #254f9d;
-          line-height: 1.35;
+          color: var(--vip-primary);
+          font-size: clamp(24px, 3vw, 38px);
           font-weight: normal;
-          background: linear-gradient(90deg, #f0f5ff, #ffffff);
+          line-height: 1.4;
+          margin: 0;
+          padding: 30px 20px 15px;
+          border-left: 4px solid var(--vip-primary);
         }
 
-        .vip-section-title::-webkit-details-marker {
-          display: none;
-        }
-
-        .vip-toggle-icon {
-          width: 40px;
-          height: 40px;
-          flex: 0 0 40px;
-          display: grid;
-          place-items: center;
-          background: #e3edff;
-          border-radius: 50%;
-          transition: transform .3s ease;
-        }
-
-        .vip-toggle-icon::before {
-          content: "+";
-          font-family: Arial, sans-serif;
-          font-size: 27px;
-          color: #254f9d;
-        }
-
-        .vip-section[open] .vip-toggle-icon {
-          transform: rotate(180deg);
-        }
-
-        .vip-section[open] .vip-toggle-icon::before {
-          content: "−";
-        }
+        /* ==============================
+           SECTION CONTENT
+        ============================== */
 
         .vip-section-content {
-          padding: 0 clamp(18px, 3vw, 44px) 34px;
+          padding: 20px 20px 40px;
           font-size: clamp(16px, 1.45vw, 19px);
           line-height: 1.85;
-          animation: vipFade .35s ease;
+          background: transparent;
         }
 
         .vip-section-content p {
           margin: 0 0 20px;
         }
 
-        @keyframes vipFade {
-          from {
-            opacity: 0;
-            transform: translateY(-8px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-
         /* ==============================
-           GRID LAYOUT
+           PLAIN LAYOUT
         ============================== */
 
         .vip-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 22px;
+          display: block;
           width: 100%;
         }
-
-
-        /* ==============================
-           CONTENT CARDS
-        ============================== */
 
         .vip-box {
+          display: block;
           width: 100%;
-          padding: clamp(22px, 3vw, 36px);
-          border-radius: 16px;
-          line-height: 1.85;
+          padding: 25px 0;
+          margin: 0;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
+          background: transparent !important;
           font-size: 17px;
-          margin: 0 0 18px;
-          border: 1px solid rgba(40,70,110,.06);
-          transition: transform .3s ease, box-shadow .3s ease;
-        }
-
-        .vip-box:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 24px rgba(30,50,80,.08);
+          line-height: 1.85;
         }
 
         .vip-box h3 {
-          color: #254f9d;
+          color: var(--vip-primary);
           font-size: clamp(21px, 2.2vw, 28px);
           font-weight: normal;
-          margin: 0 0 18px;
+          margin: 0 0 20px;
         }
-
 
         /* ==============================
            BULLET LISTS
         ============================== */
 
         .vip-list {
-          padding-left: 1.4em;
+          padding-left: 28px;
           margin: 0;
           list-style: disc;
         }
 
         .vip-list li {
-          padding-left: .15em;
-          margin: 0 0 10px;
-          line-height: 1.7;
+          padding-left: 5px;
+          margin-bottom: 12px;
+          line-height: 1.8;
         }
 
         .vip-list li::marker {
-          color: #345eaa;
+          color: var(--vip-primary);
         }
 
-
         /* ==============================
-           CARD COLORS
+           REMOVE COLORED CONTAINERS
         ============================== */
 
-        .vip-pink {
-          background: #fff0f1;
-        }
-
-        .vip-blue {
-          background: #e8f3ff;
-        }
-
-        .vip-green {
-          background: #edf7e9;
-        }
-
-        .vip-yellow {
-          background: #fff6e4;
-        }
-
+        .vip-pink,
+        .vip-blue,
+        .vip-green,
+        .vip-yellow,
         .vip-gray {
-          background: #f3f6f9;
+          background: transparent !important;
+          border: none !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
         }
-
 
         /* ==============================
-           SPINACH SOUP IMAGE
+           IMAGE
         ============================== */
 
         .vip-image {
           display: block;
           width: 100%;
+          max-width: 100%;
           height: auto;
-          margin: 24px auto 35px;
-          border-radius: 18px;
-          box-shadow: 0 14px 34px rgba(0,0,0,.12);
-          transition: transform .3s ease;
+          margin: 25px auto 35px;
+          border-radius: 0;
+          box-shadow: none;
         }
-
-        .vip-image:hover {
-          transform: scale(1.01);
-        }
-
 
         /* ==============================
-           YOUTUBE VIDEO
+           VIDEO BUTTON
         ============================== */
 
-        .vip-video {
-          position: relative;
-          width: 100%;
-          max-width: 1600px;
-          aspect-ratio: 16 / 9;
-          margin: 30px auto 24px;
-          background: #000000;
-          border-radius: 20px;
-          overflow: hidden;
-          box-shadow: 0 18px 42px rgba(0,0,0,.18);
+        .vip-video-button-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 35px 0;
         }
 
-        .vip-video iframe {
-          width: 100%;
-          height: 100%;
-          border: 0;
-          display: block;
+        .vip-youtube-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          padding: 17px 32px;
+          background: var(--vip-primary);
+          color: white;
+          text-decoration: none;
+          font-family: Arial, sans-serif;
+          font-size: 17px;
+          font-weight: bold;
+          border-radius: 40px;
+          border: 1px solid var(--vip-primary);
+          transition: all .25s ease;
         }
 
+        .vip-youtube-button:hover {
+          background: var(--vip-primary-dark);
+          color: white;
+          transform: translateY(-2px);
+        }
+
+        .vip-youtube-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          background: white;
+          color: var(--vip-primary);
+          border-radius: 50%;
+          font-size: 15px;
+        }
 
         /* ==============================
            DISCLAIMER
         ============================== */
 
         .vip-note {
+          width: 100%;
+          padding: 20px 0;
+          margin: 0;
+          background: transparent !important;
+          border: none !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          color: var(--vip-muted);
           font-size: 15px;
           line-height: 1.8;
-          color: #555555;
-          padding: 26px;
-          background: #f1f4f7;
-          border-radius: 14px;
-          border-left: 5px solid #345eaa;
         }
-
 
         /* ==============================
            RESPONSIVE DESIGN
@@ -419,58 +312,63 @@ export default function VIPPage() {
           }
 
           .vip-container {
-            padding: 0 12px;
+            padding: 0 15px;
           }
 
           .vip-heading {
             padding: 20px 5px 30px;
           }
 
-          .vip-grid {
-            grid-template-columns: 1fr;
-            gap: 10px;
+          .vip-section-title {
+            padding: 25px 12px 12px;
+            font-size: 25px;
           }
 
-          .vip-section {
-            border-radius: 14px;
+          .vip-section-content {
+            padding: 20px 12px 30px;
+          }
+
+          .vip-box {
+            padding: 20px 0;
+          }
+
+          .vip-youtube-button {
+            width: 100%;
+            font-size: 16px;
+            padding: 16px 20px;
+          }
+
+          .vip-list {
+            padding-left: 22px;
+          }
+        }
+
+        @media (max-width: 480px) {
+
+          .vip-heading h1 {
+            font-size: 36px;
+          }
+
+          .vip-heading h2 {
+            font-size: 23px;
           }
 
           .vip-section-title {
-            padding: 20px 16px;
             font-size: 22px;
           }
 
           .vip-section-content {
-            padding: 0 16px 24px;
-          }
-
-          .vip-box {
-            padding: 22px 18px;
-          }
-
-          .vip-image {
-            border-radius: 10px;
-          }
-
-          .vip-video {
-            border-radius: 10px;
-          }
-
-          .vip-toolbar button {
-            width: 100%;
-            max-width: 280px;
+            font-size: 16px;
           }
         }
 
       `}</style>
 
-
-      {/* MAIN CONTENT CONTAINER */}
+      {/* MAIN CONTENT */}
 
       <div className="vip-container">
 
-
-        {/* VIP HEADER */}
+        {/* HEADER */}
 
         <header className="vip-heading">
 
@@ -486,25 +384,7 @@ export default function VIPPage() {
 
         </header>
 
-
-        {/* EXPAND AND COLLAPSE CONTROLS */}
-
-        <div className="vip-toolbar">
-
-          <button type="button" onClick={expandAll}>
-            ＋ Expand All Sections
-          </button>
-
-          <button type="button" onClick={collapseAll}>
-            − Collapse All Sections
-          </button>
-
-        </div>
-
-
-        {/* =================================
-            SPINACH SOUP RECIPE
-        ================================= */}
+        {/* SPINACH SOUP */}
 
         <Section
           title="Anthony William's Spinach Soup Recipe"
@@ -532,113 +412,98 @@ export default function VIPPage() {
 
           <h3>Spinach Soup Video</h3>
 
-          <div className="vip-video">
+          <div className="vip-video-button-wrapper">
 
-            <iframe
-              src="https://www.youtube.com/embed/f3NXy0QWGP4?rel=0"
-              title="Spinach Soup Video"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            <a
+              className="vip-youtube-button"
+              href="https://www.youtube.com/watch?v=f3NXy0QWGP4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="vip-youtube-icon">▶</span>
+              Watch Spinach Soup Video
+            </a>
 
           </div>
 
         </Section>
 
-
-        {/* =================================
-            LEMON / LIME WATER
-        ================================= */}
+        {/* LEMON / LIME WATER */}
 
         <Section
           title="Lemon / Lime Water"
           id="lemon-lime-water"
         >
 
-          <div className="vip-grid">
+          <div className="vip-box">
 
-            <div className="vip-box vip-yellow">
+            <h3>For 16 oz.</h3>
 
-              <h3>For 16 oz.</h3>
+            <List
+              items={[
+                "16 oz. room temperature water",
+                "1 whole lemon or lime"
+              ]}
+            />
 
-              <List
-                items={[
-                  "16 oz. room temperature water",
-                  "1 whole lemon or lime"
-                ]}
-              />
+          </div>
 
-            </div>
+          <div className="vip-box">
 
+            <h3>For 32 oz. (1 liter)</h3>
 
-            <div className="vip-box vip-green">
-
-              <h3>For 32 oz. (1 liter)</h3>
-
-              <List
-                items={[
-                  "32 oz. (1 liter) room temperature water",
-                  "2 whole lemons or limes"
-                ]}
-              />
-
-            </div>
+            <List
+              items={[
+                "32 oz. (1 liter) room temperature water",
+                "2 whole lemons or limes"
+              ]}
+            />
 
           </div>
 
         </Section>
 
-
-        {/* =================================
-            LIVER RESCUE SMOOTHIE
-        ================================= */}
+        {/* LIVER RESCUE SMOOTHIE */}
 
         <Section
           title="Liver Rescue Smoothie"
           id="liver-rescue-smoothie"
         >
 
-          <div className="vip-grid">
+          <div className="vip-box">
 
-            <div className="vip-box vip-pink">
+            <h3>Option A</h3>
 
-              <h3>Option A</h3>
-
-              <List
-                items={[
-                  "2 bananas or 1/2 Maradol papaya, cubed",
-                  "1/2 cup fresh, 1 packet frozen, or 2 tablespoons powdered red pitaya (dragon fruit)",
-                  "2 cups fresh or frozen or 2 tablespoons powdered wild blueberries",
-                  "1/2 cup water (optional)"
-                ]}
-              />
-
-            </div>
-
-
-            <div className="vip-box vip-pink">
-
-              <h3>Option B</h3>
-
-              <List
-                items={[
-                  "1 banana or 1/4 Maradol papaya, cubed",
-                  "1 mango",
-                  "1/2 cup fresh, 1 packet frozen, or 2 tablespoons powdered red pitaya (dragon fruit)",
-                  "1 celery stalk",
-                  "1/2 cup sprouts (any variety)",
-                  "1/2 lime",
-                  "1/2 cup water (optional)"
-                ]}
-              />
-
-            </div>
+            <List
+              items={[
+                "2 bananas or 1/2 Maradol papaya, cubed",
+                "1/2 cup fresh, 1 packet frozen, or 2 tablespoons powdered red pitaya (dragon fruit)",
+                "2 cups fresh or frozen or 2 tablespoons powdered wild blueberries",
+                "1/2 cup water (optional)"
+              ]}
+            />
 
           </div>
 
+          <div className="vip-box">
 
-          <div className="vip-box vip-gray">
+            <h3>Option B</h3>
+
+            <List
+              items={[
+                "1 banana or 1/4 Maradol papaya, cubed",
+                "1 mango",
+                "1/2 cup fresh, 1 packet frozen, or 2 tablespoons powdered red pitaya (dragon fruit)",
+                "1 celery stalk",
+                "1/2 cup sprouts (any variety)",
+                "1/2 lime",
+                "1/2 cup water (optional)"
+              ]}
+            />
+
+          </div>
+
+          <div className="vip-box">
 
             <h3>Preparation</h3>
 
@@ -652,67 +517,56 @@ export default function VIPPage() {
 
         </Section>
 
-
-        {/* =================================
-            HEAVY METAL DETOX SMOOTHIE
-        ================================= */}
+        {/* HEAVY METAL DETOX SMOOTHIE */}
 
         <Section
           title="Heavy Metal Detox Smoothie"
           id="heavy-metal-detox-smoothie"
         >
 
-          <div className="vip-grid">
+          <div className="vip-box">
 
-            <div className="vip-box vip-blue">
+            <h3>Ingredients</h3>
 
-              <h3>Ingredients</h3>
+            <List
+              items={[
+                "2 bananas",
+                "2 cups frozen or fresh wild blueberries or 2 tablespoons powdered wild blueberries",
+                "1 cup fresh cilantro",
+                "1 teaspoon barley grass juice powder",
+                "1 teaspoon spirulina",
+                "1 tablespoon Atlantic dulse",
+                "1 orange",
+                "1/2 to 1 cup water (optional)"
+              ]}
+            />
 
-              <List
-                items={[
-                  "2 bananas",
-                  "2 cups frozen or fresh wild blueberries or 2 tablespoons powdered wild blueberries",
-                  "1 cup fresh cilantro",
-                  "1 teaspoon barley grass juice powder",
-                  "1 teaspoon spirulina",
-                  "1 tablespoon Atlantic dulse",
-                  "1 orange",
-                  "1/2 to 1 cup water (optional)"
-                ]}
-              />
+          </div>
 
-            </div>
+          <div className="vip-box">
 
+            <h3>Preparation</h3>
 
-            <div className="vip-box vip-green">
-
-              <h3>Preparation</h3>
-
-              <p>
-                Combine the bananas, blueberries, cilantro, barley grass
-                juice powder, spirulina, and Atlantic dulse with the juice
-                of one orange in a high-speed blender and blend until
-                smooth. Add up to 1 cup of water if a thinner consistency
-                is desired. Serve and enjoy!
-              </p>
-
-            </div>
+            <p>
+              Combine the bananas, blueberries, cilantro, barley grass
+              juice powder, spirulina, and Atlantic dulse with the juice
+              of one orange in a high-speed blender and blend until
+              smooth. Add up to 1 cup of water if a thinner consistency
+              is desired. Serve and enjoy!
+            </p>
 
           </div>
 
         </Section>
 
-
-        {/* =================================
-            THE FATS TO AVOID
-        ================================= */}
+        {/* THE FATS TO AVOID */}
 
         <Section
           title="The Fats to Avoid"
           id="fats-to-avoid"
         >
 
-          <div className="vip-box vip-yellow">
+          <div className="vip-box">
 
             <h3>Stay off radical fats for a little while.</h3>
 
@@ -737,10 +591,7 @@ export default function VIPPage() {
 
         </Section>
 
-
-        {/* =================================
-            STREPTOCOCCUS FIGHTERS
-        ================================= */}
+        {/* STREPTOCOCCUS FIGHTERS */}
 
         <Section
           title="Streptococcus Fighters"
@@ -753,76 +604,67 @@ export default function VIPPage() {
             from minor illnesses to very serious and deadly diseases.
           </p>
 
+          <div className="vip-box">
 
-          <div className="vip-grid">
+            <h3>Streptococcus fighters</h3>
 
-            <div className="vip-box vip-green">
+            <List
+              items={[
+                "Onion",
+                "Garlic",
+                "Aromatic herbs (sage, rosemary, oregano, thyme, etc.)",
+                "Vitamin C",
+                "Elderberry Syrup",
+                "Zinc",
+                "Goldenseal",
+                "Wheatgrass juice",
+                "Barely grass juice",
+                "Bananas",
+                "Berries",
+                "Spinach (raw)",
+                "Ginger",
+                "Arugula",
+                "Sweet potatoes",
+                "Kale",
+                "Winter squash",
+                "Turmeric",
+                "Celery juice",
+                "Cayenne pepper (or any hot peppers)",
+                "Raw honey (200K photochemical)",
+                "Lemon balm",
+                "Cats claw"
+              ]}
+            />
 
-              <h3>Streptococcus fighters</h3>
+          </div>
 
-              <List
-                items={[
-                  "Onion",
-                  "Garlic",
-                  "Aromatic herbs (sage, rosemary, oregano, thyme, etc.)",
-                  "Vitamin C",
-                  "Elderberry Syrup",
-                  "Zinc",
-                  "Goldenseal",
-                  "Wheatgrass juice",
-                  "Barely grass juice",
-                  "Bananas",
-                  "Berries",
-                  "Spinach (raw)",
-                  "Ginger",
-                  "Arugula",
-                  "Sweet potatoes",
-                  "Kale",
-                  "Winter squash",
-                  "Turmeric",
-                  "Celery juice",
-                  "Cayenne pepper (or any hot peppers)",
-                  "Raw honey (200K photochemical)",
-                  "Lemon balm",
-                  "Cats claw"
-                ]}
-              />
+          <div className="vip-box">
 
-            </div>
+            <h3>Streptococcus fuel</h3>
 
-
-            <div className="vip-box vip-pink">
-
-              <h3>Streptococcus fuel</h3>
-
-              <List
-                items={[
-                  "Eggs",
-                  "Ghee",
-                  "Dairy",
-                  "Corn",
-                  "Wheat, gluten, rye, barley",
-                  "Canola oil"
-                ]}
-              />
-
-            </div>
+            <List
+              items={[
+                "Eggs",
+                "Ghee",
+                "Dairy",
+                "Corn",
+                "Wheat, gluten, rye, barley",
+                "Canola oil"
+              ]}
+            />
 
           </div>
 
         </Section>
 
-
-        {/* =================================
-            TROUBLE MAKER FOODS
-        ================================= */}
+        {/* TROUBLE MAKER FOODS */}
 
         <Section
           title="Trouble Maker Foods"
           id="trouble-maker-foods"
         >
 
-          <div className="vip-box vip-yellow">
+          <div className="vip-box">
 
             <List
               items={[
@@ -848,10 +690,7 @@ export default function VIPPage() {
 
         </Section>
 
-
-        {/* =================================
-            DISCLAIMER
-        ================================= */}
+        {/* DISCLAIMER */}
 
         <Section
           title="Disclaimer"
@@ -868,7 +707,6 @@ export default function VIPPage() {
           </div>
 
         </Section>
-
 
       </div>
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@theme {
+:root {
   --color-navy:        #050f2c;
   --color-navy-mid:    #0a1f5c;
   --color-navy-card:   #0d2167;
@@ -136,19 +136,37 @@ body {
 
 @layer components {
   .btn-gold, .bg-gradient-gold {
-    @apply text-[#050F2C] font-bold shadow-lg transition-all hover:scale-105;
+    color: #050F2C;
+    font-weight: 700;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     background: linear-gradient(135deg, #A38645 0%, #CBB06B 30%, #EAD798 50%, #CBB06B 70%, #A38645 100%);
   }
 
   .btn-primary-new, .bg-gradient-rose {
-    @apply text-white font-bold shadow-lg transition-all hover:scale-105 hover:shadow-xl;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
     background: linear-gradient(135deg, #B36C63 0%, #D98E84 30%, #F2B2A8 50%, #D98E84 70%, #B36C63 100%);
   }
 
+  .btn-primary-new:hover, .bg-gradient-rose:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
   .btn-secondary-new, .bg-gradient-teal {
-    @apply text-white font-semibold transition-all shadow-md hover:scale-105;
+    color: #fff;
+    font-weight: 600;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     background: linear-gradient(180deg, #38838A 0%, #2C7379 100%);
     border: 1px solid #38838A;
+  }
+
+  .btn-secondary-new:hover, .bg-gradient-teal:hover {
+    transform: scale(1.05);
   }
 
   .bg-overlay-new, .bg-gradient-overlay {

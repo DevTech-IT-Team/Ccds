@@ -26,6 +26,7 @@ import BlogPuffyEyes from './pages/BlogPuffyEyes';
 import BlogColonicIrrigation from './pages/BlogColonicIrrigation';
 import BlogHistoricalControversy from './pages/BlogHistoricalControversy';
 import BlogMortonWalker from './pages/BlogMortonWalker';
+import VIPPage from './pages/VIPPage';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route path="/blog/colonic-irrigations-historical-controversy" element={<BlogHistoricalControversy />} />
             <Route path="/blog/value-of-colon-hydrotherapy" element={<BlogMortonWalker />} />
             <Route path="/academy" element={<Academy />} />
+            <Route path="/vip" element={<VIPPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="*" element={<NotFound />} />
